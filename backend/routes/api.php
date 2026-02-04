@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,4 +36,10 @@ Route::middleware('auth:sanctum')->group(function () {
     // Admin routes
     Route::get('/admin/orders', [OrderController::class, 'adminIndex']);
     Route::patch('/admin/orders/{order}/status', [OrderController::class, 'updateStatus']);
+
+    // Resource routes for Admin
+    Route::apiResource('/admin/products', ProductController::class);
+    Route::apiResource('/admin/promotions', PromotionController::class);
+    Route::apiResource('/admin/employees', EmployeeController::class);
+    Route::get('/admin/clients', [UserController::class, 'index']);
 });

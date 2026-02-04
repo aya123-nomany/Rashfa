@@ -13,7 +13,8 @@ import {
   ShoppingCart, User, Search, ChevronLeft, ChevronRight, ChevronDown, Menu, X, Phone,
   Coffee, Sparkles, LayoutDashboard, Users, Package, Settings, 
   LogOut, CreditCard, MapPin, Bell, CheckCircle2, ArrowRight, ArrowUp,
-  TrendingUp, DollarSign, Clock, Filter, Mail, Lock, Truck, Download
+  TrendingUp, DollarSign, Clock, Filter, Mail, Lock, Truck, Download, Eye, Plus, Edit, Trash2,
+  FileText, Check
 } from 'lucide-react';
 import { 
   LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, 
@@ -111,225 +112,6 @@ const PRODUCTS = {
   ]
 };
 
-const BrandPreloader = () => {
-  return (
-    <motion.div 
-      initial={{ opacity: 1 }}
-      exit={{ opacity: 0, transition: { duration: 0.8, ease: "easeInOut" } }}
-      className="fixed inset-0 z-[10000] bg-[#001a13] flex items-center justify-center overflow-hidden"
-    >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,208,132,0.1),transparent_70%)]" />
-      
-      {/* Background Decorative Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div 
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.1, 0.2, 0.1]
-          }}
-          transition={{ duration: 10, repeat: Infinity }}
-          className="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] bg-[#00d084]/10 rounded-full blur-[120px]"
-        />
-        <motion.div 
-          animate={{ 
-            scale: [1.2, 1, 1.2],
-            opacity: [0.05, 0.15, 0.05]
-          }}
-          transition={{ duration: 12, repeat: Infinity }}
-          className="absolute -bottom-[20%] -right-[10%] w-[60%] h-[60%] bg-[#00d084]/5 rounded-full blur-[120px]"
-        />
-      </div>
-
-      <div className="relative flex flex-col items-center">
-        {/* Brand Identity */}
-        <motion.div 
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-16 flex flex-col items-center"
-        >
-          <div className="relative mb-8">
-            <motion.div
-              animate={{ 
-                boxShadow: ["0 0 30px rgba(0,208,132,0.2)", "0 0 60px rgba(0,208,132,0.4)", "0 0 30px rgba(0,208,132,0.2)"],
-                scale: [1, 1.05, 1]
-              }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="w-32 h-32 rounded-full border border-[#00d084]/30 flex items-center justify-center bg-white/5 backdrop-blur-md p-5 relative overflow-hidden group"
-            >
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#00d084]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <img 
-                src={rashfaLogo} 
-                alt="RASHFA Logo" 
-                className="w-full h-full object-contain filter drop-shadow-[0_0_15px_rgba(0,208,132,0.6)] relative z-10"
-              />
-            </motion.div>
-          </div>
-          <h2 className="text-7xl font-black text-white tracking-[0.3em] flex items-center drop-shadow-[0_10px_25px_rgba(0,0,0,0.6)]">
-            R<span className="text-[#00d084]">A</span>SHFA
-          </h2>
-          <div className="flex items-center gap-6 mt-4">
-            <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-[#00d084]/50 to-transparent" />
-            <span className="text-[#00d084] text-[11px] font-black tracking-[0.8em] uppercase">Premium Coffee</span>
-            <div className="w-16 h-[1px] bg-gradient-to-l from-transparent via-[#00d084]/50 to-transparent" />
-          </div>
-        </motion.div>
-
-        {/* Professional Moka Pot Animation */}
-        <div className="relative mb-20 scale-125">
-          <motion.div
-            animate={{ 
-              rotate: [0, 32, 32, 0],
-              y: [0, -8, -8, 0],
-              x: [0, 4, 4, 0]
-            }}
-            transition={{ 
-              duration: 4.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              times: [0, 0.4, 0.8, 1]
-            }}
-            className="relative z-10"
-            style={{ transformOrigin: "85% 90%" }}
-          >
-            <svg width="120" height="140" viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-[0_25px_40px_rgba(0,0,0,0.6)]">
-              <defs>
-                <linearGradient id="potGradientMain" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#c0c0c0" />
-                  <stop offset="50%" stopColor="#ffffff" />
-                  <stop offset="100%" stopColor="#a0a0a0" />
-                </linearGradient>
-                <linearGradient id="handleGradientMain" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#2a2a2a" />
-                  <stop offset="100%" stopColor="#0a0a0a" />
-                </linearGradient>
-              </defs>
-              
-              {/* Handle - More visible and stylized */}
-              <path 
-                d="M30 45C10 45 8 95 30 95" 
-                stroke="url(#handleGradientMain)" 
-                strokeWidth="14" 
-                strokeLinecap="round" 
-                fill="none"
-              />
-              <path 
-                d="M30 45C12 45 10 95 30 95" 
-                stroke="white" 
-                strokeOpacity="0.15"
-                strokeWidth="5" 
-                strokeLinecap="round" 
-                fill="none"
-              />
-
-              {/* Body Components */}
-              <path d="M40 120L32 75L40 70L36 25H86L82 70L90 75L82 120H40Z" fill="#000" fillOpacity="0.3" />
-              <path d="M45 120L37 75L45 70L41 25H81L77 70L85 75L77 120H45Z" fill="url(#potGradientMain)" />
-              
-              {/* Facet Detail Lines */}
-              <path d="M53 25L57 70L57 120" stroke="white" strokeOpacity="0.4" strokeWidth="0.8" />
-              <path d="M69 25L65 70L65 120" stroke="black" strokeOpacity="0.15" strokeWidth="0.8" />
-              
-              {/* Lid & Accents */}
-              <path d="M41 25L46 10H76L81 25H41Z" fill="#f0f0f0" />
-              <path d="M41 25L81 25" stroke="black" strokeOpacity="0.1" strokeWidth="1" />
-              <rect x="37" y="70" width="48" height="10" fill="#888" rx="1.5" />
-              
-              {/* Spout */}
-              <path d="M81 35L104 48L81 60V35Z" fill="url(#potGradientMain)" />
-              
-              {/* Knob */}
-              <circle cx="61" cy="8" r="7" fill="#1a1a1a" />
-              <circle cx="58" cy="5" r="2.5" fill="white" fillOpacity="0.4" />
-            </svg>
-
-            {/* Enhanced Realistic Coffee Stream */}
-            <div className="absolute top-[48px] left-[98px] w-[10px] overflow-visible">
-              <motion.div
-                animate={{ 
-                  height: [0, 0, 180, 180, 0],
-                  opacity: [0, 0, 1, 1, 0],
-                }}
-                transition={{ 
-                  duration: 4.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  times: [0, 0.38, 0.48, 0.8, 0.9]
-                }}
-                className="w-full bg-gradient-to-b from-[#00d084] via-[#00d084] to-[#008f5a] rounded-full relative"
-                style={{ transformOrigin: "top center" }}
-              >
-                <div className="absolute inset-0 bg-[#00d084] blur-[6px] opacity-60" />
-                <div className="absolute inset-x-[2px] inset-y-0 bg-white/20 blur-[1px] rounded-full" />
-                
-                {/* Flow Particles */}
-                {[...Array(4)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    animate={{ 
-                      y: [0, 180],
-                      opacity: [0, 1, 0],
-                      scale: [1, 0.8]
-                    }}
-                    transition={{ 
-                      duration: 0.6,
-                      repeat: Infinity,
-                      delay: i * 0.15,
-                      ease: "linear"
-                    }}
-                    className="absolute top-0 left-1/2 -translate-x-1/2 w-[3px] h-6 bg-white/50 rounded-full blur-[0.5px]"
-                  />
-                ))}
-              </motion.div>
-            </div>
-          </motion.div>
-
-          {/* Steam/Aroma Effects */}
-          <div className="absolute -top-12 left-1/2 -translate-x-1/2 flex gap-6">
-            {[...Array(3)].map((_, i) => (
-              <motion.div
-                key={i}
-                animate={{ 
-                  y: [0, -60],
-                  x: [0, i === 0 ? -15 : i === 2 ? 15 : 0],
-                  opacity: [0, 0.4, 0],
-                  scale: [0.6, 2],
-                  rotate: [0, i % 2 === 0 ? 45 : -45]
-                }}
-                transition={{ 
-                  duration: 2.5,
-                  repeat: Infinity,
-                  delay: i * 0.8,
-                  ease: "easeOut"
-                }}
-                className="w-4 h-12 bg-gradient-to-t from-white/10 to-transparent rounded-full blur-md"
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Progress Loading Bar */}
-        <div className="w-64 h-1.5 bg-white/5 rounded-full overflow-hidden border border-white/10 backdrop-blur-sm relative">
-          <motion.div 
-            initial={{ width: 0 }}
-            animate={{ width: "100%" }}
-            transition={{ duration: 3, ease: "easeInOut" }}
-            className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#00d084] to-[#05ffa3] shadow-[0_0_15px_rgba(0,208,132,0.5)]"
-          />
-        </div>
-        <motion.p 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="mt-6 text-[#00d084] text-[9px] font-black tracking-[0.5em] uppercase animate-pulse"
-        >
-          Brewing Excellence...
-        </motion.p>
-      </div>
-    </motion.div>
-  );
-};
-
 const PageLoader = () => {
   return (
     <motion.div 
@@ -340,161 +122,203 @@ const PageLoader = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,208,132,0.05),transparent_70%)]" />
       
       <div className="relative flex flex-col items-center scale-75 md:scale-90">
-        {/* Professional Moka Pot Animation */}
-        <div className="relative mb-12">
+        <div className="relative flex flex-col items-center">
+          {/* Moroccan Briq Animation */}
           <motion.div
             animate={{ 
-              rotate: [0, 35, 35, 0],
-              y: [0, -5, -5, 0]
+              rotate: [0, 40, 40, 0],
+              y: [0, -10, -10, 0],
+              x: [0, 5, 5, 0]
             }}
             transition={{ 
-              duration: 3,
+              duration: 4,
               repeat: Infinity,
               ease: "easeInOut",
               times: [0, 0.4, 0.8, 1]
             }}
-            className="relative z-10"
-            style={{ transformOrigin: "85% 90%" }}
+            className="relative z-10 mr-12"
+            style={{ transformOrigin: "80% 80%" }}
           >
-            <svg width="100" height="120" viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-[0_15px_25px_rgba(0,0,0,0.4)]">
+            <svg width="140" height="160" viewBox="0 0 140 160" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)]">
               <defs>
-                <linearGradient id="pagePotGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#d1d1d1" />
-                  <stop offset="50%" stopColor="#f5f5f5" />
-                  <stop offset="100%" stopColor="#b0b0b0" />
+                <linearGradient id="briqBodyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#e2e2e2" />
+                  <stop offset="50%" stopColor="#ffffff" />
+                  <stop offset="100%" stopColor="#cccccc" />
                 </linearGradient>
-                <linearGradient id="pageHandleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#333" />
-                  <stop offset="100%" stopColor="#111" />
+                <linearGradient id="briqAccentGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#b3b3b3" />
+                  <stop offset="100%" stopColor="#808080" />
                 </linearGradient>
               </defs>
-              
+
               {/* Handle */}
               <path 
-                d="M30 45C15 45 12 95 30 95" 
-                stroke="url(#pageHandleGradient)" 
+                d="M45 70 C 15 70, 15 130, 45 130" 
+                stroke="url(#briqAccentGradient)" 
                 strokeWidth="12" 
                 strokeLinecap="round" 
                 fill="none"
               />
               <path 
-                d="M30 45C18 45 16 95 30 95" 
+                d="M45 70 C 20 70, 20 130, 45 130" 
                 stroke="white" 
-                strokeOpacity="0.1"
+                strokeOpacity="0.2"
                 strokeWidth="4" 
                 strokeLinecap="round" 
                 fill="none"
               />
 
-              {/* Body Shadow */}
-              <path d="M40 120L32 75L40 70L36 25H86L82 70L90 75L82 120H40Z" fill="#000" fillOpacity="0.2" />
+              {/* Main Body (Bulbous Moroccan Style) */}
+              <path 
+                d="M45 135 C 45 155, 115 155, 115 135 L 105 85 C 105 65, 55 65, 55 85 Z" 
+                fill="url(#briqBodyGradient)" 
+              />
               
-              {/* Main Body */}
-              <path d="M45 120L37 75L45 70L41 25H81L77 70L85 75L77 120H45Z" fill="url(#pagePotGradient)" />
+              {/* Decorative Rings */}
+              <path d="M57 95 C 57 90, 103 90, 103 95" stroke="#00d084" strokeOpacity="0.3" strokeWidth="2" fill="none" />
+              <path d="M50 120 C 50 115, 110 115, 110 120" stroke="#00d084" strokeOpacity="0.2" strokeWidth="2" fill="none" />
+
+              {/* Long Elegant Spout */}
+              <path 
+                d="M105 100 C 135 100, 155 70, 150 45 L 140 40 C 145 60, 130 85, 105 85" 
+                fill="url(#briqBodyGradient)" 
+              />
               
-              {/* Facet Lines */}
-              <path d="M53 25L57 70L57 120" stroke="white" strokeOpacity="0.3" strokeWidth="0.5" />
-              <path d="M69 25L65 70L65 120" stroke="black" strokeOpacity="0.1" strokeWidth="0.5" />
-              
-              {/* Lid */}
-              <path d="M41 25L46 10H76L81 25H41Z" fill="#e8e8e8" />
-              <path d="M41 25L81 25" stroke="black" strokeOpacity="0.1" strokeWidth="1" />
-              
-              {/* Middle Ring */}
-              <rect x="37" y="70" width="48" height="8" fill="#999" rx="1" />
-              
-              {/* Spout */}
-              <path d="M81 35L102 48L81 58V35Z" fill="url(#pagePotGradient)" />
+              {/* Lid with Pointed Top */}
+              <path d="M55 75 L 80 40 L 105 75 Z" fill="#f0f0f0" />
+              <path d="M55 75 Q 80 70, 105 75" stroke="black" strokeOpacity="0.1" strokeWidth="1" fill="none" />
               
               {/* Knob */}
-              <circle cx="61" cy="8" r="6" fill="#222" />
-              <circle cx="59" cy="6" r="2" fill="white" fillOpacity="0.3" />
+              <circle cx="80" cy="35" r="6" fill="#222" />
+              <circle cx="78" cy="33" r="2" fill="white" fillOpacity="0.4" />
             </svg>
 
-            {/* Realistic Coffee Stream */}
-            <div className="absolute top-[40px] left-[84px] w-[6px] overflow-visible">
+            {/* Pouring Stream */}
+            <div className="absolute top-[42px] left-[142px] w-[10px] overflow-visible">
               <motion.div
                 animate={{ 
-                  height: [0, 0, 120, 120, 0],
+                  height: [0, 0, 180, 180, 0],
                   opacity: [0, 0, 1, 1, 0],
                 }}
                 transition={{ 
-                  duration: 3,
+                  duration: 4,
                   repeat: Infinity,
                   ease: "easeInOut",
                   times: [0, 0.38, 0.48, 0.8, 0.9]
                 }}
-                className="w-full bg-gradient-to-b from-[#00d084] via-[#00d084] to-[#00a368] rounded-full relative"
+                className="w-full bg-gradient-to-b from-[#00d084] to-[#00a368] rounded-full relative"
                 style={{ transformOrigin: "top center" }}
               >
-                <div className="absolute inset-0 bg-[#00d084] blur-[3px] opacity-40" />
+                <div className="absolute inset-0 bg-[#00d084] blur-[8px] opacity-40" />
                 
-                {/* Animated Particles */}
-                {[...Array(2)].map((_, i) => (
+                {/* Droplets */}
+                {[...Array(3)].map((_, i) => (
                   <motion.div
                     key={i}
                     animate={{ 
-                      y: [0, 120],
-                      opacity: [0, 1, 0]
+                      y: [0, 180],
+                      opacity: [0, 1, 0],
                     }}
                     transition={{ 
-                      duration: 0.4,
+                      duration: 0.6,
                       repeat: Infinity,
                       delay: i * 0.2,
                       ease: "linear"
                     }}
-                    className="absolute top-0 left-1/2 -translate-x-1/2 w-0.5 h-3 bg-white/30 rounded-full"
+                    className="absolute top-0 left-1/2 -translate-x-1/2 w-[4px] h-8 bg-white/30 rounded-full blur-[1px]"
                   />
                 ))}
               </motion.div>
             </div>
           </motion.div>
 
-          {/* Steam Effects */}
-          <div className="absolute -top-8 left-1/2 -translate-x-1/2 flex gap-3">
-            {[...Array(2)].map((_, i) => (
-              <motion.div
-                key={i}
-                animate={{ 
-                  y: [0, -30],
-                  x: [0, i % 2 === 0 ? 8 : -8],
-                  opacity: [0, 0.2, 0],
-                  scale: [0.5, 1.2]
-                }}
-                transition={{ 
-                  duration: 1.5,
-                  repeat: Infinity,
-                  delay: i * 0.7,
-                  ease: "easeOut"
-                }}
-                className="w-6 h-6 bg-white/20 rounded-full blur-lg"
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Enhanced Loading Bar */}
-        <div className="w-48 h-2 bg-white/5 rounded-full border border-white/10 overflow-hidden backdrop-blur-sm relative">
-          <motion.div 
-            animate={{ 
-              width: ["0%", "0%", "100%", "100%", "0%"]
-            }}
-            transition={{ 
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut",
-              times: [0, 0.38, 0.82, 0.92, 1]
-            }}
-            className="absolute inset-0 bg-gradient-to-r from-[#00d084]/40 via-[#00d084] to-[#00ff9d] shadow-[0_0_15px_rgba(0,208,132,0.4)]"
-          >
-            {/* Shine effect */}
-            <motion.div 
-              animate={{ x: ['-100%', '200%'] }}
-              transition={{ duration: 1.2, repeat: Infinity, ease: "linear" }}
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent w-1/2"
+          {/* Progress Bar (The Line that fills up) */}
+          <div className="relative mt-32 w-64 h-[6px] bg-white/5 rounded-full overflow-hidden border border-white/10 backdrop-blur-sm">
+            <motion.div
+              animate={{ 
+                width: ["0%", "0%", "100%", "100%", "0%"],
+              }}
+              transition={{ 
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+                times: [0, 0.45, 0.85, 0.95, 1]
+              }}
+              className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#00d084]/50 via-[#00d084] to-[#00d084]/50 shadow-[0_0_20px_rgba(0,208,132,0.4)]"
             />
+          </div>
+
+          <motion.div
+            animate={{ 
+              opacity: [0.3, 1, 0.3],
+              y: [0, -2, 0]
+            }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="mt-8 flex flex-col items-center gap-2"
+          >
+            <span className="text-[10px] font-black tracking-[0.4em] uppercase text-[#00d084] italic">
+              Rashfa
+            </span>
+            <span className="text-[8px] font-bold tracking-[0.2em] uppercase text-white/30">
+              L'khir jay...
+            </span>
           </motion.div>
         </div>
+      </div>
+    </motion.div>
+  );
+};
+
+const HomeInitialLoader = () => {
+  return (
+    <motion.div
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0, transition: { duration: 1, ease: "easeInOut" } }}
+      className="fixed inset-0 z-[10001] bg-[#001a13] flex items-center justify-center overflow-hidden"
+    >
+      {/* Background with vibrant green glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,208,132,0.3),transparent_70%)]" />
+      <div className="absolute inset-0 opacity-20" style={{ background: "radial-gradient(circle at center, #00d084 0%, transparent 80%)" }} />
+      
+      <div className="relative flex flex-col items-center">
+        {/* Rashfa Text with Shadow */}
+        <motion.div
+          initial={{ opacity: 0, y: 20, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          className="relative z-10"
+        >
+          <h1 
+            style={{ fontFamily: "'Great Vibes', cursive" }}
+            className="text-[25vw] md:text-[18vw] text-white tracking-normal select-none leading-none drop-shadow-[0_10px_30px_rgba(0,208,132,0.4)]"
+          >
+            Rashfa
+          </h1>
+        </motion.div>
+
+        {/* The "Nice Line" (Progress Bar) */}
+        <div className="relative mt-8 w-64 md:w-96 h-[3px] bg-white/5 rounded-full overflow-hidden border border-white/10 backdrop-blur-sm shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+          <motion.div
+            initial={{ width: "0%" }}
+            animate={{ width: "100%" }}
+            transition={{ 
+              duration: 3.5, 
+              ease: "easeInOut",
+            }}
+            className="absolute top-0 left-0 h-full bg-[#00d084] shadow-[0_0_15px_rgba(0,208,132,0.8)]"
+          />
+        </div>
+
+        {/* Subtle Text */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0, 0.4, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          className="mt-6 text-[10px] font-bold tracking-[0.5em] uppercase text-[#00d084] italic ml-2"
+        >
+          Bienvenue
+        </motion.p>
       </div>
     </motion.div>
   );
@@ -679,6 +503,34 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout }) =>
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    if (searchQuery.trim().length > 1) {
+      const query = searchQuery.toLowerCase();
+      const allProducts = Object.values(PRODUCTS).flat();
+      const filtered = allProducts.filter(p => 
+        p.name.toLowerCase().includes(query) || 
+        p.desc.toLowerCase().includes(query)
+      );
+      setSearchResults(filtered);
+    } else {
+      setSearchResults([]);
+    }
+  }, [searchQuery]);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsSearchOpen(false);
+      }
+    };
+    if (isSearchOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isSearchOpen]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isLocationsOpen, setIsLocationsOpen] = useState(false);
           const [locationType, setLocationType] = useState('pickup'); // 'pickup' or 'delivery'
@@ -879,6 +731,7 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout }) =>
                   >
                     <Link
                       to={link.path}
+                      onClick={() => setIsMobileMenuOpen(false)}
                       className={`flex items-center justify-between p-4 rounded-2xl transition-all ${
                         location.pathname === link.path
                           ? isLightPage ? 'bg-[#00754a] text-white' : 'bg-[#00d084] text-[#001a13]'
@@ -890,19 +743,72 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout }) =>
                     </Link>
                   </motion.div>
                 ))}
-                
-                <motion.button
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: navLinks.length * 0.1 }}
-                  onClick={() => user ? logout() : navigate('/signup')}
-                  className={`mt-4 w-full flex items-center justify-center gap-2 py-5 rounded-2xl text-xs font-black tracking-[0.2em] transition-all ${
-                    isLightPage ? 'bg-[#00754a] text-white' : 'bg-[#00d084] text-[#001a13]'
-                  }`}
-                >
-                  {user ? 'LOGOUT' : 'JOIN NOW'}
-                  {user ? <LogOut size={14} strokeWidth={3} /> : <ChevronRight size={14} strokeWidth={3} />}
-                </motion.button>
+
+                <div className="grid grid-cols-2 gap-2 mt-4">
+                  <motion.button
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    onClick={() => { setIsSearchOpen(true); setIsMobileMenuOpen(false); }}
+                    className={`flex flex-col items-center justify-center p-4 rounded-2xl border ${
+                      isLightPage ? 'bg-[#002118]/5 border-[#002118]/10 text-[#002118]' : 'bg-white/5 border-white/10 text-white'
+                    }`}
+                  >
+                    <Search size={20} className="mb-2" />
+                    <span className="text-[8px] font-black uppercase tracking-widest">Search</span>
+                  </motion.button>
+                  <motion.button
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                    onClick={() => { setIsLocationsOpen(true); setIsMobileMenuOpen(false); }}
+                    className={`flex flex-col items-center justify-center p-4 rounded-2xl border ${
+                      isLightPage ? 'bg-[#002118]/5 border-[#002118]/10 text-[#002118]' : 'bg-white/5 border-white/10 text-white'
+                    }`}
+                  >
+                    <MapPin size={20} className="mb-2" />
+                    <span className="text-[8px] font-black uppercase tracking-widest">Find Store</span>
+                  </motion.button>
+                </div>
+
+                <div className="mt-4 pt-4 border-t border-white/5">
+                  {user ? (
+                    <div className="flex flex-col gap-2">
+                      <Link 
+                        to="/profile" 
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={`flex items-center gap-4 p-4 rounded-2xl ${
+                          isLightPage ? 'bg-[#002118]/5 text-[#002118]' : 'bg-white/5 text-white'
+                        }`}
+                      >
+                        <div className="w-10 h-10 rounded-full bg-[#00d084]/20 flex items-center justify-center text-[#00d084]">
+                          <User size={20} />
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-xs font-bold uppercase tracking-widest">{user.name}</span>
+                          <span className="text-[8px] text-white/40 uppercase tracking-widest">View Profile</span>
+                        </div>
+                      </Link>
+                      <button 
+                        onClick={() => { logout(); setIsMobileMenuOpen(false); }}
+                        className="w-full p-4 rounded-2xl bg-red-500/10 text-red-500 text-[10px] font-black uppercase tracking-[0.2em] border border-red-500/20"
+                      >
+                        Sign Out
+                      </button>
+                    </div>
+                  ) : (
+                    <motion.button
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      onClick={() => { navigate('/signup'); setIsMobileMenuOpen(false); }}
+                      className={`w-full py-5 rounded-2xl font-black text-xs tracking-[0.3em] shadow-lg transition-all uppercase ${
+                        isLightPage ? 'bg-[#00754a] text-white' : 'bg-[#00d084] text-[#001a13]'
+                      }`}
+                    >
+                      JOIN NOW
+                    </motion.button>
+                  )}
+                </div>
               </div>
             </motion.div>
           )}
@@ -917,12 +823,15 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout }) =>
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[1000] bg-[#001a13]/95 backdrop-blur-2xl pointer-events-auto flex flex-col items-center justify-center px-8"
+            className="fixed inset-0 z-[1000] bg-[#001a13]/95 backdrop-blur-2xl pointer-events-auto flex flex-col items-center px-8 pt-40 pb-20"
           >
             <motion.button
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              onClick={() => setIsSearchOpen(false)}
+              onClick={() => {
+                setIsSearchOpen(false);
+                setSearchQuery("");
+              }}
               className="absolute top-12 right-12 w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-[#00d084] hover:text-[#001a13] transition-all"
             >
               <X size={24} />
@@ -931,18 +840,71 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout }) =>
             <motion.div 
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              className="w-full max-w-3xl"
+              className="w-full max-w-5xl"
             >
-              <div className="relative group">
-                <Search className="absolute left-8 top-1/2 -translate-y-1/2 text-[#00d084] w-6 h-6" />
+              <div className="relative group mb-12">
+                <Search className="absolute left-8 top-1/2 -translate-y-1/2 text-[#00d084] w-8 h-8" />
                 <input 
                   autoFocus
                   type="text" 
-                  placeholder="Search for coffee, bakery..." 
-                  className="w-full bg-white/5 border-b-2 border-white/10 px-20 py-10 text-4xl font-medium focus:outline-none focus:border-[#00d084] transition-all placeholder:text-white/10"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="What are you craving?" 
+                  className="w-full bg-white/5 border-b-2 border-white/10 px-20 py-12 text-5xl font-medium focus:outline-none focus:border-[#00d084] transition-all placeholder:text-white/10 text-white"
                 />
               </div>
-              <p className="mt-8 text-white/30 text-xs font-bold tracking-[0.3em] uppercase text-center">Press ESC to close</p>
+
+              {/* Search Results */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[60vh] overflow-y-auto pr-4 custom-scrollbar">
+                {searchResults.map((product) => (
+                  <motion.div
+                    key={product.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="group bg-white/5 border border-white/10 p-6 rounded-3xl hover:bg-white/10 transition-all cursor-pointer flex gap-6"
+                    onClick={() => {
+                      navigate(`/shop?product=${product.id}`);
+                      setIsSearchOpen(false);
+                      setSearchQuery("");
+                    }}
+                  >
+                    <div className="w-24 h-24 rounded-2xl overflow-hidden flex-shrink-0 border border-white/5 bg-black/40">
+                      <img 
+                        src={product.img} 
+                        alt={product.name} 
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="flex flex-col justify-center">
+                      <h3 className="text-xl font-bold text-white mb-1 group-hover:text-[#00d084] transition-colors">{product.name}</h3>
+                      <p className="text-white/40 text-sm line-clamp-1 mb-2">{product.desc}</p>
+                      <div className="flex items-center gap-2">
+                        <span className="text-[#00d084] font-black">{product.price} MAD</span>
+                        <span className="text-white/20 text-xs font-bold px-2 py-0.5 rounded-full border border-white/10 uppercase tracking-widest">{product.volume || 'Unit'}</span>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+                
+                {searchQuery.trim().length > 1 && searchResults.length === 0 && (
+                  <div className="col-span-full py-20 text-center">
+                    <div className="w-20 h-20 rounded-full bg-white/5 flex items-center justify-center mx-auto mb-6">
+                      <Search size={32} className="text-white/20" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-2">No results found</h3>
+                    <p className="text-white/40">Try searching for something else like "espresso" or "latte"</p>
+                  </div>
+                )}
+
+                {searchQuery.trim().length <= 1 && (
+                  <div className="col-span-full py-10 text-center">
+                    <p className="text-white/20 font-bold tracking-[0.3em] uppercase text-xs">Start typing to search products</p>
+                  </div>
+                )}
+              </div>
+
+              <p className="mt-12 text-white/30 text-xs font-bold tracking-[0.3em] uppercase text-center">Press ESC to close</p>
             </motion.div>
           </motion.div>
         )}
@@ -1175,7 +1137,13 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout }) =>
                       <p className="text-gray-500 text-sm leading-relaxed">
                         Enjoy Rashfa delivery powered by our partners. For additional help, visit our Delivery FAQs.
                       </p>
-                      <button className="bg-[#006241] text-white px-8 py-3 rounded-full font-bold text-sm hover:bg-[#004d33] transition-all shadow-md">
+                      <button 
+                        onClick={() => {
+                          setIsLocationsOpen(false);
+                          navigate('/shop');
+                        }}
+                        className="bg-[#006241] text-white px-8 py-3 rounded-full font-bold text-sm hover:bg-[#004d33] transition-all shadow-md"
+                      >
                         Get started
                       </button>
                       <div className="pt-6 border-t border-gray-100">
@@ -1310,9 +1278,9 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout }) =>
       </AnimatePresence>
     </div>
   );
-};
-
-const Hero = ({ addToCart }) => {
+  };
+  
+  const Hero = ({ addToCart }) => {
   const { scrollY } = useScroll();
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
@@ -2884,12 +2852,13 @@ const ProfilePage = ({ user, logout, token }) => {
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState('orders');
 
   useEffect(() => {
     const fetchOrders = async () => {
       if (!token) return;
       try {
-        const response = await fetch('http://localhost:8000/api/orders', {
+        const response = await fetch('http://127.0.0.1:8000/api/orders', {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Accept': 'application/json'
@@ -2925,6 +2894,15 @@ const ProfilePage = ({ user, logout, token }) => {
 
   const totalSpent = orders.reduce((sum, order) => sum + parseFloat(order.total_amount), 0);
   const points = Math.floor(totalSpent / 10); // 1 point for every 10 MAD
+
+  const menuItems = [
+    { id: 'orders', icon: <Package size={18} />, name: "My Orders" },
+    { id: 'payment', icon: <CreditCard size={18} />, name: "Payment Methods" },
+    { id: 'addresses', icon: <MapPin size={18} />, name: "Addresses" },
+    { id: 'notifications', icon: <Bell size={18} />, name: "Notifications" },
+    ...(user?.is_admin === true ? [{ id: 'dashboard', icon: <LayoutDashboard size={18} />, name: "Dashboard", action: () => navigate('/admin') }] : []),
+    { id: 'signout', icon: <LogOut size={18} />, name: "Sign Out", danger: true, action: handleLogout },
+  ];
 
   return (
     <div className="min-h-screen bg-[#001a13] pt-32 pb-20 px-8">
@@ -2966,19 +2944,12 @@ const ProfilePage = ({ user, logout, token }) => {
             </div>
 
             <div className="mt-10 space-y-2">
-              {[
-                { icon: <Package size={18} />, name: "My Orders", active: true },
-                { icon: <CreditCard size={18} />, name: "Payment Methods", active: false },
-                { icon: <MapPin size={18} />, name: "Addresses", active: false },
-                { icon: <Bell size={18} />, name: "Notifications", active: false },
-                ...(user?.is_admin === true ? [{ icon: <LayoutDashboard size={18} />, name: "Dashboard", action: () => navigate('/admin') }] : []),
-                { icon: <LogOut size={18} />, name: "Sign Out", active: false, danger: true, action: handleLogout },
-              ].map((item) => (
+              {menuItems.map((item) => (
                 <button 
-                  key={item.name}
-                  onClick={item.action}
+                  key={item.id}
+                  onClick={item.action || (() => setActiveTab(item.id))}
                   className={`w-full flex items-center gap-4 px-6 py-4 rounded-2xl transition-all ${
-                    item.active ? 'bg-[#00d084] text-[#001a13]' : item.danger ? 'text-red-400 hover:bg-red-400/10' : 'text-white/60 hover:bg-white/5 hover:text-white'
+                    activeTab === item.id ? 'bg-[#00d084] text-[#001a13]' : item.danger ? 'text-red-400 hover:bg-red-400/10' : 'text-white/60 hover:bg-white/5 hover:text-white'
                   }`}
                 >
                   {item.icon}
@@ -2992,46 +2963,80 @@ const ProfilePage = ({ user, logout, token }) => {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
+          key={activeTab}
           className="lg:col-span-2 space-y-8"
         >
-          <div className="bg-white/5 backdrop-blur-xl rounded-[40px] p-10 border border-white/10">
-            <h3 className="text-xl font-bold text-white mb-8 flex items-center gap-3">
-              <Clock size={20} className="text-[#00d084]" /> Recent Orders
-            </h3>
-            
-            <div className="space-y-6">
-              {loading ? (
-                <div className="flex justify-center py-10">
-                  <div className="w-8 h-8 border-2 border-[#00d084]/30 border-t-[#00d084] rounded-full animate-spin" />
-                </div>
-              ) : orders.length > 0 ? (
-                orders.map((order) => (
-                  <div key={order.id} className="bg-white/5 rounded-3xl p-6 border border-white/5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                    <div>
-                      <p className="text-white/40 text-[9px] font-bold tracking-widest uppercase mb-1">{order.order_number}</p>
-                      <h4 className="text-white font-bold">{order.items.length} {order.items.length === 1 ? 'Item' : 'Items'}</h4>
-                      <p className="text-white/60 text-xs mt-1">{new Date(order.created_at).toLocaleDateString()}</p>
+          <div className="bg-white/5 backdrop-blur-xl rounded-[40px] p-10 border border-white/10 min-h-[500px]">
+            {activeTab === 'orders' && (
+              <>
+                <h3 className="text-xl font-bold text-white mb-8 flex items-center gap-3">
+                  <Clock size={20} className="text-[#00d084]" /> Recent Orders
+                </h3>
+                
+                <div className="space-y-6">
+                  {loading ? (
+                    <div className="flex justify-center py-10">
+                      <div className="w-8 h-8 border-2 border-[#00d084]/30 border-t-[#00d084] rounded-full animate-spin" />
                     </div>
-                    <div className="text-right">
-                      <p className="text-[#00d084] font-black mb-1">{order.total_amount} MAD</p>
-                      <span className={`text-[8px] font-black uppercase tracking-widest px-2 py-1 rounded-full ${
-                        order.status === 'completed' ? 'bg-[#00d084]/10 text-[#00d084]' : 'bg-orange-500/10 text-orange-500'
-                      }`}>
-                        {order.status}
-                      </span>
+                  ) : orders.length > 0 ? (
+                    orders.map((order) => (
+                      <div key={order.id} className="bg-white/5 rounded-3xl p-6 border border-white/5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                        <div>
+                          <p className="text-white/40 text-[9px] font-bold tracking-widest uppercase mb-1">{order.order_number}</p>
+                          <h4 className="text-white font-bold">{order.items.length} {order.items.length === 1 ? 'Item' : 'Items'}</h4>
+                          <p className="text-white/60 text-xs mt-1">{new Date(order.created_at).toLocaleDateString()}</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-[#00d084] font-black mb-1">{order.total_amount} MAD</p>
+                          <span className={`text-[8px] font-black uppercase tracking-widest px-2 py-1 rounded-full ${
+                            order.status === 'completed' ? 'bg-[#00d084]/10 text-[#00d084]' : 'bg-orange-500/10 text-orange-500'
+                          }`}>
+                            {order.status}
+                          </span>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="text-center py-10">
+                      <p className="text-white/40 text-sm">No orders yet. Start ordering your favorite coffee!</p>
                     </div>
-                  </div>
-                ))
-              ) : (
-                <div className="text-center py-10">
-                  <p className="text-white/40 text-sm">No orders yet. Start ordering your favorite coffee!</p>
+                  )}
                 </div>
-              )}
-            </div>
 
-            <button className="w-full mt-10 py-4 border-2 border-white/5 rounded-2xl text-white/40 font-bold text-[10px] tracking-widest uppercase hover:bg-white/5 hover:text-white transition-all">
-              View All Orders
-            </button>
+                {orders.length > 0 && (
+                  <button className="w-full mt-10 py-4 border-2 border-white/5 rounded-2xl text-white/40 font-bold text-[10px] tracking-widest uppercase hover:bg-white/5 hover:text-white transition-all">
+                    View All Orders
+                  </button>
+                )}
+              </>
+            )}
+
+            {activeTab === 'payment' && (
+              <div className="flex flex-col items-center justify-center h-full py-20 text-center">
+                <CreditCard size={48} className="text-[#00d084] mb-4 opacity-20" />
+                <h3 className="text-xl font-bold text-white mb-2">Payment Methods</h3>
+                <p className="text-white/40 text-sm max-w-xs">You haven't saved any payment methods yet. They will appear here once you make your first online payment.</p>
+              </div>
+            )}
+
+            {activeTab === 'addresses' && (
+              <div className="flex flex-col items-center justify-center h-full py-20 text-center">
+                <MapPin size={48} className="text-[#00d084] mb-4 opacity-20" />
+                <h3 className="text-xl font-bold text-white mb-2">My Addresses</h3>
+                <p className="text-white/40 text-sm max-w-xs">Manage your delivery addresses for faster checkout.</p>
+                <button className="mt-8 px-8 py-3 bg-[#00d084]/10 text-[#00d084] rounded-full font-bold text-[10px] tracking-widest uppercase border border-[#00d084]/20 hover:bg-[#00d084]/20 transition-all">
+                  Add New Address
+                </button>
+              </div>
+            )}
+
+            {activeTab === 'notifications' && (
+              <div className="flex flex-col items-center justify-center h-full py-20 text-center">
+                <Bell size={48} className="text-[#00d084] mb-4 opacity-20" />
+                <h3 className="text-xl font-bold text-white mb-2">Notifications</h3>
+                <p className="text-white/40 text-sm max-w-xs">Stay updated with your order status and our latest offers.</p>
+              </div>
+            )}
           </div>
         </motion.div>
       </div>
@@ -3411,8 +3416,380 @@ const ShopPage = ({ addToCart }) => {
 };
 
 const AdminDashboard = ({ token }) => {
+  const [activeTab, setActiveTab] = useState('dashboard');
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [adminProducts, setAdminProducts] = useState([]);
+  const [promotions, setPromotions] = useState([]);
+  const [employees, setEmployees] = useState([]);
+  const [clients, setClients] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!token) return;
+      setLoading(true);
+      try {
+        const headers = {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/json'
+        };
+
+        const [ordersRes, productsRes, promosRes, employeesRes, clientsRes] = await Promise.all([
+          fetch('http://localhost:8000/api/admin/orders', { headers }),
+          fetch('http://localhost:8000/api/admin/products', { headers }),
+          fetch('http://localhost:8000/api/admin/promotions', { headers }),
+          fetch('http://localhost:8000/api/admin/employees', { headers }),
+          fetch('http://localhost:8000/api/admin/clients', { headers })
+        ]);
+
+        const [ordersData, productsData, promosData, employeesData, clientsData] = await Promise.all([
+          ordersRes.json(),
+          productsRes.json(),
+          promosRes.json(),
+          employeesRes.json(),
+          clientsRes.json()
+        ]);
+
+        if (ordersRes.ok) setOrders(ordersData.data);
+        if (productsRes.ok) setAdminProducts(productsData.data);
+        if (promosRes.ok) setPromotions(promosData.data);
+        if (employeesRes.ok) setEmployees(employeesData.data);
+        if (clientsRes.ok) setClients(clientsData.data);
+      } catch (error) {
+        console.error('Fetch admin data error:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [token]);
+
+  useEffect(() => {
+    if (orders.length > 0) {
+      const completedOrders = orders.filter(o => o.status === 'completed');
+      const totalRevenue = completedOrders.reduce((sum, order) => sum + parseFloat(order.total_amount), 0);
+      const uniqueUsers = new Set(orders.map(order => order.user_id)).size;
+      
+      setStats({
+        revenue: totalRevenue,
+        orders: orders.length,
+        users: uniqueUsers,
+        avgWait: 4.2 // Mocked for now
+      });
+    }
+  }, [orders]);
+
+  const [isPromoModalOpen, setIsPromoModalOpen] = useState(false);
+  const [editingPromo, setEditingPromo] = useState(null);
+  const [promoFormData, setPromoFormData] = useState({
+    code: '',
+    discount: '',
+    type: 'Direct Discount',
+    maxUsage: 100,
+    status: 'Active'
+  });
+
+  const [isEmployeeModalOpen, setIsEmployeeModalOpen] = useState(false);
+  const [editingEmployee, setEditingEmployee] = useState(null);
+  const [employeeFormData, setEmployeeFormData] = useState({
+    name: '',
+    role: 'Barista',
+    shift: '07:00 - 15:00',
+    status: 'On Duty',
+    email: ''
+  });
+
+  const handleOpenEmployeeModal = (employee = null) => {
+    if (employee) {
+      setEditingEmployee(employee);
+      setEmployeeFormData({
+        name: employee.name,
+        role: employee.role,
+        shift: employee.shift,
+        status: employee.status,
+        email: employee.email
+      });
+    } else {
+      setEditingEmployee(null);
+      setEmployeeFormData({
+        name: '',
+        role: 'Barista',
+        shift: '07:00 - 15:00',
+        status: 'On Duty',
+        email: ''
+      });
+    }
+    setIsEmployeeModalOpen(true);
+  };
+
+  const handleSaveEmployee = async () => {
+    try {
+      const url = editingEmployee 
+        ? `http://localhost:8000/api/admin/employees/${editingEmployee.id}`
+        : 'http://localhost:8000/api/admin/employees';
+      
+      const response = await fetch(url, {
+        method: editingEmployee ? 'PUT' : 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(employeeFormData)
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        if (editingEmployee) {
+          setEmployees(employees.map(e => e.id === editingEmployee.id ? data.data : e));
+        } else {
+          setEmployees([...employees, data.data]);
+        }
+        setIsEmployeeModalOpen(false);
+      } else {
+        alert(data.message || 'Failed to save employee');
+      }
+    } catch (error) {
+      console.error('Save employee error:', error);
+      alert('An error occurred while saving employee');
+    }
+  };
+
+  const handleDeleteEmployee = async (id) => {
+    if (window.confirm('Remove this team member?')) {
+      try {
+        const response = await fetch(`http://localhost:8000/api/admin/employees/${id}`, {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/json'
+          }
+        });
+        if (response.ok) {
+          setEmployees(employees.filter(e => e.id !== id));
+        } else {
+          const data = await response.json();
+          alert(data.message || 'Failed to delete employee');
+        }
+      } catch (error) {
+        console.error('Delete employee error:', error);
+        alert('An error occurred while deleting employee');
+      }
+    }
+  };
+
+  const handleOpenPromoModal = (promo = null) => {
+    if (promo) {
+      setEditingPromo(promo);
+      setPromoFormData({
+        code: promo.code,
+        discount: promo.discount,
+        type: promo.type,
+        maxUsage: promo.maxUsage,
+        status: promo.status
+      });
+    } else {
+      setEditingPromo(null);
+      setPromoFormData({
+        code: '',
+        discount: '',
+        type: 'Direct Discount',
+        maxUsage: 100,
+        status: 'Active'
+      });
+    }
+    setIsPromoModalOpen(true);
+  };
+
+  const handleSavePromo = async () => {
+    try {
+      const url = editingPromo 
+        ? `http://localhost:8000/api/admin/promotions/${editingPromo.id}`
+        : 'http://localhost:8000/api/admin/promotions';
+      
+      const response = await fetch(url, {
+        method: editingPromo ? 'PUT' : 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(promoFormData)
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        if (editingPromo) {
+          setPromotions(promotions.map(p => p.id === editingPromo.id ? data.data : p));
+        } else {
+          setPromotions([...promotions, data.data]);
+        }
+        setIsPromoModalOpen(false);
+      } else {
+        alert(data.message || 'Failed to save promotion');
+      }
+    } catch (error) {
+      console.error('Save promo error:', error);
+      alert('An error occurred while saving promotion');
+    }
+  };
+
+  const handleDeletePromo = async (id) => {
+    if (window.confirm('Delete this promotion?')) {
+      try {
+        const response = await fetch(`http://localhost:8000/api/admin/promotions/${id}`, {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/json'
+          }
+        });
+        if (response.ok) {
+          setPromotions(promotions.filter(p => p.id !== id));
+        } else {
+          const data = await response.json();
+          alert(data.message || 'Failed to delete promotion');
+        }
+      } catch (error) {
+        console.error('Delete promo error:', error);
+        alert('An error occurred while deleting promotion');
+      }
+    }
+  };
+
+  const [stockFormData, setStockFormData] = useState({
+    productId: '',
+    productName: '',
+    currentStock: 0,
+    adjustment: 0
+  });
+
+  const handleOpenStockModal = (product) => {
+    setStockFormData({
+      productId: product.id,
+      productName: product.name,
+      currentStock: product.stock,
+      adjustment: 0
+    });
+    setIsStockModalOpen(true);
+  };
+
+  const handleSaveStock = async () => {
+    try {
+      const newStock = parseInt(stockFormData.currentStock) + parseInt(stockFormData.adjustment);
+      const response = await fetch(`http://localhost:8000/api/admin/products/${stockFormData.productId}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({ stock: newStock })
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setAdminProducts(adminProducts.map(p => p.id === stockFormData.productId ? data.data : p));
+        setIsStockModalOpen(false);
+      } else {
+        alert(data.message || 'Failed to update stock');
+      }
+    } catch (error) {
+      console.error('Save stock error:', error);
+      alert('An error occurred while updating stock');
+    }
+  };
+
+  const [isProductModalOpen, setIsProductModalOpen] = useState(false);
+  const [editingProduct, setEditingProduct] = useState(null);
+  const [productFormData, setProductFormData] = useState({
+    name: '',
+    price: '',
+    category: CATEGORIES.COFFEE,
+    desc: '',
+    img: ''
+  });
+
+  const handleOpenProductModal = (product = null) => {
+    if (product) {
+      setEditingProduct(product);
+      setProductFormData({
+        name: product.name,
+        price: product.price,
+        category: product.category,
+        desc: product.desc,
+        img: product.img
+      });
+    } else {
+      setEditingProduct(null);
+      setProductFormData({
+        name: '',
+        price: '',
+        category: CATEGORIES.COFFEE,
+        desc: '',
+        img: ''
+      });
+    }
+    setIsProductModalOpen(true);
+  };
+
+  const handleSaveProduct = async () => {
+    try {
+      const url = editingProduct 
+        ? `http://localhost:8000/api/admin/products/${editingProduct.id}`
+        : 'http://localhost:8000/api/admin/products';
+      
+      const response = await fetch(url, {
+        method: editingProduct ? 'PUT' : 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(productFormData)
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        if (editingProduct) {
+          setAdminProducts(adminProducts.map(p => p.id === editingProduct.id ? data.data : p));
+        } else {
+          setAdminProducts([...adminProducts, data.data]);
+        }
+        setIsProductModalOpen(false);
+      } else {
+        alert(data.message || 'Failed to save product');
+      }
+    } catch (error) {
+      console.error('Save product error:', error);
+      alert('An error occurred while saving product');
+    }
+  };
+
+  const handleDeleteProduct = async (productId) => {
+    if (window.confirm('Are you sure you want to delete this product?')) {
+      try {
+        const response = await fetch(`http://localhost:8000/api/admin/products/${productId}`, {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/json'
+          }
+        });
+        if (response.ok) {
+          setAdminProducts(adminProducts.filter(p => p.id !== productId));
+        } else {
+          const data = await response.json();
+          alert(data.message || 'Failed to delete product');
+        }
+      } catch (error) {
+        console.error('Delete product error:', error);
+        alert('An error occurred while deleting product');
+      }
+    }
+  };
+
   const [stats, setStats] = useState({
     revenue: 0,
     orders: 0,
@@ -3420,40 +3797,15 @@ const AdminDashboard = ({ token }) => {
     avgWait: 4.2
   });
 
-  useEffect(() => {
-    const fetchOrders = async () => {
-      if (!token) return;
-      try {
-        const response = await fetch('http://localhost:8000/api/admin/orders', {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Accept': 'application/json'
-          }
-        });
-        const data = await response.json();
-        if (response.ok) {
-          setOrders(data.data);
-          
-          // Calculate stats
-          const totalRevenue = data.data.reduce((sum, order) => sum + parseFloat(order.total_amount), 0);
-          const uniqueUsers = new Set(data.data.map(order => order.user_id)).size;
-          
-          setStats({
-            revenue: totalRevenue,
-            orders: data.data.length,
-            users: uniqueUsers,
-            avgWait: 4.2
-          });
-        }
-      } catch (error) {
-        console.error('Fetch admin orders error:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchOrders();
-  }, [token]);
+  const chartData = [
+    { name: 'Mon', sales: 4000 },
+    { name: 'Tue', sales: 3000 },
+    { name: 'Wed', sales: 2000 },
+    { name: 'Thu', sales: 2780 },
+    { name: 'Fri', sales: 1890 },
+    { name: 'Sat', sales: 2390 },
+    { name: 'Sun', sales: 3490 },
+  ];
 
   const handleStatusUpdate = async (orderId, newStatus) => {
     try {
@@ -3469,158 +3821,1191 @@ const AdminDashboard = ({ token }) => {
       const data = await response.json();
       if (response.ok) {
         setOrders(orders.map(order => order.id === orderId ? { ...order, status: newStatus } : order));
+      } else {
+        alert(data.message || 'Failed to update order status');
       }
     } catch (error) {
       console.error('Update order status error:', error);
+      alert('An error occurred while updating order status');
     }
   };
 
-  const chartData = [
-    { name: 'Mon', sales: 4000, orders: 240 },
-    { name: 'Tue', sales: 3000, orders: 198 },
-    { name: 'Wed', sales: 2000, orders: 980 },
-    { name: 'Thu', sales: 2780, orders: 390 },
-    { name: 'Fri', sales: 1890, orders: 480 },
-    { name: 'Sat', sales: 2390, orders: 380 },
-    { name: 'Sun', sales: 3490, orders: 430 },
+  const menuItems = [
+    { id: 'dashboard', label: 'Dashboard', icon: <LayoutDashboard size={20} /> },
+    { id: 'orders', label: 'Orders', icon: <Package size={20} /> },
+    { id: 'products', label: 'Products', icon: <Coffee size={20} /> },
+    { id: 'stocks', label: 'Stocks', icon: <TrendingUp size={20} /> },
+    { id: 'clients', label: 'Clients', icon: <Users size={20} /> },
+    { id: 'promotions', label: 'Promotions', icon: <Sparkles size={20} /> },
+    { id: 'employees', label: 'Employees', icon: <User size={20} /> },
+    { id: 'reports', label: 'Reports', icon: <BarChart size={20} /> },
+    { id: 'settings', label: 'Settings', icon: <Settings size={20} /> },
+    { id: 'maintenance', label: 'Maintenance', icon: <Lock size={20} /> },
   ];
 
   return (
     <div className="min-h-screen bg-[#001a13] pt-44 pb-20 px-8">
-      <div className="max-w-7xl mx-auto space-y-10">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div>
-            <h1 className="text-4xl font-medium text-white tracking-tighter uppercase italic font-display">
-              Admin <span className="text-[#00d084]">Dashboard</span>
-            </h1>
-            <p className="text-white/40 text-xs font-bold tracking-widest uppercase mt-2">Welcome back to Rashfa Control Center</p>
-          </div>
-          <div className="flex gap-4">
-            <button className="bg-white/5 text-white/60 p-4 rounded-2xl border border-white/10 hover:text-white transition-all">
-              <Filter size={20} />
-            </button>
-            <button className="bg-[#00d084] text-[#001a13] px-8 py-4 rounded-2xl font-black text-[11px] tracking-widest uppercase flex items-center gap-3">
-              Generate Report <ArrowRight size={16} />
-            </button>
-          </div>
-        </div>
+      <div className="max-w-[1600px] mx-auto flex gap-10">
+        {/* Sidebar */}
+        <div className="w-80 flex-shrink-0">
+          <div className="bg-white/5 backdrop-blur-xl rounded-[40px] border border-white/10 p-8 sticky top-44">
+            <div className="mb-10 px-4">
+              <h2 className="text-2xl font-black text-white italic tracking-tighter">ADMIN <span className="text-[#00d084]">PANEL</span></h2>
+              <p className="text-white/40 text-[10px] font-bold tracking-widest uppercase mt-2">Rashfa Management v1.0</p>
+            </div>
+            
+            <nav className="space-y-2">
+              {menuItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveTab(item.id)}
+                  className={`w-full flex items-center gap-4 px-6 py-4 rounded-2xl font-bold text-xs tracking-widest uppercase transition-all ${
+                    activeTab === item.id 
+                      ? 'bg-[#00d084] text-[#001a13] shadow-lg shadow-[#00d084]/20' 
+                      : 'text-white/40 hover:bg-white/5 hover:text-white'
+                  }`}
+                >
+                  {item.icon}
+                  {item.label}
+                </button>
+              ))}
+            </nav>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            { label: "Total Revenue", value: `${stats.revenue.toLocaleString()} MAD`, change: "+12.5%", icon: <DollarSign className="text-[#00d084]" /> },
-            { label: "Total Orders", value: stats.orders.toLocaleString(), change: "+8.2%", icon: <Package className="text-[#00d084]" /> },
-            { label: "Active Users", value: stats.users.toLocaleString(), change: "+5.1%", icon: <Users className="text-[#00d084]" /> },
-            { label: "Avg. Wait Time", value: `${stats.avgWait} min`, change: "-2.4%", icon: <Clock className="text-[#00d084]" /> },
-          ].map((stat, i) => (
-            <motion.div 
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-white/5 backdrop-blur-xl p-8 rounded-[35px] border border-white/10"
-            >
-              <div className="flex justify-between items-start mb-6">
-                <div className="p-4 bg-[#00d084]/10 rounded-2xl">{stat.icon}</div>
-                <span className={`text-[10px] font-bold px-3 py-1 rounded-full ${stat.change.startsWith('+') ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}`}>
-                  {stat.change}
-                </span>
+            <div className="mt-10 pt-10 border-t border-white/5 px-4">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-[#00d084]/20 flex items-center justify-center text-[#00d084]">
+                  <User size={20} />
+                </div>
+                <div>
+                  <p className="text-white font-bold text-[10px] tracking-widest uppercase">Admin User</p>
+                  <p className="text-white/40 text-[8px] font-bold tracking-widest uppercase">System Manager</p>
+                </div>
               </div>
-              <p className="text-white/40 text-[10px] font-bold tracking-widest uppercase mb-1">{stat.label}</p>
-              <h3 className="text-3xl font-black text-white">{stat.value}</h3>
-            </motion.div>
-          ))}
+            </div>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 bg-white/5 backdrop-blur-xl p-10 rounded-[40px] border border-white/10">
-            <div className="flex items-center justify-between mb-10">
-              <h3 className="text-xl font-bold text-white flex items-center gap-3 italic">
-                <TrendingUp size={20} className="text-[#00d084]" /> Sales Analytics
-              </h3>
-              <div className="flex gap-2">
-                {['Day', 'Week', 'Month'].map(t => (
-                  <button key={t} className={`px-4 py-1.5 rounded-full text-[9px] font-bold tracking-widest uppercase transition-all ${t === 'Week' ? 'bg-[#00d084] text-[#001a13]' : 'text-white/40 hover:text-white'}`}>
-                    {t}
+        {/* Main Content Area */}
+        <div className="flex-grow space-y-10">
+          {activeTab === 'dashboard' && (
+            <>
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div>
+                  <h1 className="text-4xl font-medium text-white tracking-tighter uppercase italic font-display">
+                    Control <span className="text-[#00d084]">Center</span>
+                  </h1>
+                  <p className="text-white/40 text-xs font-bold tracking-widest uppercase mt-2">Real-time overview of your business</p>
+                </div>
+                <div className="flex gap-4">
+                  <button className="bg-white/5 text-white/60 p-4 rounded-2xl border border-white/10 hover:text-white transition-all">
+                    <Filter size={20} />
                   </button>
+                  <button className="bg-[#00d084] text-[#001a13] px-8 py-4 rounded-2xl font-black text-[11px] tracking-widest uppercase flex items-center gap-3">
+                    Generate Report <ArrowRight size={16} />
+                  </button>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {[
+                  { label: "Total Revenue", value: `${stats.revenue.toLocaleString()} MAD`, change: "+12.5%", icon: <DollarSign className="text-[#00d084]" /> },
+                  { label: "Total Orders", value: stats.orders.toLocaleString(), change: "+8.2%", icon: <Package className="text-[#00d084]" /> },
+                  { label: "Active Users", value: stats.users.toLocaleString(), change: "+5.1%", icon: <Users className="text-[#00d084]" /> },
+                  { label: "Avg. Wait Time", value: `${stats.avgWait} min`, change: "-2.4%", icon: <Clock className="text-[#00d084]" /> },
+                ].map((stat, i) => (
+                  <motion.div 
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    className="bg-white/5 backdrop-blur-xl p-8 rounded-[35px] border border-white/10"
+                  >
+                    <div className="flex justify-between items-start mb-6">
+                      <div className="p-4 bg-[#00d084]/10 rounded-2xl">{stat.icon}</div>
+                      <span className={`text-[10px] font-bold px-3 py-1 rounded-full ${stat.change.startsWith('+') ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}`}>
+                        {stat.change}
+                      </span>
+                    </div>
+                    <p className="text-white/40 text-[10px] font-bold tracking-widest uppercase mb-1">{stat.label}</p>
+                    <h3 className="text-3xl font-black text-white">{stat.value}</h3>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div className="lg:col-span-2 bg-white/5 backdrop-blur-xl p-10 rounded-[40px] border border-white/10">
+                  <div className="flex items-center justify-between mb-10">
+                    <h3 className="text-xl font-bold text-white flex items-center gap-3 italic">
+                      <TrendingUp size={20} className="text-[#00d084]" /> Sales Analytics
+                    </h3>
+                    <div className="flex gap-2">
+                      {['Day', 'Week', 'Month'].map(t => (
+                        <button key={t} className={`px-4 py-1.5 rounded-full text-[9px] font-bold tracking-widest uppercase transition-all ${t === 'Week' ? 'bg-[#00d084] text-[#001a13]' : 'text-white/40 hover:text-white'}`}>
+                          {t}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="h-[350px] w-full">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <AreaChart data={chartData}>
+                        <defs>
+                          <linearGradient id="colorSales" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="5%" stopColor="#00d084" stopOpacity={0.3}/>
+                            <stop offset="95%" stopColor="#00d084" stopOpacity={0}/>
+                          </linearGradient>
+                        </defs>
+                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                        <XAxis 
+                          dataKey="name" 
+                          axisLine={false} 
+                          tickLine={false} 
+                          tick={{fill: 'rgba(255,255,255,0.3)', fontSize: 10, fontWeight: 700}}
+                          dy={10}
+                        />
+                        <YAxis 
+                          axisLine={false} 
+                          tickLine={false} 
+                          tick={{fill: 'rgba(255,255,255,0.3)', fontSize: 10, fontWeight: 700}}
+                        />
+                        <Tooltip 
+                          contentStyle={{backgroundColor: '#001a13', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '15px'}}
+                          itemStyle={{color: '#00d084', fontSize: '12px', fontWeight: 'bold'}}
+                        />
+                        <Area type="monotone" dataKey="sales" stroke="#00d084" strokeWidth={4} fillOpacity={1} fill="url(#colorSales)" />
+                      </AreaChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+
+                <div className="bg-white/5 backdrop-blur-xl p-10 rounded-[40px] border border-white/10 flex flex-col">
+                  <h3 className="text-xl font-bold text-white mb-10 flex items-center gap-3 italic">
+                    <Package size={20} className="text-[#00d084]" /> Recent Orders
+                  </h3>
+                  <div className="space-y-6 flex-grow overflow-y-auto max-h-[400px] no-scrollbar">
+                    {loading ? (
+                      <div className="flex justify-center py-10">
+                        <div className="w-8 h-8 border-2 border-[#00d084]/30 border-t-[#00d084] rounded-full animate-spin" />
+                      </div>
+                    ) : orders.length > 0 ? (
+                      orders.slice(0, 10).map((order) => (
+                        <div key={order.id} className="bg-white/5 rounded-2xl p-4 border border-white/5 group">
+                          <div className="flex justify-between items-start mb-3">
+                            <div>
+                              <p className="text-white/40 text-[8px] font-bold tracking-widest uppercase">{order.order_number}</p>
+                              <h4 className="text-white font-bold text-sm">{order.user?.name || 'Guest'}</h4>
+                            </div>
+                            <p className="text-[#00d084] font-black text-sm">{order.total_amount} MAD</p>
+                          </div>
+                          <div className="flex items-center justify-between gap-4">
+                            <select 
+                              value={order.status}
+                              onChange={(e) => handleStatusUpdate(order.id, e.target.value)}
+                              className="bg-[#001a13] text-white/60 text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-lg border border-white/10 focus:outline-none focus:border-[#00d084] transition-all"
+                            >
+                              <option value="pending">Pending</option>
+                              <option value="processing">Processing</option>
+                              <option value="completed">Completed</option>
+                              <option value="cancelled">Cancelled</option>
+                            </select>
+                            <span className="text-white/20 text-[8px] font-bold uppercase">{new Date(order.created_at).toLocaleDateString()}</span>
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <p className="text-white/40 text-center py-10 text-xs">No recent orders found.</p>
+                    )}
+                  </div>
+                  <button 
+                    onClick={() => setActiveTab('orders')}
+                    className="w-full mt-10 py-4 bg-white/5 rounded-2xl text-white/40 font-bold text-[10px] tracking-widest uppercase hover:bg-white/10 hover:text-white transition-all"
+                  >
+                    View All Orders
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
+
+          {activeTab === 'orders' && (
+            <div className="space-y-8">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div>
+                  <h1 className="text-4xl font-medium text-white tracking-tighter uppercase italic font-display">
+                    Order <span className="text-[#00d084]">Management</span>
+                  </h1>
+                  <p className="text-white/40 text-xs font-bold tracking-widest uppercase mt-2">Manage and track all customer orders</p>
+                </div>
+                <div className="flex gap-4">
+                  <div className="relative">
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20" size={18} />
+                    <input 
+                      type="text" 
+                      placeholder="Search orders..." 
+                      className="bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-6 text-white text-xs font-bold tracking-widest uppercase focus:outline-none focus:border-[#00d084] transition-all min-w-[300px]"
+                    />
+                  </div>
+                  <button className="bg-white/5 text-white/60 p-4 rounded-2xl border border-white/10 hover:text-white transition-all">
+                    <Filter size={20} />
+                  </button>
+                </div>
+              </div>
+
+              <div className="bg-white/5 backdrop-blur-xl rounded-[40px] border border-white/10 overflow-hidden">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="border-b border-white/5">
+                        <th className="px-8 py-6 text-white/40 text-[10px] font-bold tracking-widest uppercase">Order Info</th>
+                        <th className="px-8 py-6 text-white/40 text-[10px] font-bold tracking-widest uppercase">Client</th>
+                        <th className="px-8 py-6 text-white/40 text-[10px] font-bold tracking-widest uppercase">Items</th>
+                        <th className="px-8 py-6 text-white/40 text-[10px] font-bold tracking-widest uppercase">Amount</th>
+                        <th className="px-8 py-6 text-white/40 text-[10px] font-bold tracking-widest uppercase">Status</th>
+                        <th className="px-8 py-6 text-white/40 text-[10px] font-bold tracking-widest uppercase text-right">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-white/5">
+                      {loading ? (
+                        <tr>
+                          <td colSpan="6" className="px-8 py-20 text-center">
+                            <div className="w-10 h-10 border-2 border-[#00d084]/30 border-t-[#00d084] rounded-full animate-spin mx-auto" />
+                          </td>
+                        </tr>
+                      ) : orders.length > 0 ? (
+                        orders.map((order) => (
+                          <tr key={order.id} className="group hover:bg-white/[0.02] transition-all">
+                            <td className="px-8 py-6">
+                              <p className="text-white font-bold text-xs mb-1">{order.order_number}</p>
+                              <p className="text-white/20 text-[10px] font-bold uppercase">{new Date(order.created_at).toLocaleDateString()}</p>
+                            </td>
+                            <td className="px-8 py-6">
+                              <div className="flex items-center gap-3">
+                                <div className="w-8 h-8 rounded-full bg-[#00d084]/10 flex items-center justify-center text-[#00d084] text-[10px] font-black">
+                                  {order.user?.name?.charAt(0) || 'G'}
+                                </div>
+                                <div>
+                                  <p className="text-white font-bold text-xs">{order.user?.name || 'Guest Client'}</p>
+                                  <p className="text-white/20 text-[10px] font-bold uppercase">{order.user?.email || 'Walk-in'}</p>
+                                </div>
+                              </div>
+                            </td>
+                            <td className="px-8 py-6">
+                              <span className="bg-white/5 text-white/40 text-[10px] font-bold px-3 py-1 rounded-full border border-white/5">
+                                {order.items_count || 0} Items
+                              </span>
+                            </td>
+                            <td className="px-8 py-6">
+                              <p className="text-[#00d084] font-black text-sm">{order.total_amount} MAD</p>
+                            </td>
+                            <td className="px-8 py-6">
+                              <select 
+                                value={order.status}
+                                onChange={(e) => handleStatusUpdate(order.id, e.target.value)}
+                                className={`text-[10px] font-bold tracking-widest uppercase px-4 py-2 rounded-xl border transition-all focus:outline-none ${
+                                  order.status === 'completed' ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20' :
+                                  order.status === 'cancelled' ? 'bg-red-500/10 text-red-500 border-red-500/20' :
+                                  order.status === 'processing' ? 'bg-blue-500/10 text-blue-500 border-blue-500/20' :
+                                  'bg-amber-500/10 text-amber-500 border-amber-500/20'
+                                }`}
+                              >
+                                <option value="pending">Pending</option>
+                                <option value="processing">Processing</option>
+                                <option value="completed">Completed</option>
+                                <option value="cancelled">Cancelled</option>
+                              </select>
+                            </td>
+                            <td className="px-8 py-6 text-right">
+                              <button className="p-3 bg-white/5 rounded-xl text-white/40 hover:text-[#00d084] hover:bg-[#00d084]/10 transition-all border border-white/5">
+                                <Eye size={18} />
+                              </button>
+                            </td>
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td colSpan="6" className="px-8 py-20 text-center text-white/20 font-bold uppercase tracking-widest text-xs">
+                            No orders found in the system
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'products' && (
+            <div className="space-y-8">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div>
+                  <h1 className="text-4xl font-medium text-white tracking-tighter uppercase italic font-display">
+                    Product <span className="text-[#00d084]">Library</span>
+                  </h1>
+                  <p className="text-white/40 text-xs font-bold tracking-widest uppercase mt-2">Manage your menu and inventory</p>
+                </div>
+                <div className="flex gap-4">
+                  <div className="relative">
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20" size={18} />
+                    <input 
+                      type="text" 
+                      placeholder="Search products..." 
+                      className="bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-6 text-white text-xs font-bold tracking-widest uppercase focus:outline-none focus:border-[#00d084] transition-all min-w-[300px]"
+                    />
+                  </div>
+                  <button 
+                    onClick={() => handleOpenProductModal()}
+                    className="bg-[#00d084] text-[#001a13] px-8 py-4 rounded-2xl font-black text-[11px] tracking-widest uppercase flex items-center gap-3"
+                  >
+                    <Plus size={16} /> Add Product
+                  </button>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {adminProducts.map((product) => (
+                  <motion.div 
+                    key={product.id}
+                    layout
+                    className="bg-white/5 backdrop-blur-xl rounded-[40px] border border-white/10 overflow-hidden group"
+                  >
+                    <div className="h-48 relative overflow-hidden">
+                      <img src={product.img} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700" />
+                      <div className="absolute top-4 left-4">
+                        <span className="bg-black/50 backdrop-blur-md text-white/70 text-[8px] font-bold px-3 py-1.5 rounded-full border border-white/10 tracking-widest uppercase">
+                          {product.category}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="p-8">
+                      <div className="flex justify-between items-start mb-4">
+                        <div>
+                          <h4 className="text-white font-bold text-lg tracking-tight mb-1">{product.name}</h4>
+                          <p className="text-[#00d084] font-black text-sm">{product.price} MAD</p>
+                        </div>
+                      </div>
+                      <p className="text-white/30 text-[10px] font-medium leading-relaxed mb-8 line-clamp-2">
+                        {product.desc}
+                      </p>
+                      <div className="flex gap-3 pt-6 border-t border-white/5">
+                        <button 
+                          onClick={() => handleOpenProductModal(product)}
+                          className="flex-grow flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white/40 hover:text-white py-3 rounded-xl transition-all border border-white/5"
+                        >
+                          <Edit size={14} /> <span className="text-[9px] font-bold tracking-widest uppercase">Edit</span>
+                        </button>
+                        <button 
+                          onClick={() => handleDeleteProduct(product.id)}
+                          className="p-3 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-xl transition-all border border-red-500/10"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
-            <div className="h-[350px] w-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={chartData}>
-                  <defs>
-                    <linearGradient id="colorSales" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#00d084" stopOpacity={0.3}/>
-                      <stop offset="95%" stopColor="#00d084" stopOpacity={0}/>
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-                  <XAxis 
-                    dataKey="name" 
-                    axisLine={false} 
-                    tickLine={false} 
-                    tick={{fill: 'rgba(255,255,255,0.3)', fontSize: 10, fontWeight: 700}}
-                    dy={10}
-                  />
-                  <YAxis 
-                    axisLine={false} 
-                    tickLine={false} 
-                    tick={{fill: 'rgba(255,255,255,0.3)', fontSize: 10, fontWeight: 700}}
-                  />
-                  <Tooltip 
-                    contentStyle={{backgroundColor: '#001a13', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '15px'}}
-                    itemStyle={{color: '#00d084', fontSize: '12px', fontWeight: 'bold'}}
-                  />
-                  <Area type="monotone" dataKey="sales" stroke="#00d084" strokeWidth={4} fillOpacity={1} fill="url(#colorSales)" />
-                </AreaChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
+          )}
 
-          <div className="bg-white/5 backdrop-blur-xl p-10 rounded-[40px] border border-white/10 flex flex-col">
-            <h3 className="text-xl font-bold text-white mb-10 flex items-center gap-3 italic">
-              <Package size={20} className="text-[#00d084]" /> Recent Orders
-            </h3>
-            <div className="space-y-6 flex-grow overflow-y-auto max-h-[400px] no-scrollbar">
-              {loading ? (
-                <div className="flex justify-center py-10">
-                  <div className="w-8 h-8 border-2 border-[#00d084]/30 border-t-[#00d084] rounded-full animate-spin" />
+          {activeTab === 'stocks' && (
+            <div className="space-y-8">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div>
+                  <h1 className="text-4xl font-medium text-white tracking-tighter uppercase italic font-display">
+                    Stock <span className="text-[#00d084]">Inventory</span>
+                  </h1>
+                  <p className="text-white/40 text-xs font-bold tracking-widest uppercase mt-2">Monitor and manage product stock levels</p>
                 </div>
-              ) : orders.length > 0 ? (
-                orders.slice(0, 10).map((order) => (
-                  <div key={order.id} className="bg-white/5 rounded-2xl p-4 border border-white/5 group">
-                    <div className="flex justify-between items-start mb-3">
-                      <div>
-                        <p className="text-white/40 text-[8px] font-bold tracking-widest uppercase">{order.order_number}</p>
-                        <h4 className="text-white font-bold text-sm">{order.user?.name || 'Guest'}</h4>
+              </div>
+
+              <div className="bg-white/5 backdrop-blur-xl rounded-[40px] border border-white/10 overflow-hidden">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="border-b border-white/5">
+                        <th className="px-8 py-6 text-white/40 text-[10px] font-bold tracking-widest uppercase">Product</th>
+                        <th className="px-8 py-6 text-white/40 text-[10px] font-bold tracking-widest uppercase">Category</th>
+                        <th className="px-8 py-6 text-white/40 text-[10px] font-bold tracking-widest uppercase">Current Stock</th>
+                        <th className="px-8 py-6 text-white/40 text-[10px] font-bold tracking-widest uppercase">Status</th>
+                        <th className="px-8 py-6 text-white/40 text-[10px] font-bold tracking-widest uppercase text-right">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-white/5">
+                      {adminProducts.map((product) => {
+                        const stock = product.stock;
+                        return (
+                          <tr key={product.id} className="group hover:bg-white/[0.02] transition-all">
+                            <td className="px-8 py-6">
+                              <div className="flex items-center gap-4">
+                                <img src={product.img} className="w-10 h-10 rounded-xl object-cover" />
+                                <p className="text-white font-bold text-xs">{product.name}</p>
+                              </div>
+                            </td>
+                            <td className="px-8 py-6">
+                              <span className="text-white/40 text-[10px] font-bold uppercase">{product.category}</span>
+                            </td>
+                            <td className="px-8 py-6">
+                              <p className="text-white font-black text-sm">{stock} Units</p>
+                            </td>
+                            <td className="px-8 py-6">
+                              <span className={`text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full ${
+                                stock > 10 ? 'bg-emerald-500/10 text-emerald-500' : 'bg-red-500/10 text-red-500'
+                              }`}>
+                                {stock > 10 ? 'In Stock' : 'Low Stock'}
+                              </span>
+                            </td>
+                            <td className="px-8 py-6 text-right">
+                              <button 
+                                onClick={() => handleOpenStockModal(product)}
+                                className="p-3 bg-white/5 rounded-xl text-white/40 hover:text-[#00d084] hover:bg-[#00d084]/10 transition-all border border-white/5"
+                              >
+                                <Plus size={14} />
+                              </button>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'clients' && (
+            <div className="space-y-8">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div>
+                  <h1 className="text-4xl font-medium text-white tracking-tighter uppercase italic font-display">
+                    Client <span className="text-[#00d084]">Database</span>
+                  </h1>
+                  <p className="text-white/40 text-xs font-bold tracking-widest uppercase mt-2">View and manage your registered customers</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {clients.map((client) => (
+                  <div key={client.id} className="bg-white/5 backdrop-blur-xl p-8 rounded-[40px] border border-white/10 group">
+                    <div className="flex items-center gap-6 mb-8">
+                      <div className="w-16 h-16 rounded-2xl bg-[#00d084]/10 flex items-center justify-center text-[#00d084] text-xl font-black">
+                        {client.name.charAt(0)}
                       </div>
-                      <p className="text-[#00d084] font-black text-sm">{order.total_amount} MAD</p>
+                      <div>
+                        <h4 className="text-white font-bold text-lg">{client.name}</h4>
+                        <p className="text-white/20 text-[10px] font-bold uppercase">{client.email}</p>
+                      </div>
                     </div>
-                    <div className="flex items-center justify-between gap-4">
-                      <select 
-                        value={order.status}
-                        onChange={(e) => handleStatusUpdate(order.id, e.target.value)}
-                        className="bg-[#001a13] text-white/60 text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-lg border border-white/10 focus:outline-none focus:border-[#00d084] transition-all"
-                      >
-                        <option value="pending">Pending</option>
-                        <option value="processing">Processing</option>
-                        <option value="completed">Completed</option>
-                        <option value="cancelled">Cancelled</option>
-                      </select>
-                      <span className="text-white/20 text-[8px] font-bold uppercase">{new Date(order.created_at).toLocaleDateString()}</span>
+                    <div className="grid grid-cols-2 gap-4 mb-8">
+                      <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
+                        <p className="text-white/40 text-[8px] font-bold uppercase mb-1">Orders</p>
+                        <p className="text-white font-black">{client.orders_count}</p>
+                      </div>
+                      <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
+                        <p className="text-white/40 text-[8px] font-bold uppercase mb-1">Spent</p>
+                        <p className="text-[#00d084] font-black">{client.orders_sum_total_amount || 0} MAD</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between pt-6 border-t border-white/5">
+                      <p className="text-white/20 text-[8px] font-bold uppercase">Member since {new Date(client.created_at).toLocaleDateString()}</p>
+                      <button className="text-[#00d084] text-[10px] font-black uppercase tracking-widest hover:underline">View Profile</button>
                     </div>
                   </div>
-                ))
-              ) : (
-                <p className="text-white/40 text-center py-10 text-xs">No recent orders found.</p>
-              )}
+                ))}
+              </div>
             </div>
-            <button className="w-full mt-10 py-4 bg-white/5 rounded-2xl text-white/40 font-bold text-[10px] tracking-widest uppercase hover:bg-white/10 hover:text-white transition-all">
-              View All Orders
-            </button>
-          </div>
+          )}
+
+          {activeTab === 'promotions' && (
+            <div className="space-y-8">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div>
+                  <h1 className="text-4xl font-medium text-white tracking-tighter uppercase italic font-display">
+                    Marketing <span className="text-[#00d084]">Promotions</span>
+                  </h1>
+                  <p className="text-white/40 text-xs font-bold tracking-widest uppercase mt-2">Create and manage discount codes</p>
+                </div>
+                <button 
+                  onClick={() => handleOpenPromoModal()}
+                  className="bg-[#00d084] text-[#001a13] px-8 py-4 rounded-2xl font-black text-[11px] tracking-widest uppercase flex items-center gap-3"
+                >
+                  <Plus size={16} /> New Promo
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {promotions.map((promo) => (
+                  <div key={promo.id} className="bg-white/5 backdrop-blur-xl p-8 rounded-[40px] border border-white/10 flex items-center justify-between group">
+                    <div>
+                      <div className="flex items-center gap-4 mb-2">
+                        <span className="text-2xl font-black text-white tracking-widest uppercase">{promo.code}</span>
+                        <span className={`text-[8px] font-black uppercase px-2 py-1 rounded-md ${promo.status === 'Active' ? 'bg-[#00d084]/20 text-[#00d084]' : 'bg-red-500/20 text-red-500'}`}>
+                          {promo.status}
+                        </span>
+                      </div>
+                      <p className="text-[#00d084] font-black text-xs uppercase tracking-widest mb-4">{promo.discount} - {promo.type}</p>
+                      <div className="flex items-center gap-4">
+                        <div className="w-32 h-1.5 bg-white/5 rounded-full overflow-hidden">
+                          <div className="h-full bg-[#00d084]" style={{ width: `${Math.min((promo.usage / promo.maxUsage) * 100, 100)}%` }} />
+                        </div>
+                        <span className="text-white/20 text-[10px] font-bold uppercase">{promo.usage}/{promo.maxUsage} Used</span>
+                      </div>
+                    </div>
+                    <div className="flex gap-2">
+                      <button 
+                        onClick={() => handleOpenPromoModal(promo)}
+                        className="p-4 bg-white/5 rounded-2xl text-white/40 hover:text-white transition-all"
+                      >
+                        <Edit size={20} />
+                      </button>
+                      <button 
+                        onClick={() => handleDeletePromo(promo.id)}
+                        className="p-4 bg-red-500/10 text-red-500/40 hover:text-red-500 rounded-2xl transition-all"
+                      >
+                        <Trash2 size={20} />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'employees' && (
+            <div className="space-y-8">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div>
+                  <h1 className="text-4xl font-medium text-white tracking-tighter uppercase italic font-display">
+                    Team <span className="text-[#00d084]">Management</span>
+                  </h1>
+                  <p className="text-white/40 text-xs font-bold tracking-widest uppercase mt-2">Manage your staff and permissions</p>
+                </div>
+                <button 
+                  onClick={() => handleOpenEmployeeModal()}
+                  className="bg-[#00d084] text-[#001a13] px-8 py-4 rounded-2xl font-black text-[11px] tracking-widest uppercase flex items-center gap-3"
+                >
+                  <Plus size={16} /> Add Member
+                </button>
+              </div>
+
+              <div className="bg-white/5 backdrop-blur-xl rounded-[40px] border border-white/10 overflow-hidden">
+                <table className="w-full text-left">
+                  <thead>
+                    <tr className="border-b border-white/5">
+                      <th className="px-8 py-6 text-white/40 text-[10px] font-bold tracking-widest uppercase">Member</th>
+                      <th className="px-8 py-6 text-white/40 text-[10px] font-bold tracking-widest uppercase">Role</th>
+                      <th className="px-8 py-6 text-white/40 text-[10px] font-bold tracking-widest uppercase">Schedule</th>
+                      <th className="px-8 py-6 text-white/40 text-[10px] font-bold tracking-widest uppercase">Status</th>
+                      <th className="px-8 py-6 text-white/40 text-[10px] font-bold tracking-widest uppercase text-right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-white/5">
+                    {employees.map((staff) => (
+                      <tr key={staff.id} className="hover:bg-white/[0.02] transition-all">
+                        <td className="px-8 py-6">
+                          <div>
+                            <p className="text-white font-bold text-xs">{staff.name}</p>
+                            <p className="text-white/20 text-[9px] uppercase font-bold tracking-widest">{staff.email}</p>
+                          </div>
+                        </td>
+                        <td className="px-8 py-6">
+                          <span className="text-white/40 text-[10px] font-bold uppercase">{staff.role}</span>
+                        </td>
+                        <td className="px-8 py-6">
+                          <p className="text-white/60 text-[10px] font-bold uppercase">{staff.shift}</p>
+                        </td>
+                        <td className="px-8 py-6">
+                          <span className={`text-[8px] font-black uppercase tracking-widest px-3 py-1 rounded-full ${staff.status === 'On Duty' ? 'bg-emerald-500/10 text-emerald-500' : 'bg-white/10 text-white/40'}`}>
+                            {staff.status}
+                          </span>
+                        </td>
+                        <td className="px-8 py-6 text-right">
+                          <div className="flex justify-end gap-2">
+                            <button 
+                              onClick={() => handleOpenEmployeeModal(staff)}
+                              className="p-3 text-white/20 hover:text-white transition-all"
+                            >
+                              <Edit size={16} />
+                            </button>
+                            <button 
+                              onClick={() => handleDeleteEmployee(staff.id)}
+                              className="p-3 text-white/20 hover:text-red-500 transition-all"
+                            >
+                              <Trash2 size={16} />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'reports' && (
+            <div className="space-y-8">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div>
+                  <h1 className="text-4xl font-medium text-white tracking-tighter uppercase italic font-display">
+                    Performance <span className="text-[#00d084]">Reports</span>
+                  </h1>
+                  <p className="text-white/40 text-xs font-bold tracking-widest uppercase mt-2">Analyze your business metrics</p>
+                </div>
+                <button className="bg-white/5 text-white/60 px-8 py-4 rounded-2xl border border-white/10 font-black text-[11px] tracking-widest uppercase flex items-center gap-3 hover:text-white transition-all">
+                  <Download size={16} /> Export Data
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="bg-white/5 backdrop-blur-xl p-10 rounded-[40px] border border-white/10">
+                  <h3 className="text-white font-bold text-lg mb-8 uppercase tracking-widest italic">Weekly Revenue</h3>
+                  <div className="h-[300px]">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={chartData}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                        <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: 'rgba(255,255,255,0.3)', fontSize: 10}} />
+                        <YAxis axisLine={false} tickLine={false} tick={{fill: 'rgba(255,255,255,0.3)', fontSize: 10}} />
+                        <Tooltip contentStyle={{backgroundColor: '#001a13', border: 'none', borderRadius: '10px'}} />
+                        <Bar dataKey="sales" fill="#00d084" radius={[4, 4, 0, 0]} />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+                
+                <div className="bg-white/5 backdrop-blur-xl p-10 rounded-[40px] border border-white/10">
+                  <h3 className="text-white font-bold text-lg mb-8 uppercase tracking-widest italic">Top Categories</h3>
+                  <div className="space-y-6">
+                    {[
+                      { name: "Coffee", percentage: 65 },
+                      { name: "Bakery", percentage: 20 },
+                      { name: "Cold Drinks", percentage: 15 },
+                    ].map((cat, i) => (
+                      <div key={i}>
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-white font-bold text-xs uppercase">{cat.name}</span>
+                          <span className="text-[#00d084] font-black text-xs">{cat.percentage}%</span>
+                        </div>
+                        <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden">
+                          <div className="h-full bg-[#00d084]" style={{ width: `${cat.percentage}%` }} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'settings' && (
+            <div className="space-y-8">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div>
+                  <h1 className="text-4xl font-medium text-white tracking-tighter uppercase italic font-display">
+                    System <span className="text-[#00d084]">Settings</span>
+                  </h1>
+                  <p className="text-white/40 text-xs font-bold tracking-widest uppercase mt-2">Configure your application preferences</p>
+                </div>
+                <button className="bg-[#00d084] text-[#001a13] px-8 py-4 rounded-2xl font-black text-[11px] tracking-widest uppercase">
+                  Save Changes
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="bg-white/5 backdrop-blur-xl p-10 rounded-[40px] border border-white/10">
+                  <h3 className="text-white font-bold text-lg mb-8 uppercase tracking-widest italic">General Settings</h3>
+                  <div className="space-y-6">
+                    {[
+                      { label: "Store Name", value: "Rashfa Coffee Roasters" },
+                      { label: "Contact Email", value: "hello@rashfa.com" },
+                      { label: "Currency", value: "MAD (Moroccan Dirham)" },
+                    ].map((set, i) => (
+                      <div key={i} className="space-y-2">
+                        <label className="text-white/40 text-[10px] font-bold uppercase ml-4">{set.label}</label>
+                        <input type="text" defaultValue={set.value} className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-xs focus:outline-none focus:border-[#00d084]" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="bg-white/5 backdrop-blur-xl p-10 rounded-[40px] border border-white/10">
+                  <h3 className="text-white font-bold text-lg mb-8 uppercase tracking-widest italic">Operations</h3>
+                  <div className="space-y-6">
+                    {[
+                      { label: "Accepting Orders", status: true },
+                      { label: "Email Notifications", status: true },
+                      { label: "Maintenance Mode", status: false },
+                    ].map((op, i) => (
+                      <div key={i} className="flex items-center justify-between p-4 bg-white/5 rounded-2xl border border-white/5">
+                        <span className="text-white font-bold text-xs uppercase">{op.label}</span>
+                        <div className={`w-12 h-6 rounded-full relative cursor-pointer transition-all ${op.status ? 'bg-[#00d084]' : 'bg-white/10'}`}>
+                          <div className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-all ${op.status ? 'right-1' : 'left-1'}`} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'maintenance' && (
+            <div className="space-y-8">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div>
+                  <h1 className="text-4xl font-medium text-white tracking-tighter uppercase italic font-display">
+                    System <span className="text-[#00d084]">Maintenance</span>
+                  </h1>
+                  <p className="text-white/40 text-xs font-bold tracking-widest uppercase mt-2">Monitor system health and logs</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {[
+                  { label: "Server Status", value: "Healthy", color: "text-emerald-500" },
+                  { label: "Database", value: "Connected", color: "text-emerald-500" },
+                  { label: "Storage", value: "45% Full", color: "text-amber-500" },
+                ].map((m, i) => (
+                  <div key={i} className="bg-white/5 backdrop-blur-xl p-8 rounded-[40px] border border-white/10 text-center">
+                    <p className="text-white/40 text-[10px] font-bold uppercase mb-2 tracking-widest">{m.label}</p>
+                    <h4 className={`text-2xl font-black uppercase ${m.color}`}>{m.value}</h4>
+                  </div>
+                ))}
+              </div>
+
+              <div className="bg-white/5 backdrop-blur-xl p-10 rounded-[40px] border border-white/10">
+                <h3 className="text-white font-bold text-lg mb-8 uppercase tracking-widest italic">Recent Logs</h3>
+                <div className="space-y-4 font-mono">
+                  {[
+                    { time: "10:45:22", type: "INFO", msg: "Backup completed successfully" },
+                    { time: "09:30:05", type: "WARN", msg: "High memory usage detected" },
+                    { time: "08:15:10", type: "INFO", msg: "New admin user logged in" },
+                  ].map((log, i) => (
+                    <div key={i} className="text-[10px] flex gap-4 border-b border-white/5 pb-2">
+                      <span className="text-white/20">[{log.time}]</span>
+                      <span className={log.type === 'WARN' ? 'text-amber-500' : 'text-[#00d084]'}>{log.type}</span>
+                      <span className="text-white/60">{log.msg}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab !== 'dashboard' && activeTab !== 'orders' && activeTab !== 'products' && activeTab !== 'stocks' && activeTab !== 'clients' && activeTab !== 'promotions' && activeTab !== 'employees' && activeTab !== 'reports' && activeTab !== 'settings' && activeTab !== 'maintenance' && (
+            <div className="bg-white/5 backdrop-blur-xl p-20 rounded-[50px] border border-white/10 text-center">
+              <div className="w-24 h-24 bg-[#00d084]/10 rounded-full flex items-center justify-center mx-auto mb-8 border border-[#00d084]/20">
+                <div className="text-[#00d084] animate-pulse">
+                  {menuItems.find(i => i.id === activeTab)?.icon}
+                </div>
+              </div>
+              <h2 className="text-4xl font-black text-white mb-4 tracking-tighter uppercase italic">
+                {activeTab} <span className="text-[#00d084]">Section</span>
+              </h2>
+              <p className="text-white/40 text-sm font-bold tracking-[0.3em] uppercase leading-relaxed max-w-md mx-auto">
+                This module is currently under active development. <br /> Check back soon for management features.
+              </p>
+              <button 
+                onClick={() => setActiveTab('dashboard')}
+                className="mt-12 bg-white text-[#001a13] px-10 py-4 rounded-2xl font-black text-[10px] tracking-widest uppercase hover:bg-[#00d084] transition-all"
+              >
+                Return to Dashboard
+              </button>
+            </div>
+          )}
         </div>
       </div>
+
+      {/* Product Modal */}
+      <AnimatePresence>
+        {isProductModalOpen && (
+          <div className="fixed inset-0 z-[10000] flex items-center justify-center px-4">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsProductModalOpen(false)}
+              className="absolute inset-0 bg-[#001a13]/90 backdrop-blur-md"
+            />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-2xl bg-white/5 border border-white/10 rounded-[40px] p-10 backdrop-blur-xl shadow-2xl"
+            >
+              <button 
+                onClick={() => setIsProductModalOpen(false)}
+                className="absolute top-8 right-8 text-white/20 hover:text-white transition-colors"
+              >
+                <X size={24} />
+              </button>
+
+              <div className="mb-10">
+                <h2 className="text-3xl font-medium text-white tracking-tighter uppercase italic font-display">
+                  {editingProduct ? 'Edit' : 'Add New'} <span className="text-[#00d084]">Product</span>
+                </h2>
+                <p className="text-white/40 text-[10px] font-bold tracking-widest uppercase mt-2">Fill in the details below</p>
+              </div>
+
+              <div className="space-y-6">
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold tracking-widest uppercase text-white/40 ml-4">Product Name</label>
+                    <input 
+                      type="text" 
+                      value={productFormData.name}
+                      onChange={(e) => setProductFormData({...productFormData, name: e.target.value})}
+                      placeholder="e.g. Espresso" 
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none focus:border-[#00d084] transition-colors" 
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold tracking-widest uppercase text-white/40 ml-4">Price (MAD)</label>
+                    <input 
+                      type="number" 
+                      value={productFormData.price}
+                      onChange={(e) => setProductFormData({...productFormData, price: e.target.value})}
+                      placeholder="0.00" 
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none focus:border-[#00d084] transition-colors" 
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold tracking-widest uppercase text-white/40 ml-4">Category</label>
+                  <select 
+                    value={productFormData.category}
+                    onChange={(e) => setProductFormData({...productFormData, category: e.target.value})}
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none focus:border-[#00d084] transition-colors appearance-none"
+                  >
+                    {Object.values(CATEGORIES).map(cat => (
+                      <option key={cat} value={cat} className="bg-[#001a13]">{cat}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold tracking-widest uppercase text-white/40 ml-4">Description</label>
+                  <textarea 
+                    value={productFormData.desc}
+                    onChange={(e) => setProductFormData({...productFormData, desc: e.target.value})}
+                    rows="3" 
+                    placeholder="Describe the product..." 
+                    className="w-full bg-white/5 border border-white/10 rounded-3xl px-6 py-4 text-white text-sm focus:outline-none focus:border-[#00d084] transition-colors resize-none"
+                  ></textarea>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold tracking-widest uppercase text-white/40 ml-4">Image URL</label>
+                  <input 
+                    type="text" 
+                    value={productFormData.img}
+                    onChange={(e) => setProductFormData({...productFormData, img: e.target.value})}
+                    placeholder="https://images.pexels.com/..." 
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none focus:border-[#00d084] transition-colors" 
+                  />
+                </div>
+
+                <div className="pt-6">
+                  <button 
+                    onClick={handleSaveProduct}
+                    className="w-full bg-[#00d084] text-[#001a13] py-5 rounded-2xl font-black text-xs tracking-[0.2em] uppercase shadow-2xl shadow-[#00d084]/20 hover:scale-[1.02] transition-all"
+                  >
+                    {editingProduct ? 'Update Product' : 'Add Product'}
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Stock Modal */}
+      <AnimatePresence>
+        {isStockModalOpen && (
+          <div className="fixed inset-0 z-[10000] flex items-center justify-center px-4">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsStockModalOpen(false)}
+              className="absolute inset-0 bg-[#001a13]/90 backdrop-blur-md"
+            />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-md bg-white/5 border border-white/10 rounded-[40px] p-10 backdrop-blur-xl shadow-2xl"
+            >
+              <button 
+                onClick={() => setIsStockModalOpen(false)}
+                className="absolute top-8 right-8 text-white/20 hover:text-white transition-colors"
+              >
+                <X size={24} />
+              </button>
+
+              <div className="mb-10">
+                <h2 className="text-3xl font-medium text-white tracking-tighter uppercase italic font-display">
+                  Adjust <span className="text-[#00d084]">Stock</span>
+                </h2>
+                <p className="text-white/40 text-[10px] font-bold tracking-widest uppercase mt-2">{stockFormData.productName}</p>
+              </div>
+
+              <div className="space-y-8">
+                <div className="flex justify-between items-center p-6 bg-white/5 rounded-3xl border border-white/5">
+                  <span className="text-white/40 text-[10px] font-bold uppercase tracking-widest">Current Stock</span>
+                  <span className="text-2xl font-black text-white">{stockFormData.currentStock} Units</span>
+                </div>
+
+                <div className="space-y-4">
+                  <label className="text-[10px] font-bold tracking-widest uppercase text-white/40 ml-4">Adjustment Amount</label>
+                  <div className="flex items-center gap-4">
+                    <input 
+                      type="number" 
+                      value={stockFormData.adjustment}
+                      onChange={(e) => setStockFormData({...stockFormData, adjustment: e.target.value})}
+                      className="flex-grow bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-2xl font-black focus:outline-none focus:border-[#00d084] transition-colors" 
+                      placeholder="0"
+                    />
+                    <div className="flex flex-col gap-2">
+                      <span className="text-[10px] font-bold text-white/20 uppercase italic">Use negative values for reduction</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-4">
+                  <div className="flex justify-between items-center mb-6 px-4">
+                    <span className="text-white/40 text-[10px] font-bold uppercase tracking-widest">New Total</span>
+                    <span className="text-xl font-black text-[#00d084]">
+                      {parseInt(stockFormData.currentStock) + (parseInt(stockFormData.adjustment) || 0)} Units
+                    </span>
+                  </div>
+                  <button 
+                    onClick={handleSaveStock}
+                    className="w-full bg-[#00d084] text-[#001a13] py-5 rounded-2xl font-black text-xs tracking-[0.2em] uppercase shadow-2xl shadow-[#00d084]/20 hover:scale-[1.02] transition-all"
+                  >
+                    Confirm Adjustment
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Promotion Modal */}
+      <AnimatePresence>
+        {isPromoModalOpen && (
+          <div className="fixed inset-0 z-[10000] flex items-center justify-center px-4">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsPromoModalOpen(false)}
+              className="absolute inset-0 bg-[#001a13]/90 backdrop-blur-md"
+            />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-xl bg-white/5 border border-white/10 rounded-[40px] p-10 backdrop-blur-xl shadow-2xl"
+            >
+              <button 
+                onClick={() => setIsPromoModalOpen(false)}
+                className="absolute top-8 right-8 text-white/20 hover:text-white transition-colors"
+              >
+                <X size={24} />
+              </button>
+
+              <div className="mb-10">
+                <h2 className="text-3xl font-medium text-white tracking-tighter uppercase italic font-display">
+                  {editingPromo ? 'Edit' : 'Create'} <span className="text-[#00d084]">Promotion</span>
+                </h2>
+                <p className="text-white/40 text-[10px] font-bold tracking-widest uppercase mt-2">Configure discount code details</p>
+              </div>
+
+              <div className="space-y-6">
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold tracking-widest uppercase text-white/40 ml-4">Promo Code</label>
+                  <input 
+                    type="text" 
+                    value={promoFormData.code}
+                    onChange={(e) => setPromoFormData({...promoFormData, code: e.target.value.toUpperCase()})}
+                    placeholder="E.G. COFFEE2024" 
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm font-bold tracking-widest focus:outline-none focus:border-[#00d084] transition-colors" 
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold tracking-widest uppercase text-white/40 ml-4">Discount Value</label>
+                    <input 
+                      type="text" 
+                      value={promoFormData.discount}
+                      onChange={(e) => setPromoFormData({...promoFormData, discount: e.target.value})}
+                      placeholder="e.g. 20% or 50 MAD" 
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none focus:border-[#00d084] transition-colors" 
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold tracking-widest uppercase text-white/40 ml-4">Type</label>
+                    <select 
+                      value={promoFormData.type}
+                      onChange={(e) => setPromoFormData({...promoFormData, type: e.target.value})}
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none focus:border-[#00d084] transition-colors appearance-none"
+                    >
+                      <option value="Direct Discount" className="bg-[#001a13]">Direct Discount</option>
+                      <option value="Fixed Amount" className="bg-[#001a13]">Fixed Amount</option>
+                      <option value="First Order" className="bg-[#001a13]">First Order</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold tracking-widest uppercase text-white/40 ml-4">Max Usage</label>
+                    <input 
+                      type="number" 
+                      value={promoFormData.maxUsage}
+                      onChange={(e) => setPromoFormData({...promoFormData, maxUsage: e.target.value})}
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none focus:border-[#00d084] transition-colors" 
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold tracking-widest uppercase text-white/40 ml-4">Status</label>
+                    <select 
+                      value={promoFormData.status}
+                      onChange={(e) => setPromoFormData({...promoFormData, status: e.target.value})}
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none focus:border-[#00d084] transition-colors appearance-none"
+                    >
+                      <option value="Active" className="bg-[#001a13]">Active</option>
+                      <option value="Expired" className="bg-[#001a13]">Expired</option>
+                      <option value="Disabled" className="bg-[#001a13]">Disabled</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="pt-6">
+                  <button 
+                    onClick={handleSavePromo}
+                    className="w-full bg-[#00d084] text-[#001a13] py-5 rounded-2xl font-black text-xs tracking-[0.2em] uppercase shadow-2xl shadow-[#00d084]/20 hover:scale-[1.02] transition-all"
+                  >
+                    {editingPromo ? 'Update Promotion' : 'Launch Promotion'}
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Employee Modal */}
+      <AnimatePresence>
+        {isEmployeeModalOpen && (
+          <div className="fixed inset-0 z-[10000] flex items-center justify-center px-4">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsEmployeeModalOpen(false)}
+              className="absolute inset-0 bg-[#001a13]/90 backdrop-blur-md"
+            />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-xl bg-white/5 border border-white/10 rounded-[40px] p-10 backdrop-blur-xl shadow-2xl"
+            >
+              <button 
+                onClick={() => setIsEmployeeModalOpen(false)}
+                className="absolute top-8 right-8 text-white/20 hover:text-white transition-colors"
+              >
+                <X size={24} />
+              </button>
+
+              <div className="mb-10">
+                <h2 className="text-3xl font-medium text-white tracking-tighter uppercase italic font-display">
+                  {editingEmployee ? 'Edit' : 'Add'} <span className="text-[#00d084]">Member</span>
+                </h2>
+                <p className="text-white/40 text-[10px] font-bold tracking-widest uppercase mt-2">Team management details</p>
+              </div>
+
+              <div className="space-y-6">
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold tracking-widest uppercase text-white/40 ml-4">Full Name</label>
+                    <input 
+                      type="text" 
+                      value={employeeFormData.name}
+                      onChange={(e) => setEmployeeFormData({...employeeFormData, name: e.target.value})}
+                      placeholder="e.g. Youssef Idrissi" 
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none focus:border-[#00d084] transition-colors" 
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold tracking-widest uppercase text-white/40 ml-4">Email</label>
+                    <input 
+                      type="email" 
+                      value={employeeFormData.email}
+                      onChange={(e) => setEmployeeFormData({...employeeFormData, email: e.target.value})}
+                      placeholder="email@rashfa.com" 
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none focus:border-[#00d084] transition-colors" 
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold tracking-widest uppercase text-white/40 ml-4">Role</label>
+                    <select 
+                      value={employeeFormData.role}
+                      onChange={(e) => setEmployeeFormData({...employeeFormData, role: e.target.value})}
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none focus:border-[#00d084] transition-colors appearance-none"
+                    >
+                      <option value="Barista" className="bg-[#001a13]">Barista</option>
+                      <option value="Head Barista" className="bg-[#001a13]">Head Barista</option>
+                      <option value="Store Manager" className="bg-[#001a13]">Store Manager</option>
+                      <option value="Delivery Rider" className="bg-[#001a13]">Delivery Rider</option>
+                    </select>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold tracking-widest uppercase text-white/40 ml-4">Status</label>
+                    <select 
+                      value={employeeFormData.status}
+                      onChange={(e) => setEmployeeFormData({...employeeFormData, status: e.target.value})}
+                      className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none focus:border-[#00d084] transition-colors appearance-none"
+                    >
+                      <option value="On Duty" className="bg-[#001a13]">On Duty</option>
+                      <option value="Off Duty" className="bg-[#001a13]">Off Duty</option>
+                      <option value="On Leave" className="bg-[#001a13]">On Leave</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-[10px] font-bold tracking-widest uppercase text-white/40 ml-4">Shift Schedule</label>
+                  <input 
+                    type="text" 
+                    value={employeeFormData.shift}
+                    onChange={(e) => setEmployeeFormData({...employeeFormData, shift: e.target.value})}
+                    placeholder="e.g. 07:00 - 15:00" 
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white text-sm focus:outline-none focus:border-[#00d084] transition-colors" 
+                  />
+                </div>
+
+                <div className="pt-6">
+                  <button 
+                    onClick={handleSaveEmployee}
+                    className="w-full bg-[#00d084] text-[#001a13] py-5 rounded-2xl font-black text-xs tracking-[0.2em] uppercase shadow-2xl shadow-[#00d084]/20 hover:scale-[1.02] transition-all"
+                  >
+                    {editingEmployee ? 'Update Member' : 'Add to Team'}
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
@@ -3834,6 +5219,7 @@ const CheckoutPage = ({ cart, cartTotal, setLastOrder, setCart, user, token }) =
     address: '',
     paymentMethod: 'online',
     onlinePaymentType: 'card',
+    wantsReceipt: false,
     paypalEmail: '',
     cardDetails: {
       number: '',
@@ -3884,9 +5270,19 @@ const CheckoutPage = ({ cart, cartTotal, setLastOrder, setCart, user, token }) =
 
     setLoading(true);
 
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000); // 15s timeout
+
     try {
-      const response = await fetch('http://localhost:8000/api/orders', {
+      console.log('Placing order...', {
+        url: 'http://127.0.0.1:8000/api/orders',
+        token: token ? 'Present' : 'Missing',
+        cartCount: cart.length
+      });
+
+      const response = await fetch('http://127.0.0.1:8000/api/orders', {
         method: 'POST',
+        signal: controller.signal,
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -3898,6 +5294,7 @@ const CheckoutPage = ({ cart, cartTotal, setLastOrder, setCart, user, token }) =
           phone: formData.phone,
           address: formData.address,
           payment_method: formData.paymentMethod,
+          wants_receipt: formData.wantsReceipt,
           total_amount: cartTotal,
           items: cart.map(item => ({
             name: item.name,
@@ -3907,7 +5304,11 @@ const CheckoutPage = ({ cart, cartTotal, setLastOrder, setCart, user, token }) =
         })
       });
 
+      clearTimeout(timeoutId);
+
+      console.log('Response status:', response.status);
       const data = await response.json();
+      console.log('Response data:', data);
 
       if (response.ok) {
         setLastOrder(data.data);
@@ -3923,7 +5324,11 @@ const CheckoutPage = ({ cart, cartTotal, setLastOrder, setCart, user, token }) =
       }
     } catch (error) {
       console.error('Order error:', error);
-      alert('An error occurred while placing your order.');
+      if (error.name === 'AbortError') {
+        alert('The request timed out. Please check your internet connection and try again.');
+      } else {
+        alert('An error occurred while placing your order. Please make sure the backend server is running.');
+      }
     } finally {
       setLoading(false);
     }
@@ -4299,6 +5704,23 @@ const CheckoutPage = ({ cart, cartTotal, setLastOrder, setCart, user, token }) =
                             </div>
                           </motion.div>
                         )}
+
+                        {/* Receipt Option for Online Payment */}
+                        <div className="pt-4 border-t border-white/5">
+                          <button
+                            type="button"
+                            onClick={() => setFormData({...formData, wantsReceipt: !formData.wantsReceipt})}
+                            className={`w-full flex items-center justify-between p-4 rounded-2xl border transition-all ${formData.wantsReceipt ? 'bg-[#00d084]/10 border-[#00d084] text-[#00d084]' : 'bg-white/5 border-white/10 text-white/40'}`}
+                          >
+                            <div className="flex items-center gap-3">
+                              <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all ${formData.wantsReceipt ? 'bg-[#00d084] border-[#00d084]' : 'border-white/20'}`}>
+                                {formData.wantsReceipt && <Check size={12} className="text-[#001a13]" />}
+                              </div>
+                              <span className="text-[10px] font-black uppercase tracking-widest">I want a printed receipt</span>
+                            </div>
+                            <FileText size={18} />
+                          </button>
+                        </div>
                       </motion.div>
                     )}
 
@@ -4466,8 +5888,8 @@ const CheckoutPage = ({ cart, cartTotal, setLastOrder, setCart, user, token }) =
 const SuccessPage = ({ lastOrder }) => {
   const navigate = useNavigate();
   const receiptRef = useRef(null);
-  const [showQuestion, setShowQuestion] = useState(true);
-  const [wantsTicket, setWantsTicket] = useState(false);
+  const [showQuestion, setShowQuestion] = useState(lastOrder?.payment_method !== 'cash' && lastOrder?.wants_receipt === true);
+  const [wantsTicket, setWantsTicket] = useState(lastOrder?.wants_receipt === true);
 
   const handleDownload = () => {
     window.print();
@@ -4743,15 +6165,34 @@ function AppContent() {
   const cartTotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
   const cartCount = cart.reduce((count, item) => count + item.quantity, 0);
 
+  const isHomePage = location.pathname === '/';
+  const [hasLoadedOnce, setHasLoadedOnce] = useState(() => {
+    return sessionStorage.getItem('rashfa_home_loaded') === 'true';
+  });
+
   useEffect(() => {
-    // Initial loading simulation
+    // Ensure the app starts with a loading state only if it's the first visit to home
+    // or if it's any other page (which uses standard PageLoader)
+    if (isHomePage && hasLoadedOnce) {
+      setIsLoading(false);
+      setIsFirstLoad(false);
+      return;
+    }
+
+    setIsLoading(true);
+    setIsFirstLoad(true);
+
+    const duration = isHomePage ? 4000 : 3500;
     const timer = setTimeout(() => {
       setIsLoading(false);
-      // After first load is done, set isFirstLoad to false
+      if (isHomePage) {
+        sessionStorage.setItem('rashfa_home_loaded', 'true');
+        setHasLoadedOnce(true);
+      }
       setTimeout(() => setIsFirstLoad(false), 1000); 
-    }, 3500); // Give enough time for the Brand animation
+    }, duration);
     return () => clearTimeout(timer);
-  }, []);
+  }, [isHomePage]);
 
   useEffect(() => {
     if (!isFirstLoad) {
@@ -4851,76 +6292,91 @@ function AppContent() {
 
       <AnimatePresence mode="wait">
         {isLoading && (
-          isFirstLoad ? <BrandPreloader key="brand-loader" /> : <PageLoader key="page-loader" />
+          isHomePage && isFirstLoad ? (
+            <HomeInitialLoader key="home-initial-loader" />
+          ) : (
+            <PageLoader key="page-loader" />
+          )
         )}
       </AnimatePresence>
-      <Routes>
-        <Route path="/" element={<HomePage selectedImg={selectedImg} addToCart={addToCart} />} />
-        <Route path="/shop" element={<ShopPage addToCart={addToCart} />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/login" element={<LoginPage login={login} />} />
-        <Route path="/signup" element={<SignUpPage login={login} />} />
-        <Route path="/profile" element={user ? <ProfilePage user={user} token={token} logout={logout} /> : <Navigate to="/login" />} />
-        <Route path="/checkout" element={user ? <CheckoutPage cart={cart} cartTotal={cartTotal} setLastOrder={setLastOrder} setCart={setCart} user={user} token={token} /> : <Navigate to="/login" />} />
-        <Route path="/order-success" element={user ? <SuccessPage lastOrder={lastOrder} /> : <Navigate to="/login" />} />
-        <Route path="/admin" element={user?.is_admin === true ? <AdminDashboard token={token} /> : <Navigate to="/" />} />
-        <Route path="/contact" element={<ContactPage />} />
-      </Routes>
-      {/* Cart Item Detail Modal */}
-      <AnimatePresence>
-        {selectedCartItem && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[2000] bg-black/80 backdrop-blur-xl flex items-center justify-center p-4"
-          >
+
+      <motion.div
+        initial={false}
+        animate={{ 
+          opacity: isLoading ? 0 : 1,
+          visibility: isLoading ? "hidden" : "visible"
+        }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <Routes>
+          <Route path="/" element={<HomePage selectedImg={selectedImg} addToCart={addToCart} />} />
+          <Route path="/shop" element={<ShopPage addToCart={addToCart} />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/login" element={<LoginPage login={login} />} />
+          <Route path="/signup" element={<SignUpPage login={login} />} />
+          <Route path="/profile" element={user ? <ProfilePage user={user} token={token} logout={logout} /> : <Navigate to="/login" />} />
+          <Route path="/checkout" element={user ? <CheckoutPage cart={cart} cartTotal={cartTotal} setLastOrder={setLastOrder} setCart={setCart} user={user} token={token} /> : <Navigate to="/login" />} />
+          <Route path="/order-success" element={user ? <SuccessPage lastOrder={lastOrder} /> : <Navigate to="/login" />} />
+          <Route path="/admin" element={user?.is_admin === true ? <AdminDashboard token={token} /> : <Navigate to="/" />} />
+          <Route path="/contact" element={<ContactPage />} />
+        </Routes>
+        
+        {/* Cart Item Detail Modal */}
+        <AnimatePresence>
+          {selectedCartItem && (
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-[#001a13] w-full max-w-2xl rounded-[40px] overflow-hidden border border-white/10 shadow-2xl relative"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[2000] bg-black/80 backdrop-blur-xl flex items-center justify-center p-4"
             >
-              <button 
-                onClick={() => setSelectedCartItem(null)}
-                className="absolute top-6 right-6 w-12 h-12 bg-white/5 hover:bg-white/10 rounded-full flex items-center justify-center text-white transition-all z-10"
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                className="bg-[#001a13] w-full max-w-2xl rounded-[40px] overflow-hidden border border-white/10 shadow-2xl relative"
               >
-                <X size={24} />
-              </button>
+                <button 
+                  onClick={() => setSelectedCartItem(null)}
+                  className="absolute top-6 right-6 w-12 h-12 bg-white/5 hover:bg-white/10 rounded-full flex items-center justify-center text-white transition-all z-10"
+                >
+                  <X size={24} />
+                </button>
 
-              <div className="flex flex-col md:flex-row h-full">
-                <div className="md:w-1/2 h-[300px] md:h-auto overflow-hidden bg-black/20">
-                  <img src={selectedCartItem.img} alt={selectedCartItem.name} className="w-full h-full object-cover" />
-                </div>
-                <div className="md:w-1/2 p-10 flex flex-col justify-center">
-                  <div className="text-[#00d084] text-[10px] font-black tracking-[0.3em] uppercase mb-4">Product Detail</div>
-                  <h2 className="text-4xl font-black text-white mb-4 tracking-tighter uppercase">{selectedCartItem.name}</h2>
-                  <div className="flex flex-wrap gap-2 mb-8">
-                    {selectedCartItem.customizations && Object.entries(selectedCartItem.customizations).map(([k, v]) => (
-                      <span key={k} className="bg-[#00d084]/10 text-[#00d084] px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest">
-                        {v}
-                      </span>
-                    ))}
+                <div className="flex flex-col md:flex-row h-full">
+                  <div className="md:w-1/2 h-[300px] md:h-auto overflow-hidden bg-black/20">
+                    <img src={selectedCartItem.img} alt={selectedCartItem.name} className="w-full h-full object-cover" />
                   </div>
-                  <div className="text-3xl font-black text-[#00d084] mb-8">{selectedCartItem.price} MAD</div>
-                  <button 
-                    onClick={() => {
-                      setSelectedCartItem(null);
-                      setIsCartOpen(true);
-                    }}
-                    className="w-full bg-white text-[#001a13] py-4 rounded-full font-black text-[10px] tracking-[0.2em] uppercase shadow-xl hover:bg-[#00d084] transition-all"
-                  >
-                    Back to Tray
-                  </button>
+                  <div className="md:w-1/2 p-10 flex flex-col justify-center">
+                    <div className="text-[#00d084] text-[10px] font-black tracking-[0.3em] uppercase mb-4">Product Detail</div>
+                    <h2 className="text-4xl font-black text-white mb-4 tracking-tighter uppercase">{selectedCartItem.name}</h2>
+                    <div className="flex flex-wrap gap-2 mb-8">
+                      {selectedCartItem.customizations && Object.entries(selectedCartItem.customizations).map(([k, v]) => (
+                        <span key={k} className="bg-[#00d084]/10 text-[#00d084] px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest">
+                          {v}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="text-3xl font-black text-[#00d084] mb-8">{selectedCartItem.price} MAD</div>
+                    <button 
+                      onClick={() => {
+                        setSelectedCartItem(null);
+                        setIsCartOpen(true);
+                      }}
+                      className="w-full bg-white text-[#001a13] py-4 rounded-full font-black text-[10px] tracking-[0.2em] uppercase shadow-xl hover:bg-[#00d084] transition-all"
+                    >
+                      Back to Tray
+                    </button>
+                  </div>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
 
-      <Navbar cart={cart} cartTotal={cartTotal} cartCount={cartCount} removeFromCart={removeFromCart} user={user} logout={logout} />
-      <ScrollToTop />
+        <Navbar cart={cart} cartTotal={cartTotal} cartCount={cartCount} removeFromCart={removeFromCart} user={user} logout={logout} />
+        <ScrollToTop />
+      </motion.div>
     </div>
   );
 }
