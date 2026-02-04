@@ -578,7 +578,7 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout }) =>
         <motion.nav 
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className={`mx-auto max-w-7xl pointer-events-auto relative py-4 px-10 rounded-[40px] transition-all duration-500 ${
+          className={`mx-auto max-w-7xl pointer-events-auto relative py-3 md:py-4 px-4 md:px-10 rounded-[30px] md:rounded-[40px] transition-all duration-500 ${
             isScrolled 
               ? isLightPage 
                 ? "bg-white/90 backdrop-blur-2xl shadow-2xl shadow-[#002118]/5 border border-[#002118]/5" 
@@ -589,17 +589,17 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout }) =>
           }`}
         >
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-8">
-            <Link to="/" className="group flex items-center gap-4">
+          <div className="flex items-center gap-4 md:gap-8">
+            <Link to="/" className="group flex items-center gap-2 md:gap-4">
               <div className="relative">
-                <Logo className="w-16 h-16 transition-transform duration-500 group-hover:rotate-[360deg]" />
+                <Logo className="w-12 h-12 md:w-16 md:h-16 transition-transform duration-500 group-hover:rotate-[360deg]" />
                 <motion.div 
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 4, repeat: Infinity }}
                   className={`absolute inset-0 blur-2xl rounded-full -z-10 ${isLightPage ? 'bg-[#00754a]/20' : 'bg-[#00d084]/30'}`}
                 />
               </div>
-              <span className={`text-4xl hidden lg:block ${isLightPage ? 'text-[#002118]' : 'text-white'}`} style={{ fontFamily: "'Great Vibes', cursive" }}>Rashfa</span>
+              <span className={`text-2xl md:text-4xl hidden lg:block ${isLightPage ? 'text-[#002118]' : 'text-white'}`} style={{ fontFamily: "'Great Vibes', cursive" }}>Rashfa</span>
             </Link>
 
             <div className={`hidden md:flex items-center gap-2 p-1.5 rounded-full border backdrop-blur-sm ${
@@ -744,30 +744,30 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout }) =>
                   </motion.div>
                 ))}
 
-                <div className="grid grid-cols-2 gap-2 mt-4">
+                <div className="grid grid-cols-2 gap-3 mt-4">
                   <motion.button
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
                     onClick={() => { setIsSearchOpen(true); setIsMobileMenuOpen(false); }}
-                    className={`flex flex-col items-center justify-center p-4 rounded-2xl border ${
+                    className={`flex flex-col items-center justify-center p-5 rounded-2xl border ${
                       isLightPage ? 'bg-[#002118]/5 border-[#002118]/10 text-[#002118]' : 'bg-white/5 border-white/10 text-white'
                     }`}
                   >
-                    <Search size={20} className="mb-2" />
-                    <span className="text-[8px] font-black uppercase tracking-widest">Search</span>
+                    <Search size={24} className="mb-2" />
+                    <span className="text-[9px] font-black uppercase tracking-widest">Search</span>
                   </motion.button>
                   <motion.button
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }}
                     onClick={() => { setIsLocationsOpen(true); setIsMobileMenuOpen(false); }}
-                    className={`flex flex-col items-center justify-center p-4 rounded-2xl border ${
+                    className={`flex flex-col items-center justify-center p-5 rounded-2xl border ${
                       isLightPage ? 'bg-[#002118]/5 border-[#002118]/10 text-[#002118]' : 'bg-white/5 border-white/10 text-white'
                     }`}
                   >
-                    <MapPin size={20} className="mb-2" />
-                    <span className="text-[8px] font-black uppercase tracking-widest">Find Store</span>
+                    <MapPin size={24} className="mb-2" />
+                    <span className="text-[9px] font-black uppercase tracking-widest">Find Store</span>
                   </motion.button>
                 </div>
 
@@ -1294,7 +1294,7 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout }) =>
   const selectedItem = heroImages[activeIndex];
 
   return (
-    <section className="relative h-screen min-h-[900px] bg-[#001a13] flex flex-col md:flex-row items-center px-8 md:px-24 overflow-hidden pt-20 gap-12 md:gap-40">
+    <section className="relative min-h-screen md:h-screen md:min-h-[900px] bg-[#001a13] flex flex-col md:flex-row items-center px-8 md:px-24 overflow-hidden pt-20 gap-8 md:gap-40">
       {/* Background Text */}
       <motion.div 
         style={{ opacity: 0.03 }}
@@ -1304,35 +1304,35 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout }) =>
       </motion.div>
 
       {/* Left Side Content */}
-      <div className="z-20 w-full md:w-[35%] mt-12 md:mt-0">
+      <div className="z-20 w-full md:w-[45%] mt-10 md:mt-0 pt-10 md:pt-0 text-center md:text-left">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           className="mb-8"
         >
-          <div className="flex items-center gap-4 mb-6">
+          <div className="flex items-center justify-center md:justify-start gap-4 mb-6">
             <div className="w-12 h-[2px] bg-[#00d084]" />
-            <span className="text-[#00d084] text-xs font-black tracking-[0.4em] uppercase font-sans">
+            <span className="text-[#00d084] text-[10px] md:text-xs font-black tracking-[0.4em] uppercase font-sans">
               WHERE EVERY CUP TELLS A STORY
             </span>
           </div>
-          <h1 className="text-white text-5xl md:text-[85px] font-black leading-none tracking-tighter font-display mb-10 uppercase italic whitespace-nowrap">
+          <h1 className="text-white text-4xl md:text-[85px] font-black leading-none tracking-tighter font-display mb-10 uppercase italic">
             WHAT'S <span className="text-[#00d084]">YOURS?</span>
           </h1>
-          <p className="text-white/60 max-w-md text-base font-serif italic leading-relaxed mb-8 border-l-2 border-[#00d084]/50 pl-6 py-1">
+          <p className="text-white/60 max-w-md mx-auto md:mx-0 text-xs md:text-base font-serif italic leading-relaxed mb-8 border-l-2 border-[#00d084]/50 pl-6 py-1">
             Indulge in the perfect blend of coffee and art - the coffee moment with a passion for Frappuccino delight.
           </p>
           
-          <div className="flex items-center gap-6 mb-10">
+          <div className="flex items-center justify-center md:justify-start gap-6 mb-10">
              <div className="bg-[#00d084]/10 text-[#00d084] text-[9px] font-black px-4 py-1.5 rounded-full border border-[#00d084]/20 tracking-[0.2em] uppercase">
                {selectedItem.tags[0]}
              </div>
-             <div className="text-white text-3xl font-black tracking-tight">
-               {selectedItem.price} <span className="text-[#00d084] text-lg ml-1 font-sans">MAD</span>
+             <div className="text-white text-2xl md:text-3xl font-black tracking-tight">
+               {selectedItem.price} <span className="text-[#00d084] text-base md:text-lg ml-1 font-sans">MAD</span>
              </div>
           </div>
 
-          <div className="flex flex-wrap gap-5">
+          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-5">
             <Magnetic>
               <motion.button 
                 whileHover={{ scale: 1.05, backgroundColor: "#006241" }}
@@ -1343,7 +1343,7 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout }) =>
                   price: parseFloat(selectedItem.price),
                   img: selectedItem.url
                 })}
-                className="bg-[#00754a] text-white px-10 py-4 rounded-full font-black text-[10px] tracking-[0.3em] shadow-xl uppercase transition-colors"
+                className="w-full md:w-auto bg-[#00754a] text-white px-10 py-5 rounded-full font-black text-[10px] tracking-[0.3em] shadow-xl uppercase transition-colors"
               >
                 ADD TO CART
               </motion.button>
@@ -1355,7 +1355,7 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout }) =>
                   onClick={() => setActiveIndex(i)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`w-14 h-14 rounded-2xl overflow-hidden cursor-pointer border-2 transition-all duration-500 ${
+                  className={`w-10 h-10 md:w-14 md:h-14 rounded-2xl overflow-hidden cursor-pointer border-2 transition-all duration-500 ${
                     activeIndex === i ? 'border-[#00d084] scale-105 shadow-lg shadow-[#00d084]/20' : 'border-white/5 opacity-30 hover:opacity-100'
                   }`}
                 >
@@ -1373,18 +1373,18 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout }) =>
           transition={{ delay: 0.5 }}
           className="inline-flex items-center gap-4 bg-white/5 backdrop-blur-md p-4 rounded-3xl border border-white/10"
         >
-          <div className="w-12 h-12 rounded-2xl bg-[#00d084]/20 flex items-center justify-center text-[#00d084]">
-            <Coffee size={24} />
+          <div className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-[#00d084]/20 flex items-center justify-center text-[#00d084]">
+            <Coffee size={20} />
           </div>
-          <div>
-            <h4 className="text-white font-bold text-[10px] tracking-widest uppercase">Breakfast Formula</h4>
-            <p className="text-[#00d084] font-black text-lg">25 MAD <span className="text-white/20 text-xs line-through ml-2">30 MAD</span></p>
+          <div className="text-left">
+            <h4 className="text-white font-bold text-[8px] md:text-[10px] tracking-widest uppercase">Breakfast Formula</h4>
+            <p className="text-[#00d084] font-black text-sm md:text-lg">25 MAD <span className="text-white/20 text-[10px] md:text-xs line-through ml-2">30 MAD</span></p>
           </div>
         </motion.div>
       </div>
 
       {/* Right Side - 3D/Image Display */}
-      <div className="w-full md:w-[50%] h-[500px] md:h-full relative flex items-center justify-center">
+      <div className="w-full md:w-[50%] h-[300px] md:h-full relative flex items-center justify-center mt-8 md:mt-0">
         <TiltWrapper>
           <motion.div 
             key={activeIndex}
@@ -1401,7 +1401,7 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout }) =>
               rotateY: { duration: 10, repeat: Infinity, ease: "easeInOut" },
               rotateX: { duration: 8, repeat: Infinity, ease: "easeInOut" }
             }}
-            className="relative z-10 w-[280px] md:w-[380px]"
+            className="relative z-10 w-[220px] md:w-[380px]"
             style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
           >
             <div className="absolute inset-0 bg-[#00d084]/20 blur-[120px] rounded-full" style={{ transform: "translateZ(-50px)" }}></div>
@@ -1416,11 +1416,11 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout }) =>
             <motion.div 
               animate={{ y: [0, -20, 0] }}
               transition={{ duration: 4, repeat: Infinity }}
-              className="absolute -top-8 -right-8 bg-[#001a13] border border-white/10 p-3 rounded-2xl backdrop-blur-md shadow-2xl"
+              className="absolute -top-4 -right-4 md:-top-8 md:-right-8 bg-[#001a13] border border-white/10 p-2 md:p-3 rounded-xl md:rounded-2xl backdrop-blur-md shadow-2xl"
               style={{ transform: "translateZ(80px)" }}
             >
-              <p className="text-[#00d084] font-black text-[10px] tracking-widest mb-1">FRAPPUCCINO</p>
-              <p className="text-white font-bold text-[7px] tracking-widest opacity-40">COLD BREW BASE</p>
+              <p className="text-[#00d084] font-black text-[8px] md:text-[10px] tracking-widest mb-1">FRAPPUCCINO</p>
+              <p className="text-white font-bold text-[6px] md:text-[7px] tracking-widest opacity-40">COLD BREW BASE</p>
             </motion.div>
           </motion.div>
         </TiltWrapper>
@@ -1541,15 +1541,15 @@ const CategorySection = ({ addToCart }) => {
   };
 
   return (
-    <section ref={sectionRef} className="bg-[#001a13] py-24 min-h-screen flex flex-col justify-center overflow-hidden">
-      <div className="max-w-7xl mx-auto w-full px-8 mb-12">
-        <div className="flex overflow-x-auto justify-center md:justify-center gap-4 mb-20 pb-4 scrollbar-hide">
+    <section ref={sectionRef} className="bg-[#001a13] py-12 md:py-24 min-h-screen flex flex-col justify-center overflow-hidden">
+      <div className="max-w-7xl mx-auto w-full px-8 mb-10 md:mb-12">
+        <div className="flex overflow-x-auto justify-center md:justify-center gap-4 mb-10 md:mb-20 pb-4 scrollbar-hide">
           <div className="flex gap-4 min-w-max">
             {Object.values(CATEGORIES).map((cat) => (
             <button 
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-10 py-3 rounded-full font-bold text-[10px] tracking-[0.2em] transition-all border-2 font-sans ${
+              className={`px-6 md:px-10 py-2 md:py-3 rounded-full font-bold text-[10px] tracking-[0.2em] transition-all border-2 font-sans ${
                 activeCategory === cat 
                   ? 'bg-[#00d084] text-[#001a13] border-[#00d084]' 
                   : 'text-white border-white/10 hover:border-white'
@@ -1565,65 +1565,65 @@ const CategorySection = ({ addToCart }) => {
       <div className="w-full relative">
         <div 
           ref={scrollRef} 
-          className="flex gap-8 px-8 w-max"
+          className="flex gap-4 md:gap-8 px-4 md:px-8 w-max"
         >
           {PRODUCTS[activeCategory].map((item, idx) => (
-            <div key={item.id} className="flex-shrink-0 w-[420px]">
+            <div key={item.id} className="flex-shrink-0 w-[85vw] md:w-[420px]">
               <TiltWrapper>
                 <motion.div 
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="relative p-10 rounded-[50px] border border-white/10 bg-white/5 hover:border-[#00d084]/50 transition-all cursor-pointer group flex flex-col items-center shadow-2xl overflow-hidden min-h-[650px]"
+                  className="relative p-6 md:p-10 rounded-[40px] md:rounded-[50px] border border-white/10 bg-white/5 hover:border-[#00d084]/50 transition-all cursor-pointer group flex flex-col items-center shadow-2xl overflow-hidden min-h-[450px] md:min-h-[650px]"
                 >
                 {/* Glow Effect */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#00d084] to-[#00754a] rounded-[50px] blur opacity-0 group-hover:opacity-10 transition duration-500"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-[#00d084] to-[#00754a] rounded-[40px] md:rounded-[50px] blur opacity-0 group-hover:opacity-10 transition duration-500"></div>
                 
                 {/* Product Image */}
-                <div className="relative mb-8">
-                   <img src={item.img} alt={item.name} className="w-56 h-56 object-cover rounded-3xl shadow-2xl group-hover:scale-110 transition-transform duration-700" />
-                   <div className="absolute -bottom-2 right-2 bg-[#00d084] text-[#001a13] text-[10px] font-black px-4 py-1.5 rounded-full shadow-lg z-20">
+                <div className="relative mb-6 md:mb-8">
+                   <img src={item.img} alt={item.name} className="w-40 h-40 md:w-56 md:h-56 object-cover rounded-2xl md:rounded-3xl shadow-2xl group-hover:scale-110 transition-transform duration-700" />
+                   <div className="absolute -bottom-2 right-2 bg-[#00d084] text-[#001a13] text-[8px] md:text-[10px] font-black px-3 md:px-4 py-1 md:py-1.5 rounded-full shadow-lg z-20">
                      {item.volume || item.weight}
                    </div>
                    {item.allergens && item.allergens[0] !== "None" && (
-                     <div className="absolute top-2 right-2 bg-red-500/80 text-white text-[10px] font-bold px-3 py-1 rounded-full backdrop-blur-sm z-20">
-                       ALLERGENS: {item.allergens.join(', ')}
+                     <div className="absolute top-2 right-2 bg-red-500/80 text-white text-[8px] md:text-[10px] font-bold px-2 md:px-3 py-1 rounded-full backdrop-blur-sm z-20">
+                       {item.allergens.join(', ')}
                      </div>
                    )}
                 </div>
 
-                <h4 className="relative font-bold text-2xl mb-2 text-center tracking-tight font-serif text-[#d4e9e2] uppercase">{item.name}</h4>
-                <p className="relative text-white/40 text-xs mb-6 text-center font-sans italic h-12 px-6 leading-relaxed">{item.desc}</p>
+                <h4 className="relative font-bold text-xl md:text-2xl mb-2 text-center tracking-tight font-serif text-[#d4e9e2] uppercase">{item.name}</h4>
+                <p className="relative text-white/40 text-[10px] md:text-xs mb-6 text-center font-sans italic h-12 px-4 md:px-6 leading-relaxed line-clamp-2">{item.desc}</p>
                 
                 {item.nutrition && (
-                  <div className="relative flex gap-6 mb-8 px-6 py-3 bg-white/5 rounded-2xl border border-white/5">
+                  <div className="relative flex gap-4 md:gap-6 mb-6 md:mb-8 px-4 md:px-6 py-2 md:py-3 bg-white/5 rounded-xl md:rounded-2xl border border-white/5">
                     {Object.entries(item.nutrition).map(([key, val]) => (
                       <div key={key} className="text-center">
-                        <p className="text-[8px] text-white/20 font-bold uppercase tracking-tighter">{key}</p>
-                        <p className="text-xs text-[#00d084] font-black">{val}</p>
+                        <p className="text-[7px] md:text-[8px] text-white/20 font-bold uppercase tracking-tighter">{key}</p>
+                        <p className="text-[10px] md:text-xs text-[#00d084] font-black">{val}</p>
                       </div>
                     ))}
                   </div>
                 )}
                 
-                <div className="relative text-[#00d084] text-3xl font-black mb-1 font-sans">
-                  {item.price} <span className="text-sm font-bold">MAD</span>
+                <div className="relative text-[#00d084] text-2xl md:text-3xl font-black mb-1 font-sans">
+                  {item.price} <span className="text-xs md:text-sm font-bold">MAD</span>
                 </div>
-                <div className="relative text-white/20 text-[10px] font-bold tracking-widest uppercase mb-8 font-sans">
+                <div className="relative text-white/20 text-[8px] md:text-[10px] font-bold tracking-widest uppercase mb-6 md:mb-8 font-sans">
                   Inc. {BUSINESS_RULES.VAT_RATE} VAT
                 </div>
                 
                 {/* Customization Options for Cafes */}
                 {activeCategory === CATEGORIES.COFFEE && CUSTOMIZATION_OPTIONS[activeCategory] && (
-                  <div className="relative w-full space-y-5 mb-10">
+                  <div className="relative w-full space-y-4 md:space-y-5 mb-8 md:mb-10">
                     {Object.entries(CUSTOMIZATION_OPTIONS[activeCategory]).map(([type, options]) => (
-                      <div key={type} className="flex flex-col gap-2">
-                        <label className="text-[10px] font-bold text-gray-400 tracking-widest uppercase font-sans px-2">
+                      <div key={type} className="flex flex-col gap-1.5 md:gap-2">
+                        <label className="text-[9px] md:text-[10px] font-bold text-gray-400 tracking-widest uppercase font-sans px-2">
                           {type}
                         </label>
                         <select 
-                          className="bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white text-xs font-bold focus:outline-none focus:border-[#00d084] transition-colors appearance-none cursor-pointer hover:bg-white/10"
+                          className="bg-white/5 border border-white/10 rounded-xl py-2.5 md:py-3 px-3 md:px-4 text-white text-[10px] md:text-xs font-bold focus:outline-none focus:border-[#00d084] transition-colors appearance-none cursor-pointer hover:bg-white/10"
                           value={selectedOptions[item.id]?.[type] || options[0]}
                           onChange={(e) => handleOptionChange(item.id, type, e.target.value)}
                         >
@@ -1638,21 +1638,21 @@ const CategorySection = ({ addToCart }) => {
 
                 {/* Info for other categories */}
                 {!CUSTOMIZATION_OPTIONS[activeCategory] && (
-                  <div className="flex-grow flex flex-col justify-center mb-10">
+                  <div className="flex-grow flex flex-col justify-center mb-8 md:mb-10">
                     {item.weight && (
-                      <div className="relative text-white/40 text-[10px] font-bold tracking-widest uppercase text-center">
+                      <div className="relative text-white/40 text-[8px] md:text-[10px] font-bold tracking-widest uppercase text-center">
                         WEIGHT: {item.weight}
                       </div>
                     )}
                     {item.volume && (
-                      <div className="relative text-white/40 text-[10px] font-bold tracking-widest uppercase text-center">
+                      <div className="relative text-white/40 text-[8px] md:text-[10px] font-bold tracking-widest uppercase text-center">
                         VOLUME: {item.volume}
                       </div>
                     )}
                     {item.allergens && item.allergens[0] !== "None" && (
-                      <div className="mt-6 p-4 rounded-2xl bg-red-500/5 border border-red-500/10 text-center">
-                        <span className="text-[10px] font-bold text-red-500 tracking-widest uppercase">Contains Allergens</span>
-                        <p className="text-xs text-white/40 mt-1">{item.allergens.join(', ')}</p>
+                      <div className="mt-4 md:mt-6 p-3 md:p-4 rounded-xl md:rounded-2xl bg-red-500/5 border border-red-500/10 text-center">
+                        <span className="text-[8px] md:text-[10px] font-bold text-red-500 tracking-widest uppercase">Contains Allergens</span>
+                        <p className="text-[10px] md:text-xs text-white/40 mt-1">{item.allergens.join(', ')}</p>
                       </div>
                     )}
                   </div>
@@ -1662,7 +1662,7 @@ const CategorySection = ({ addToCart }) => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => addToCart(item, selectedOptions[item.id] || {})}
-                  className="relative w-full py-5 rounded-full font-bold text-xs tracking-[0.2em] transition-all font-sans bg-[#00754a] text-white hover:bg-[#00d084] hover:text-[#001a13] shadow-lg mt-auto uppercase"
+                  className="relative w-full py-4 md:py-5 rounded-full font-bold text-[10px] md:text-xs tracking-[0.2em] transition-all font-sans bg-[#00754a] text-white hover:bg-[#00d084] hover:text-[#001a13] shadow-lg mt-auto uppercase"
                 >
                   ADD TO CART
                 </motion.button>
@@ -1712,7 +1712,7 @@ const HorizontalGallery = () => {
   };
 
   return (
-    <section className="h-[70vh] bg-[#001a13] relative overflow-hidden border-y border-white/5 my-32">
+    <section className="h-[50vh] md:h-[70vh] bg-[#001a13] relative overflow-hidden border-y border-white/5 my-16 md:my-32">
       <div className="absolute top-16 left-1/2 -translate-x-1/2 z-10 text-center w-full px-8">
         <motion.span 
           initial={{ opacity: 0, y: 10 }}
@@ -1724,7 +1724,7 @@ const HorizontalGallery = () => {
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-white text-4xl md:text-6xl font-medium tracking-tighter uppercase font-display italic"
+          className="text-white text-3xl md:text-6xl font-medium tracking-tighter uppercase font-display italic"
         >
           Our Atmosphere
         </motion.h2>
@@ -1748,7 +1748,7 @@ const HorizontalGallery = () => {
 };
 
 const QualitySection = () => (
-  <section className="bg-[#001a13] pt-40 pb-20 px-8 overflow-hidden relative">
+  <section className="bg-[#001a13] pt-20 md:pt-40 pb-10 md:pb-20 px-8 overflow-hidden relative">
     {/* Background Glows */}
     <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#00d084]/5 rounded-full blur-[120px]" />
     <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-[#00d084]/5 rounded-full blur-[120px]" />
@@ -1759,15 +1759,15 @@ const QualitySection = () => (
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="text-center mb-24"
+        className="text-center mb-16 md:mb-24"
       >
         <span className="text-[#00d084] font-bold tracking-[0.3em] text-[10px] uppercase block mb-4">Quality & Passion</span>
-        <h2 className="text-white text-6xl md:text-7xl font-bold tracking-tighter">
+        <h2 className="text-white text-4xl md:text-7xl font-bold tracking-tighter">
           RASHFA <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00d084] to-[#00f0a4]">EXCELLENCE</span>
         </h2>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-16 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 w-full">
         {[
           {
             title: "Premium Beans",
@@ -1834,14 +1834,14 @@ const PopularSection = () => {
   }, []);
 
   return (
-    <section className="pt-32 pb-64 px-8 bg-[#001a13] overflow-hidden">
+    <section className="pt-24 md:pt-32 pb-20 md:pb-64 px-4 md:px-8 bg-[#001a13] overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col items-center">
-        <div className="text-white/20 text-sm font-bold tracking-[0.5em] mb-4 uppercase">Explosive Flavor</div>
-        <h2 className="text-white text-6xl md:text-8xl font-black mb-20 tracking-tighter text-center">
-          DECONSTRUCTED <br/> <span className="text-[#00d084]">ARTISTRY</span>
+        <div className="text-white/20 text-[10px] md:text-sm font-bold tracking-[0.5em] mb-4 uppercase">Explosive Flavor</div>
+        <h2 className="text-white text-3xl md:text-8xl font-black mb-12 md:mb-20 tracking-tighter text-center leading-none">
+          DECONSTRUCTED <br className="hidden md:block"/> <span className="text-[#00d084]">ARTISTRY</span>
         </h2>
         
-        <div ref={blastRef} className="relative w-[300px] h-[400px] md:w-[500px] md:h-[600px] perspective-1000">
+        <div ref={blastRef} className="relative w-[280px] h-[350px] md:w-[500px] md:h-[600px] perspective-1000">
           {/* Grid of 25 pieces (5x5) */}
           {[...Array(25)].map((_, i) => {
             const x = i % 5;
@@ -1866,14 +1866,14 @@ const PopularSection = () => {
           <div className="absolute inset-0 bg-[#00d084]/20 blur-[120px] rounded-full -z-10 animate-pulse" />
         </div>
 
-        <div className="mt-40 text-center">
-          <p className="text-white/40 text-lg font-serif italic max-w-2xl mx-auto leading-relaxed">
+        <div className="mt-20 md:mt-40 text-center px-4">
+          <p className="text-white/40 text-base md:text-lg font-serif italic max-w-2xl mx-auto leading-relaxed">
             "Every sip is a reconstruction of tradition, a modern blast of premium essence that comes together in perfect harmony."
           </p>
           <motion.button 
             whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0, 208, 132, 0.4)" }}
             whileTap={{ scale: 0.95 }}
-            className="mt-16 bg-[#00d084] text-[#001a13] px-12 py-5 rounded-full font-black tracking-[0.3em] uppercase text-xs"
+            className="w-full md:w-auto mt-12 md:mt-16 bg-[#00d084] text-[#001a13] px-12 py-5 rounded-full font-black tracking-[0.3em] uppercase text-[10px] md:text-xs"
           >
             Explore the Blend
           </motion.button>
@@ -1884,31 +1884,31 @@ const PopularSection = () => {
 };
 
 const BranchesSection = () => (
-  <section className="py-32 px-8 bg-[#001a13]">
-    <div className="max-w-7xl mx-auto bg-white/5 rounded-[60px] p-12 md:p-20 border border-white/10 shadow-3xl">
-      <div className="flex flex-col items-center mb-16 text-center">
-        <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-[#00d084] font-display uppercase mb-4">OUR BRANCHES</h2>
-        <div className="w-20 h-1 bg-[#00754a] rounded-full mb-6" />
-        <p className="text-white/40 text-xs font-sans tracking-widest max-w-lg">
+  <section className="py-20 md:py-32 px-4 md:px-8 bg-[#001a13]">
+    <div className="max-w-7xl mx-auto bg-white/5 rounded-[40px] md:rounded-[60px] p-8 md:p-20 border border-white/10 shadow-3xl">
+      <div className="flex flex-col items-center mb-12 md:mb-16 text-center">
+        <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-[#00d084] font-display uppercase mb-4">OUR BRANCHES</h2>
+        <div className="w-16 md:w-20 h-1 bg-[#00754a] rounded-full mb-6" />
+        <p className="text-white/40 text-[10px] md:text-xs font-sans tracking-widest max-w-lg px-4 leading-relaxed">
           Continuous Service: 7:00 AM - 8:00 PM | Delivery: 6:30 AM - 7:30 PM
-          <br />
-          <span className="text-[#00d084]">05XX-XXXXXX | customerservice@rashfa.ma</span>
+          <br className="hidden md:block" />
+          <span className="text-[#00d084] block mt-2">05XX-XXXXXX | customerservice@rashfa.ma</span>
         </p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 w-full">
         {[
           { city: "CASABLANCA - ANFA", addr: "Anfa Place Shopping Center, Bd de la Corniche" },
           { city: "MARRAKECH - HIVERNAGE", addr: "M Avenue, Hivernage, Marrakech 40000" },
           { city: "RABAT - AGDAL", addr: "Arribat Center, Agdal, Rabat" },
           { city: "TANGER - CITY CENTER", addr: "Tanger City Center, Place du Maghreb" }
         ].map((branch, i) => (
-          <div key={i} className="bg-[#00754a]/40 p-8 rounded-[40px] flex items-center gap-6 hover:bg-[#006241]/60 transition-all cursor-pointer shadow-xl group border border-white/5">
-            <div className="w-20 h-20 bg-white/10 rounded-3xl overflow-hidden shadow-inner flex-shrink-0">
+          <div key={i} className="bg-[#00754a]/40 p-5 md:p-8 rounded-[30px] md:rounded-[40px] flex items-center gap-4 md:gap-6 hover:bg-[#006241]/60 transition-all cursor-pointer shadow-xl group border border-white/5">
+            <div className="w-16 h-16 md:w-20 md:h-20 bg-white/10 rounded-2xl md:rounded-3xl overflow-hidden shadow-inner flex-shrink-0">
                <img src={`https://images.pexels.com/photos/2067561/pexels-photo-2067561.jpeg?auto=compress&cs=tinysrgb&w=150`} className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
             </div>
             <div className="flex flex-col justify-center">
-              <h4 className="font-bold text-xl tracking-tight font-serif text-white">{branch.city}</h4>
-              <p className="text-[10px] font-bold text-white/50 tracking-[0.15em] leading-relaxed uppercase mt-1 font-sans">{branch.addr}</p>
+              <h4 className="font-bold text-lg md:text-xl tracking-tight font-serif text-white">{branch.city}</h4>
+              <p className="text-[8px] md:text-[10px] font-bold text-white/50 tracking-[0.15em] leading-relaxed uppercase mt-1 font-sans">{branch.addr}</p>
             </div>
           </div>
         ))}
@@ -2126,16 +2126,16 @@ const ContactFooter = () => (
 const Footer = () => <ContactFooter />;
 
 const RulesSection = () => (
-  <section className="py-32 px-8 md:px-24 bg-[#001a13] relative overflow-hidden">
+  <section className="py-16 md:py-32 px-6 md:px-24 bg-[#001a13] relative overflow-hidden">
     <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00d084]/5 rounded-full blur-[120px] -z-10" />
     
     <div className="max-w-7xl mx-auto">
-      <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-20 gap-8">
         <div>
           <span className="text-[#00d084] text-[10px] font-bold tracking-[0.5em] uppercase block mb-4">Service Excellence</span>
-          <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none uppercase">Our Service <br /> <span className="text-[#00d084]">Commitment</span></h2>
+          <h2 className="text-3xl md:text-7xl font-black text-white tracking-tighter leading-none uppercase">Our Service <br /> <span className="text-[#00d084]">Commitment</span></h2>
         </div>
-        <p className="text-white/40 max-w-md text-sm font-medium leading-relaxed">We adhere to the highest standards of quality and efficiency to ensure your Rashfa experience is perfect every time.</p>
+        <p className="text-white/40 max-w-md text-xs md:text-sm font-medium leading-relaxed">We adhere to the highest standards of quality and efficiency to ensure your Rashfa experience is perfect every time.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -2905,55 +2905,55 @@ const ProfilePage = ({ user, logout, token }) => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#001a13] pt-32 pb-20 px-8">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10">
+    <div className="min-h-screen bg-[#001a13] pt-24 md:pt-32 pb-20 px-4 md:px-8">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-10">
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="lg:col-span-1 space-y-8"
+          className="lg:col-span-1 space-y-6 md:space-y-8"
         >
-          <div className="bg-white/5 backdrop-blur-xl rounded-[40px] p-10 border border-white/10">
+          <div className="bg-white/5 backdrop-blur-xl rounded-[30px] md:rounded-[40px] p-6 md:p-10 border border-white/10">
             <div className="flex flex-col items-center text-center">
-              <div className="relative mb-6">
-                <div className="w-32 h-32 rounded-full border-4 border-[#00d084] p-1">
+              <div className="relative mb-4 md:mb-6">
+                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-[#00d084] p-1">
                   <div className="w-full h-full rounded-full bg-gradient-to-tr from-[#00754a] to-[#00d084] flex items-center justify-center">
-                    <User size={60} className="text-[#001a13]" />
+                    <User size={40} className="text-[#001a13] md:size-[60px]" />
                   </div>
                 </div>
                 <motion.button 
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  className="absolute bottom-0 right-0 bg-[#00d084] p-3 rounded-full shadow-xl border-4 border-[#001a13]"
+                  className="absolute bottom-0 right-0 bg-[#00d084] p-2 md:p-3 rounded-full shadow-xl border-4 border-[#001a13]"
                 >
-                  <Settings size={16} className="text-[#001a13]" />
+                  <Settings size={14} className="text-[#001a13] md:size-[16px]" />
                 </motion.button>
               </div>
-              <h2 className="text-2xl font-bold text-white mb-1">{user.name}</h2>
-              <p className="text-[#00d084] text-[10px] font-bold tracking-widest uppercase mb-6">{user.email}</p>
+              <h2 className="text-xl md:text-2xl font-bold text-white mb-1">{user.name}</h2>
+              <p className="text-[#00d084] text-[9px] md:text-[10px] font-bold tracking-widest uppercase mb-6">{user.email}</p>
               
-              <div className="grid grid-cols-2 gap-4 w-full">
-                <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
-                  <p className="text-white/40 text-[9px] font-bold tracking-widest uppercase mb-1">Orders</p>
-                  <p className="text-xl font-bold text-white">{orders.length}</p>
+              <div className="grid grid-cols-2 gap-3 md:gap-4 w-full">
+                <div className="bg-white/5 rounded-2xl p-3 md:p-4 border border-white/5">
+                  <p className="text-white/40 text-[8px] md:text-[9px] font-bold tracking-widest uppercase mb-1">Orders</p>
+                  <p className="text-lg md:text-xl font-bold text-white">{orders.length}</p>
                 </div>
-                <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
-                  <p className="text-white/40 text-[9px] font-bold tracking-widest uppercase mb-1">Points</p>
-                  <p className="text-xl font-bold text-[#00d084]">{points}</p>
+                <div className="bg-white/5 rounded-2xl p-3 md:p-4 border border-white/5">
+                  <p className="text-white/40 text-[8px] md:text-[9px] font-bold tracking-widest uppercase mb-1">Points</p>
+                  <p className="text-lg md:text-xl font-bold text-[#00d084]">{points}</p>
                 </div>
               </div>
             </div>
 
-            <div className="mt-10 space-y-2">
+            <div className="mt-8 md:mt-10 space-y-1 md:space-y-2">
               {menuItems.map((item) => (
                 <button 
                   key={item.id}
                   onClick={item.action || (() => setActiveTab(item.id))}
-                  className={`w-full flex items-center gap-4 px-6 py-4 rounded-2xl transition-all ${
+                  className={`w-full flex items-center gap-4 px-4 md:px-6 py-3 md:py-4 rounded-xl md:rounded-2xl transition-all ${
                     activeTab === item.id ? 'bg-[#00d084] text-[#001a13]' : item.danger ? 'text-red-400 hover:bg-red-400/10' : 'text-white/60 hover:bg-white/5 hover:text-white'
                   }`}
                 >
-                  {item.icon}
-                  <span className="text-xs font-bold tracking-widest uppercase">{item.name}</span>
+                  <span className="shrink-0">{item.icon}</span>
+                  <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase">{item.name}</span>
                 </button>
               ))}
             </div>
@@ -2964,31 +2964,31 @@ const ProfilePage = ({ user, logout, token }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           key={activeTab}
-          className="lg:col-span-2 space-y-8"
+          className="lg:col-span-2 space-y-6 md:space-y-8"
         >
-          <div className="bg-white/5 backdrop-blur-xl rounded-[40px] p-10 border border-white/10 min-h-[500px]">
+          <div className="bg-white/5 backdrop-blur-xl rounded-[30px] md:rounded-[40px] p-6 md:p-10 border border-white/10 min-h-[400px] md:min-h-[500px]">
             {activeTab === 'orders' && (
               <>
-                <h3 className="text-xl font-bold text-white mb-8 flex items-center gap-3">
-                  <Clock size={20} className="text-[#00d084]" /> Recent Orders
+                <h3 className="text-lg md:text-xl font-bold text-white mb-6 md:mb-8 flex items-center gap-3">
+                  <Clock size={18} className="text-[#00d084] md:size-[20px]" /> Recent Orders
                 </h3>
                 
-                <div className="space-y-6">
+                <div className="space-y-4 md:space-y-6">
                   {loading ? (
                     <div className="flex justify-center py-10">
                       <div className="w-8 h-8 border-2 border-[#00d084]/30 border-t-[#00d084] rounded-full animate-spin" />
                     </div>
                   ) : orders.length > 0 ? (
                     orders.map((order) => (
-                      <div key={order.id} className="bg-white/5 rounded-3xl p-6 border border-white/5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                        <div>
-                          <p className="text-white/40 text-[9px] font-bold tracking-widest uppercase mb-1">{order.order_number}</p>
-                          <h4 className="text-white font-bold">{order.items.length} {order.items.length === 1 ? 'Item' : 'Items'}</h4>
-                          <p className="text-white/60 text-xs mt-1">{new Date(order.created_at).toLocaleDateString()}</p>
+                      <div key={order.id} className="bg-white/5 rounded-2xl md:rounded-3xl p-4 md:p-6 border border-white/5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                        <div className="w-full sm:w-auto">
+                          <p className="text-white/40 text-[8px] md:text-[9px] font-bold tracking-widest uppercase mb-1">{order.order_number}</p>
+                          <h4 className="text-white font-bold text-sm md:text-base">{order.items.length} {order.items.length === 1 ? 'Item' : 'Items'}</h4>
+                          <p className="text-white/60 text-[10px] md:text-xs mt-1">{new Date(order.created_at).toLocaleDateString()}</p>
                         </div>
-                        <div className="text-right">
-                          <p className="text-[#00d084] font-black mb-1">{order.total_amount} MAD</p>
-                          <span className={`text-[8px] font-black uppercase tracking-widest px-2 py-1 rounded-full ${
+                        <div className="w-full sm:w-auto flex sm:flex-col justify-between items-center sm:items-end">
+                          <p className="text-[#00d084] font-black text-sm md:text-base">{order.total_amount} MAD</p>
+                          <span className={`text-[7px] md:text-[8px] font-black uppercase tracking-widest px-2 py-1 rounded-full ${
                             order.status === 'completed' ? 'bg-[#00d084]/10 text-[#00d084]' : 'bg-orange-500/10 text-orange-500'
                           }`}>
                             {order.status}
@@ -2998,13 +2998,13 @@ const ProfilePage = ({ user, logout, token }) => {
                     ))
                   ) : (
                     <div className="text-center py-10">
-                      <p className="text-white/40 text-sm">No orders yet. Start ordering your favorite coffee!</p>
+                      <p className="text-white/40 text-xs md:text-sm">No orders yet. Start ordering your favorite coffee!</p>
                     </div>
                   )}
                 </div>
 
                 {orders.length > 0 && (
-                  <button className="w-full mt-10 py-4 border-2 border-white/5 rounded-2xl text-white/40 font-bold text-[10px] tracking-widest uppercase hover:bg-white/5 hover:text-white transition-all">
+                  <button className="w-full mt-8 md:mt-10 py-3 md:py-4 border-2 border-white/5 rounded-xl md:rounded-2xl text-white/40 font-bold text-[9px] md:text-[10px] tracking-widest uppercase hover:bg-white/5 hover:text-white transition-all">
                     View All Orders
                   </button>
                 )}
@@ -3048,20 +3048,20 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen bg-[#f2f0eb] text-[#002118] font-sans selection:bg-[#00754a] selection:text-white">
       {/* 1. Overlap Hero Section */}
-      <section className="pt-52 pb-32 px-8 relative overflow-hidden">
-        <div className="max-w-6xl mx-auto relative flex flex-col md:flex-row items-center justify-center min-h-[600px]">
+      <section className="pt-32 md:pt-52 pb-20 md:pb-32 px-4 md:px-8 relative overflow-hidden">
+        <div className="max-w-6xl mx-auto relative flex flex-col md:flex-row items-center justify-center min-h-[500px] md:min-h-[600px]">
           {/* Text Card - Overlaps Image */}
           <motion.div 
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-white p-12 md:p-16 shadow-2xl z-20 w-full md:w-[550px] md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 border-t-8 border-[#00754a]"
+            className="bg-white p-8 md:p-16 shadow-2xl z-20 w-full md:w-[550px] md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 border-t-8 border-[#00754a]"
           >
-            <h2 className="text-3xl md:text-4xl font-medium leading-tight mb-8 tracking-tight text-[#002118] font-serif italic">
+            <h2 className="text-2xl md:text-4xl font-medium leading-tight mb-6 md:mb-8 tracking-tight text-[#002118] font-serif italic">
               In our coffee-growing regions around the globe, our story begins. It's a tale of dedication, passion, and a deep-rooted love for coffee.
             </h2>
-            <div className="w-20 h-1 bg-[#00754a] mb-8" />
-            <p className="text-sm font-bold text-[#002118]/60 uppercase tracking-widest leading-relaxed font-sans">
+            <div className="w-16 md:w-20 h-1 bg-[#00754a] mb-6 md:mb-8" />
+            <p className="text-[10px] md:text-sm font-bold text-[#002118]/60 uppercase tracking-widest leading-relaxed font-sans">
               Every bean tells a story of the soil it grew in and the hands that nurtured it. At Rashfa, we honor this journey from farm to cup.
             </p>
           </motion.div>
@@ -3071,7 +3071,7 @@ const AboutPage = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="w-full md:w-[600px] h-[400px] md:h-[700px] mt-12 md:mt-0 md:ml-60 overflow-hidden shadow-2xl rounded-sm relative"
+            className="w-full md:w-[600px] h-[300px] md:h-[700px] mt-8 md:mt-0 md:ml-60 overflow-hidden shadow-2xl rounded-sm relative"
           >
             <img 
               src="https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=1200" 
@@ -3084,26 +3084,26 @@ const AboutPage = () => {
       </section>
 
       {/* 2. New Arrival Section */}
-      <section className="py-32 bg-white">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+      <section className="py-20 md:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-20 gap-8">
             <div>
-              <span className="text-[#00754a] font-black text-xs tracking-[0.4em] uppercase mb-4 block">Seasonal Collection</span>
-              <h2 className="text-6xl md:text-8xl font-black tracking-tighter text-[#002118] uppercase leading-[0.85]">
+              <span className="text-[#00754a] font-black text-[10px] md:text-xs tracking-[0.4em] uppercase mb-4 block">Seasonal Collection</span>
+              <h2 className="text-5xl md:text-8xl font-black tracking-tighter text-[#002118] uppercase leading-[0.85]">
                 New<br /><span className="text-[#00754a]">Arrival</span>
               </h2>
             </div>
             
-            <div className="flex flex-wrap gap-8 border-b border-[#002118]/10 pb-4">
+            <div className="flex flex-wrap gap-4 md:gap-8 border-b border-[#002118]/10 pb-4">
               {['All Coffee', 'Espresso', 'Cold Brew', 'Merchandise'].map((cat, i) => (
-                <button key={i} className={`text-[10px] font-black uppercase tracking-widest ${i === 0 ? 'text-[#00754a]' : 'text-[#002118]/40 hover:text-[#002118]'}`}>
+                <button key={i} className={`text-[9px] md:text-[10px] font-black uppercase tracking-widest ${i === 0 ? 'text-[#00754a]' : 'text-[#002118]/40 hover:text-[#002118]'}`}>
                   {cat}
                 </button>
               ))}
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-16">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 md:gap-x-8 gap-y-10 md:gap-y-16">
             {[
               { name: "Winter Spice Latte", price: "35 MAD", img: "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=400" },
               { name: "Ethiopian Yirgacheffe", price: "45 MAD", img: "https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=400" },
@@ -3118,21 +3118,21 @@ const AboutPage = () => {
                 viewport={{ once: true }}
                 className="group cursor-pointer"
               >
-                <div className="aspect-[3/4] overflow-hidden bg-[#f2f0eb] mb-6 relative">
+                <div className="aspect-[3/4] overflow-hidden bg-[#f2f0eb] mb-4 md:mb-6 relative">
                   <img src={item.img} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={item.name} />
-                  <div className="absolute top-4 left-4 bg-white px-3 py-1 text-[8px] font-black uppercase tracking-widest">New</div>
+                  <div className="absolute top-2 md:top-4 left-2 md:left-4 bg-white px-2 md:px-3 py-1 text-[7px] md:text-[8px] font-black uppercase tracking-widest">New</div>
                 </div>
-                <h4 className="text-sm font-black uppercase tracking-tight mb-1">{item.name}</h4>
-                <p className="text-xs font-bold text-[#00754a]">{item.price}</p>
+                <h4 className="text-[10px] md:text-sm font-black uppercase tracking-tight mb-1">{item.name}</h4>
+                <p className="text-[9px] md:text-xs font-bold text-[#00754a]">{item.price}</p>
               </motion.div>
             ))}
           </div>
 
-          <div className="mt-20 flex justify-center">
+          <div className="mt-12 md:mt-20 flex justify-center">
             <motion.button 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="border-2 border-[#002118] text-[#002118] px-12 py-4 rounded-full font-black text-[10px] tracking-widest uppercase hover:bg-[#002118] hover:text-white transition-all"
+              className="w-full md:w-auto border-2 border-[#002118] text-[#002118] px-12 py-4 rounded-full font-black text-[9px] md:text-[10px] tracking-widest uppercase hover:bg-[#002118] hover:text-white transition-all"
             >
               View More Collection
             </motion.button>
@@ -3141,28 +3141,28 @@ const AboutPage = () => {
       </section>
 
       {/* 3. Whole Beans Section */}
-      <section className="py-32 bg-[#00754a] text-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <section className="py-20 md:py-32 bg-[#00754a] text-white relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-6xl md:text-8xl font-black tracking-tighter uppercase mb-12 leading-none">
+            <h2 className="text-5xl md:text-8xl font-black tracking-tighter uppercase mb-8 md:mb-12 leading-none">
               Whole<br />Beans
             </h2>
-            <div className="space-y-12">
+            <div className="space-y-8 md:space-y-12">
               {[
                 { title: "Roast Level", desc: "From light citrus notes to deep, dark chocolate finishes. Choose your intensity." },
                 { title: "Flavor Profile", desc: "Discover hints of caramel, nuts, and berries in our carefully selected single-origin beans." },
                 { title: "Brewing Guide", desc: "Master the art of the pour-over, French press, or espresso at home with our experts." }
               ].map((item, i) => (
                 <div key={i} className="group">
-                  <div className="flex items-center gap-6 mb-4">
-                    <span className="text-2xl font-black text-white/20 group-hover:text-white transition-colors">0{i+1}</span>
-                    <h4 className="text-xl font-black uppercase tracking-tight">{item.title}</h4>
+                  <div className="flex items-center gap-4 md:gap-6 mb-3 md:mb-4">
+                    <span className="text-xl md:text-2xl font-black text-white/20 group-hover:text-white transition-colors">0{i+1}</span>
+                    <h4 className="text-lg md:text-xl font-black uppercase tracking-tight">{item.title}</h4>
                   </div>
-                  <p className="text-white/60 text-sm leading-relaxed max-w-md ml-14">
+                  <p className="text-white/60 text-[11px] md:text-sm leading-relaxed max-w-md ml-10 md:ml-14">
                     {item.desc}
                   </p>
                 </div>
@@ -3179,7 +3179,7 @@ const AboutPage = () => {
             <div className="aspect-square bg-white/10 rounded-full absolute inset-0 blur-3xl animate-pulse" />
             <img 
               src="https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=800" 
-              className="relative z-10 w-full h-auto rounded-3xl shadow-3xl" 
+              className="relative z-10 w-full h-auto rounded-2xl md:rounded-3xl shadow-3xl" 
               alt="Whole beans" 
             />
           </motion.div>
@@ -3196,13 +3196,13 @@ const AboutPage = () => {
           <motion.div 
             key={i}
             whileHover={{ y: -10 }}
-            className={`${block.bg} ${block.text} p-16 h-[500px] flex flex-col justify-between group cursor-pointer relative overflow-hidden`}
+            className={`${block.bg} ${block.text} p-10 md:p-16 h-[350px] md:h-[500px] flex flex-col justify-between group cursor-pointer relative overflow-hidden`}
           >
             <div className="relative z-10">
-              <h3 className="text-3xl font-black uppercase tracking-tighter mb-6 leading-none">{block.title}</h3>
-              <p className="text-[10px] font-bold uppercase tracking-[0.3em] opacity-60">Discover More <ArrowRight className="inline-block ml-2 w-3 h-3" /></p>
+              <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-4 md:mb-6 leading-none">{block.title}</h3>
+              <p className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] opacity-60">Discover More <ArrowRight className="inline-block ml-2 w-3 h-3" /></p>
             </div>
-            <div className="absolute bottom-0 right-0 w-48 h-48 translate-x-12 translate-y-12 opacity-0 group-hover:opacity-100 transition-all duration-500">
+            <div className="absolute bottom-0 right-0 w-32 md:w-48 h-32 md:h-48 translate-x-8 md:translate-x-12 translate-y-8 md:translate-y-12 opacity-0 group-hover:opacity-100 transition-all duration-500">
                <img src={block.img} className="w-full h-full object-cover rounded-full grayscale" alt="" />
             </div>
           </motion.div>
@@ -3210,9 +3210,9 @@ const AboutPage = () => {
       </section>
 
       {/* 5. Big Footer Text */}
-      <section className="py-40 bg-[#f2f0eb] flex items-center justify-center overflow-hidden">
-        <h2 className="text-[15vw] font-black text-[#002118]/5 uppercase tracking-tighter whitespace-nowrap leading-none select-none">
-          Rashfa Coffee Roasters
+      <section className="py-20 md:py-40 bg-[#f2f0eb] flex items-center justify-center overflow-hidden">
+        <h2 className="text-[20vw] md:text-[15vw] font-black text-[#002118]/5 uppercase tracking-tighter whitespace-nowrap leading-none select-none">
+          Rashfa Coffee
         </h2>
       </section>
       
@@ -3237,9 +3237,9 @@ const ShopPage = ({ addToCart }) => {
   const currentProducts = PRODUCTS[selectedCategory] || PRODUCTS[CATEGORIES.COFFEE];
 
   return (
-    <div className="min-h-screen bg-[#001a13] text-white font-sans pt-32 pb-32 relative overflow-x-hidden">
+    <div className="min-h-screen bg-[#001a13] text-white font-sans pt-20 md:pt-32 pb-20 md:pb-32 relative overflow-x-hidden">
       {/* Hero Section - Clean & Green */}
-      <div className="relative w-full h-[45vh] flex flex-col items-center justify-center text-center px-8 mb-4 bg-gradient-to-b from-[#001a13] to-[#002118]">
+      <div className="relative w-full h-[30vh] md:h-[45vh] flex flex-col items-center justify-center text-center px-8 mb-4 bg-gradient-to-b from-[#001a13] to-[#002118]">
         <div className="relative z-10 flex flex-col items-center">
           <motion.h1 
             initial={{ opacity: 0, y: -30 }}
@@ -3251,7 +3251,7 @@ const ShopPage = ({ addToCart }) => {
               ]
             }}
             transition={{ duration: 1.2, ease: "easeOut" }}
-            className="text-[120px] md:text-[180px] text-[#f8f7f5] drop-shadow-2xl leading-none"
+            className="text-[80px] md:text-[180px] text-[#f8f7f5] drop-shadow-2xl leading-none"
             style={{ 
               fontFamily: "'Great Vibes', cursive",
               filter: "drop-shadow(0 0 10px rgba(0,208,132,0.5)) drop-shadow(10px 10px 20px rgba(0,0,0,1))"
@@ -3262,16 +3262,16 @@ const ShopPage = ({ addToCart }) => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
         {/* Simplified Category Selector */}
-        <div className="flex justify-center gap-12 mb-24 border-b border-white/5 pb-8 overflow-x-auto no-scrollbar">
+        <div className="flex justify-start md:justify-center gap-6 md:gap-12 mb-12 md:mb-24 border-b border-white/5 pb-6 md:pb-8 overflow-x-auto no-scrollbar">
           {shopCategories.map((cat) => {
             const isActive = selectedCategory === cat.id;
             return (
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`text-[11px] font-bold uppercase tracking-[0.2em] transition-all relative whitespace-nowrap ${
+                className={`text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] transition-all relative whitespace-nowrap pb-2 ${
                   isActive ? 'text-[#00d084]' : 'text-white/40 hover:text-white'
                 }`}
               >
@@ -3279,7 +3279,7 @@ const ShopPage = ({ addToCart }) => {
                 {isActive && (
                   <motion.div 
                     layoutId="activeCat"
-                    className="absolute -bottom-8 left-0 right-0 h-0.5 bg-[#00d084]"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#00d084]"
                   />
                 )}
               </button>
@@ -3288,7 +3288,7 @@ const ShopPage = ({ addToCart }) => {
         </div>
 
         {/* Product Grid - Matching Card Style */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
           <AnimatePresence mode="wait">
             {currentProducts.map((product, i) => (
               <motion.div
@@ -3297,7 +3297,7 @@ const ShopPage = ({ addToCart }) => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="bg-white/5 backdrop-blur-md rounded-[30px] overflow-hidden border border-white/5 hover:border-[#00d084]/30 group flex flex-col transition-colors duration-500"
+                className="bg-white/5 backdrop-blur-md rounded-[24px] md:rounded-[30px] overflow-hidden border border-white/5 hover:border-[#00d084]/30 group flex flex-col transition-colors duration-500"
               >
                 <div 
                   className="aspect-square overflow-hidden cursor-pointer relative"
@@ -3311,19 +3311,19 @@ const ShopPage = ({ addToCart }) => {
                   <div className="absolute inset-0 bg-[#001a13]/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
 
-                <div className="p-10 flex flex-col flex-grow text-center">
-                  <h3 className="text-xl font-bold text-white mb-3 font-serif tracking-tight">
+                <div className="p-6 md:p-10 flex flex-col flex-grow text-center">
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-2 md:mb-3 font-serif tracking-tight">
                     {product.name}
                   </h3>
-                  <p className="text-[10px] text-white/30 font-bold uppercase tracking-widest mb-4">
+                  <p className="text-[9px] md:text-[10px] text-white/30 font-bold uppercase tracking-widest mb-3 md:mb-4">
                     {product.volume || product.weight || 'Premium Blend'}
                   </p>
-                  <p className="text-lg font-black text-[#00d084] mb-8">
+                  <p className="text-base md:text-lg font-black text-[#00d084] mb-6 md:mb-8">
                     {product.price} MAD
                   </p>
                   
                   <button 
-                    className="mt-auto w-full py-4 rounded-xl bg-white/5 text-white/60 font-bold text-[9px] tracking-[0.2em] uppercase hover:bg-[#00d084] hover:text-[#001a13] transition-all duration-500 border border-white/5 hover:border-transparent"
+                    className="mt-auto w-full py-3 md:py-4 rounded-xl bg-white/5 text-white/60 font-bold text-[9px] tracking-[0.2em] uppercase hover:bg-[#00d084] hover:text-[#001a13] transition-all duration-500 border border-white/5 hover:border-transparent"
                     onClick={() => setSelectedProduct(product)}
                   >
                     Add to Cart
@@ -3350,36 +3350,36 @@ const ShopPage = ({ addToCart }) => {
               initial={{ y: 50, opacity: 0, scale: 0.95 }}
               animate={{ y: 0, opacity: 1, scale: 1 }}
               exit={{ y: 50, opacity: 0, scale: 0.95 }}
-              className="bg-[#001a13] w-full max-w-4xl rounded-[40px] border border-white/10 shadow-2xl overflow-hidden relative flex flex-col md:flex-row"
+              className="bg-[#001a13] w-full max-w-4xl rounded-[30px] md:rounded-[40px] border border-white/10 shadow-2xl overflow-y-auto max-h-[90vh] md:max-h-none md:overflow-hidden relative flex flex-col md:flex-row"
             >
               <button 
                 onClick={() => setSelectedProduct(null)}
-                className="absolute top-8 right-8 p-3 bg-white/5 hover:bg-[#00d084] hover:text-[#001a13] rounded-full transition-all z-10 text-white"
+                className="absolute top-4 right-4 md:top-8 md:right-8 p-2 md:p-3 bg-white/5 hover:bg-[#00d084] hover:text-[#001a13] rounded-full transition-all z-10 text-white"
               >
                 <X size={18} />
               </button>
 
-              <div className="w-full md:w-1/2 p-12 bg-white/5">
+              <div className="w-full md:w-1/2 p-6 md:p-12 bg-white/5">
                 <img 
                   src={selectedProduct.img} 
-                  className="w-full h-full object-cover rounded-3xl shadow-lg"
+                  className="w-full h-auto md:h-full object-cover rounded-2xl md:rounded-3xl shadow-lg"
                   alt={selectedProduct.name}
                 />
               </div>
 
-              <div className="w-full md:w-1/2 p-12 md:p-16 flex flex-col justify-center">
-                <span className="text-[#00d084] font-bold text-[10px] tracking-[0.3em] uppercase mb-4 block">Handcrafted</span>
-                <h2 className="text-4xl font-bold text-white mb-6 font-serif tracking-tight">
+              <div className="w-full md:w-1/2 p-6 md:p-16 flex flex-col justify-center">
+                <span className="text-[#00d084] font-bold text-[9px] md:text-[10px] tracking-[0.3em] uppercase mb-2 md:mb-4 block">Handcrafted</span>
+                <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 md:mb-6 font-serif tracking-tight">
                   {selectedProduct.name}
                 </h2>
-                <p className="text-2xl font-black text-[#00d084] mb-10">{selectedProduct.price} MAD</p>
+                <p className="text-xl md:text-2xl font-black text-[#00d084] mb-6 md:mb-10">{selectedProduct.price} MAD</p>
                 
-                <p className="text-sm text-white/50 leading-relaxed mb-12 font-medium">
+                <p className="text-xs md:text-sm text-white/50 leading-relaxed mb-8 md:mb-12 font-medium">
                   {selectedProduct.desc || "Experience the perfect harmony of flavors with our premium selection. Each cup is a journey of taste and aroma."}
                 </p>
 
-                <div className="flex items-center gap-6">
-                  <div className="flex items-center bg-white/5 rounded-full p-2 border border-white/10">
+                <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6">
+                  <div className="flex items-center w-full sm:w-auto bg-white/5 rounded-full p-2 border border-white/10 justify-between">
                     <button 
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
                       className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition-all font-bold text-white"
@@ -3401,7 +3401,7 @@ const ShopPage = ({ addToCart }) => {
                       setSelectedProduct(null);
                       setQuantity(1);
                     }}
-                    className="flex-grow bg-white text-[#001a13] py-4 rounded-full font-black text-[10px] tracking-[0.2em] uppercase shadow-xl hover:bg-[#00d084] transition-all"
+                    className="w-full sm:flex-grow bg-white text-[#001a13] py-4 rounded-full font-black text-[10px] tracking-[0.2em] uppercase shadow-xl hover:bg-[#00d084] transition-all"
                   >
                     Add to Cart
                   </button>
@@ -3844,34 +3844,34 @@ const AdminDashboard = ({ token }) => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#001a13] pt-44 pb-20 px-8">
-      <div className="max-w-[1600px] mx-auto flex gap-10">
+    <div className="min-h-screen bg-[#001a13] pt-32 md:pt-44 pb-20 px-4 md:px-8">
+      <div className="max-w-[1600px] mx-auto flex flex-col lg:flex-row gap-6 md:gap-10">
         {/* Sidebar */}
-        <div className="w-80 flex-shrink-0">
-          <div className="bg-white/5 backdrop-blur-xl rounded-[40px] border border-white/10 p-8 sticky top-44">
-            <div className="mb-10 px-4">
-              <h2 className="text-2xl font-black text-white italic tracking-tighter">ADMIN <span className="text-[#00d084]">PANEL</span></h2>
-              <p className="text-white/40 text-[10px] font-bold tracking-widest uppercase mt-2">Rashfa Management v1.0</p>
+        <div className="w-full lg:w-80 flex-shrink-0">
+          <div className="bg-white/5 backdrop-blur-xl rounded-[30px] md:rounded-[40px] border border-white/10 p-6 md:p-8 lg:sticky lg:top-44">
+            <div className="mb-6 md:mb-10 px-2 md:px-4">
+              <h2 className="text-xl md:text-2xl font-black text-white italic tracking-tighter">ADMIN <span className="text-[#00d084]">PANEL</span></h2>
+              <p className="text-white/40 text-[8px] md:text-[10px] font-bold tracking-widest uppercase mt-1 md:mt-2">Rashfa Management v1.0</p>
             </div>
             
-            <nav className="space-y-2">
+            <nav className="flex lg:flex-col overflow-x-auto lg:overflow-x-visible pb-4 lg:pb-0 gap-2 no-scrollbar">
               {menuItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
-                  className={`w-full flex items-center gap-4 px-6 py-4 rounded-2xl font-bold text-xs tracking-widest uppercase transition-all ${
+                  className={`flex items-center gap-3 md:gap-4 px-4 md:px-6 py-3 md:py-4 rounded-xl md:rounded-2xl font-bold text-[10px] md:text-xs tracking-widest uppercase transition-all whitespace-nowrap lg:w-full ${
                     activeTab === item.id 
                       ? 'bg-[#00d084] text-[#001a13] shadow-lg shadow-[#00d084]/20' 
                       : 'text-white/40 hover:bg-white/5 hover:text-white'
                   }`}
                 >
-                  {item.icon}
+                  <span className="shrink-0">{item.icon}</span>
                   {item.label}
                 </button>
               ))}
             </nav>
 
-            <div className="mt-10 pt-10 border-t border-white/5 px-4">
+            <div className="hidden lg:block mt-10 pt-10 border-t border-white/5 px-4">
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full bg-[#00d084]/20 flex items-center justify-center text-[#00d084]">
                   <User size={20} />
@@ -3886,48 +3886,50 @@ const AdminDashboard = ({ token }) => {
         </div>
 
         {/* Main Content Area */}
-        <div className="flex-grow space-y-10">
+        <div className="flex-grow space-y-6 md:space-y-10">
           {activeTab === 'dashboard' && (
             <>
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div>
-                  <h1 className="text-4xl font-medium text-white tracking-tighter uppercase italic font-display">
+                  <h1 className="text-3xl md:text-4xl font-medium text-white tracking-tighter uppercase italic font-display">
                     Control <span className="text-[#00d084]">Center</span>
                   </h1>
-                  <p className="text-white/40 text-xs font-bold tracking-widest uppercase mt-2">Real-time overview of your business</p>
+                  <p className="text-white/40 text-[10px] md:text-xs font-bold tracking-widest uppercase mt-2">Real-time overview of your business</p>
                 </div>
-                <div className="flex gap-4">
-                  <button className="bg-white/5 text-white/60 p-4 rounded-2xl border border-white/10 hover:text-white transition-all">
-                    <Filter size={20} />
+                <div className="flex gap-3 md:gap-4">
+                  <button className="bg-white/5 text-white/60 p-3 md:p-4 rounded-xl md:rounded-2xl border border-white/10 hover:text-white transition-all">
+                    <Filter size={18} className="md:size-[20px]" />
                   </button>
-                  <button className="bg-[#00d084] text-[#001a13] px-8 py-4 rounded-2xl font-black text-[11px] tracking-widest uppercase flex items-center gap-3">
-                    Generate Report <ArrowRight size={16} />
+                  <button className="flex-grow md:flex-grow-0 bg-[#00d084] text-[#001a13] px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-black text-[10px] md:text-[11px] tracking-widest uppercase flex items-center justify-center gap-3">
+                    Generate Report <ArrowRight size={14} className="md:size-[16px]" />
                   </button>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                 {[
-                  { label: "Total Revenue", value: `${stats.revenue.toLocaleString()} MAD`, change: "+12.5%", icon: <DollarSign className="text-[#00d084]" /> },
-                  { label: "Total Orders", value: stats.orders.toLocaleString(), change: "+8.2%", icon: <Package className="text-[#00d084]" /> },
-                  { label: "Active Users", value: stats.users.toLocaleString(), change: "+5.1%", icon: <Users className="text-[#00d084]" /> },
-                  { label: "Avg. Wait Time", value: `${stats.avgWait} min`, change: "-2.4%", icon: <Clock className="text-[#00d084]" /> },
+                  { label: "Total Revenue", value: `${stats.revenue.toLocaleString()} MAD`, change: "+12.5%", icon: <DollarSign size={18} className="text-[#00d084]" /> },
+                  { label: "Total Orders", value: stats.orders.toLocaleString(), change: "+8.2%", icon: <Package size={18} className="text-[#00d084]" /> },
+                  { label: "Active Users", value: stats.users.toLocaleString(), change: "+5.1%", icon: <Users size={18} className="text-[#00d084]" /> },
+                  { label: "Avg. Wait Time", value: `${stats.avgWait} min`, change: "-2.4%", icon: <Clock size={18} className="text-[#00d084]" /> },
                 ].map((stat, i) => (
                   <motion.div 
                     key={i}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    className="bg-white/5 backdrop-blur-xl p-8 rounded-[35px] border border-white/10"
+                    className="bg-white/5 backdrop-blur-xl p-6 md:p-8 rounded-[30px] md:rounded-[35px] border border-white/10 hover:bg-white/10 transition-all group"
                   >
-                    <div className="flex justify-between items-start mb-6">
-                      <div className="p-4 bg-[#00d084]/10 rounded-2xl">{stat.icon}</div>
-                      <span className={`text-[10px] font-bold px-3 py-1 rounded-full ${stat.change.startsWith('+') ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}`}>
+                    <div className="flex justify-between items-start mb-4 md:mb-6">
+                      <div className="p-3 md:p-4 bg-[#00d084]/10 rounded-xl md:rounded-2xl group-hover:scale-110 transition-transform">
+                        {stat.icon}
+                      </div>
+                      <span className={`text-[9px] md:text-[10px] font-bold px-3 py-1 rounded-full ${stat.change.startsWith('+') ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}`}>
                         {stat.change}
                       </span>
                     </div>
-                    <p className="text-white/40 text-[10px] font-bold tracking-widest uppercase mb-1">{stat.label}</p>
-                    <h3 className="text-3xl font-black text-white">{stat.value}</h3>
+                    <p className="text-white/40 text-[9px] md:text-[10px] font-bold tracking-widest uppercase mb-1">{stat.label}</p>
+                    <h3 className="text-xl md:text-3xl font-black text-white">{stat.value}</h3>
                   </motion.div>
                 ))}
               </div>
@@ -5336,20 +5338,20 @@ const CheckoutPage = ({ cart, cartTotal, setLastOrder, setCart, user, token }) =
 
   if (cart.length === 0) {
     return (
-      <div className="min-h-screen pt-32 px-8 bg-[#001a13] flex flex-col items-center justify-center text-center">
+      <div className="min-h-screen pt-24 md:pt-32 px-4 md:px-8 bg-[#001a13] flex flex-col items-center justify-center text-center">
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-white/5 p-12 rounded-[40px] border border-white/10 backdrop-blur-xl"
+          className="bg-white/5 p-8 md:p-12 rounded-[30px] md:rounded-[40px] border border-white/10 backdrop-blur-xl w-full max-w-lg"
         >
-          <div className="w-24 h-24 bg-[#00d084]/10 rounded-full flex items-center justify-center mx-auto mb-8">
-            <ShoppingCart className="text-[#00d084]" size={40} />
+          <div className="w-16 h-16 md:w-24 md:h-24 bg-[#00d084]/10 rounded-full flex items-center justify-center mx-auto mb-6 md:mb-8">
+            <ShoppingCart className="text-[#00d084]" size={32} />
           </div>
-          <h2 className="text-4xl font-black text-white mb-6 tracking-tighter uppercase">Your tray is empty</h2>
-          <p className="text-white/40 mb-10 max-w-xs mx-auto">Add some of our premium coffee blends to start your journey.</p>
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-4 md:mb-6 tracking-tighter uppercase">Your tray is empty</h2>
+          <p className="text-white/40 mb-8 md:mb-10 max-w-xs mx-auto text-sm md:text-base">Add some of our premium coffee blends to start your journey.</p>
           <button 
             onClick={() => navigate('/shop')} 
-            className="group relative bg-[#00d084] text-[#001a13] px-12 py-5 rounded-2xl font-black text-[10px] tracking-widest uppercase overflow-hidden"
+            className="group relative w-full sm:w-auto bg-[#00d084] text-[#001a13] px-12 py-5 rounded-2xl font-black text-[10px] tracking-widest uppercase overflow-hidden"
           >
             <span className="relative z-10">Explore Menu</span>
             <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
@@ -5360,21 +5362,21 @@ const CheckoutPage = ({ cart, cartTotal, setLastOrder, setCart, user, token }) =
   }
 
   return (
-    <div className="min-h-screen pt-32 pb-20 px-4 md:px-8 bg-[#001a13] selection:bg-[#00d084] selection:text-[#001a13]">
+    <div className="min-h-screen pt-24 md:pt-32 pb-20 px-4 md:px-8 bg-[#001a13] selection:bg-[#00d084] selection:text-[#001a13]">
       <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-10 md:mb-16 gap-6">
           <div>
             <motion.div 
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="text-[#00d084] text-[10px] font-black tracking-[0.4em] uppercase mb-4"
+              className="text-[#00d084] text-[8px] md:text-[10px] font-black tracking-[0.4em] uppercase mb-2 md:mb-4"
             >
               Secure Checkout
             </motion.div>
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-8xl font-black text-white tracking-tighter leading-none"
+              className="text-4xl md:text-8xl font-black text-white tracking-tighter leading-none"
             >
               FINALIZE<br />ORDER.
             </motion.h1>
@@ -5382,32 +5384,32 @@ const CheckoutPage = ({ cart, cartTotal, setLastOrder, setCart, user, token }) =
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-right hidden md:block"
+            className="text-left md:text-right"
           >
-            <div className="text-white/20 text-[10px] font-bold uppercase tracking-widest mb-2">Estimated Delivery</div>
-            <div className="text-white font-black text-2xl">25-35 MIN</div>
+            <div className="text-white/20 text-[8px] md:text-[10px] font-bold uppercase tracking-widest mb-1 md:mb-2">Estimated Delivery</div>
+            <div className="text-white font-black text-xl md:text-2xl">25-35 MIN</div>
           </motion.div>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
           {/* Checkout Form */}
           <div className="lg:col-span-7">
             {/* Step Indicators */}
-            <div className="relative mb-16">
+            <div className="relative mb-12 md:mb-16">
               {/* Connection Line Background */}
               <div className="absolute top-1/2 left-0 w-full h-[2px] bg-white/5 -translate-y-1/2" />
               
               <div className="relative flex justify-between items-center max-w-2xl">
                 {[
-                  { id: 1, name: 'Information' },
-                  { id: 2, name: 'Payment' },
-                  { id: 3, name: 'Confirmation' }
+                  { id: 1, name: 'Info' },
+                  { id: 2, name: 'Pay' },
+                  { id: 3, name: 'Confirm' }
                 ].map((s, index) => (
                   <div key={s.id} className="relative flex flex-col items-center group">
                     {/* Step Circle */}
                     <motion.button 
                       onClick={() => step > s.id && setStep(s.id)}
-                      className={`w-14 h-14 rounded-full flex items-center justify-center font-black text-lg z-10 transition-all duration-500 border-4 ${
+                      className={`w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center font-black text-sm md:text-lg z-10 transition-all duration-500 border-2 md:border-4 ${
                         step === s.id 
                           ? 'bg-[#00d084] border-[#001a13] text-[#001a13] shadow-[0_0_20px_rgba(0,208,132,0.4)] scale-110' 
                           : step > s.id 
@@ -5415,12 +5417,12 @@ const CheckoutPage = ({ cart, cartTotal, setLastOrder, setCart, user, token }) =
                             : 'bg-[#001a13] border-white/10 text-white/20'
                       }`}
                     >
-                      {step > s.id ? <CheckCircle2 size={24} /> : s.id}
+                      {step > s.id ? <CheckCircle2 className="w-5 h-5 md:w-6 md:h-6" /> : s.id}
                     </motion.button>
 
                     {/* Step Name */}
-                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                      <span className={`text-[10px] font-black tracking-[0.2em] uppercase transition-colors duration-500 ${
+                    <div className="absolute -bottom-6 md:bottom-[-2rem] left-1/2 -translate-x-1/2 whitespace-nowrap">
+                      <span className={`text-[8px] md:text-[10px] font-black tracking-[0.1em] md:tracking-[0.2em] uppercase transition-colors duration-500 ${
                         step >= s.id ? 'text-[#00d084]' : 'text-white/20'
                       }`}>
                         {s.name}
@@ -5429,7 +5431,7 @@ const CheckoutPage = ({ cart, cartTotal, setLastOrder, setCart, user, token }) =
 
                     {/* Progress Line Filler */}
                     {index < 2 && (
-                      <div className="absolute top-1/2 left-14 w-[calc(100vw/3)] max-w-[200px] h-[2px] pointer-events-none overflow-hidden">
+                      <div className="absolute top-1/2 left-10 md:left-14 w-[calc(100vw/4)] max-w-[200px] h-[2px] pointer-events-none overflow-hidden">
                         <motion.div 
                           initial={false}
                           animate={{ 
@@ -5444,7 +5446,7 @@ const CheckoutPage = ({ cart, cartTotal, setLastOrder, setCart, user, token }) =
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-10">
+            <form onSubmit={handleSubmit} className="space-y-6 md:space-y-10">
               <AnimatePresence mode="wait">
                 {step === 1 && (
                   <motion.div
@@ -5456,11 +5458,11 @@ const CheckoutPage = ({ cart, cartTotal, setLastOrder, setCart, user, token }) =
                   >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="relative group">
-                        <div className="flex justify-between items-center mb-2 px-2">
-                          <label className="text-[10px] font-black uppercase tracking-widest text-white/40">Full Name <span className="text-red-500">*</span></label>
-                          {errors.name && <span className="text-[8px] font-black uppercase text-red-500 animate-pulse">Required</span>}
+                        <div className="flex justify-between items-center mb-1.5 md:mb-2 px-2">
+                          <label className="text-[8px] md:text-[10px] font-black uppercase tracking-widest text-white/40">Full Name <span className="text-red-500">*</span></label>
+                          {errors.name && <span className="text-[7px] md:text-[8px] font-black uppercase text-red-500 animate-pulse">Required</span>}
                         </div>
-                        <User className="absolute left-6 top-[54px] -translate-y-1/2 text-white/20 group-focus-within:text-[#00d084] transition-colors" size={18} />
+                        <User className="absolute left-5 md:left-6 top-[48px] md:top-[54px] -translate-y-1/2 text-white/20 group-focus-within:text-[#00d084] transition-colors" size={16} />
                         <input 
                           type="text" 
                           placeholder="Full Name"
@@ -5469,15 +5471,15 @@ const CheckoutPage = ({ cart, cartTotal, setLastOrder, setCart, user, token }) =
                             setFormData({...formData, name: e.target.value});
                             if (e.target.value) setErrors(prev => ({...prev, name: false}));
                           }}
-                          className={`w-full bg-white/5 border ${errors.name ? 'border-red-500/50' : 'border-white/10'} rounded-2xl pl-14 pr-6 py-5 text-white focus:outline-none focus:border-[#00d084] focus:bg-white/[0.08] transition-all placeholder:text-white/20 font-bold text-sm`}
+                          className={`w-full bg-white/5 border ${errors.name ? 'border-red-500/50' : 'border-white/10'} rounded-2xl pl-12 md:pl-14 pr-5 md:pr-6 py-4 md:py-5 text-white focus:outline-none focus:border-[#00d084] focus:bg-white/[0.08] transition-all placeholder:text-white/20 font-bold text-xs md:text-sm`}
                         />
                       </div>
                       <div className="relative group">
-                        <div className="flex justify-between items-center mb-2 px-2">
-                          <label className="text-[10px] font-black uppercase tracking-widest text-white/40">Email Address <span className="text-red-500">*</span></label>
-                          {errors.email && <span className="text-[8px] font-black uppercase text-red-500 animate-pulse">Required</span>}
+                        <div className="flex justify-between items-center mb-1.5 md:mb-2 px-2">
+                          <label className="text-[8px] md:text-[10px] font-black uppercase tracking-widest text-white/40">Email Address <span className="text-red-500">*</span></label>
+                          {errors.email && <span className="text-[7px] md:text-[8px] font-black uppercase text-red-500 animate-pulse">Required</span>}
                         </div>
-                        <Mail className="absolute left-6 top-[54px] -translate-y-1/2 text-white/20 group-focus-within:text-[#00d084] transition-colors" size={18} />
+                        <Mail className="absolute left-5 md:left-6 top-[48px] md:top-[54px] -translate-y-1/2 text-white/20 group-focus-within:text-[#00d084] transition-colors" size={16} />
                         <input 
                           type="email" 
                           placeholder="Email Address"
@@ -5486,15 +5488,15 @@ const CheckoutPage = ({ cart, cartTotal, setLastOrder, setCart, user, token }) =
                             setFormData({...formData, email: e.target.value});
                             if (e.target.value) setErrors(prev => ({...prev, email: false}));
                           }}
-                          className={`w-full bg-white/5 border ${errors.email ? 'border-red-500/50' : 'border-white/10'} rounded-2xl pl-14 pr-6 py-5 text-white focus:outline-none focus:border-[#00d084] focus:bg-white/[0.08] transition-all placeholder:text-white/20 font-bold text-sm`}
+                          className={`w-full bg-white/5 border ${errors.email ? 'border-red-500/50' : 'border-white/10'} rounded-2xl pl-12 md:pl-14 pr-5 md:pr-6 py-4 md:py-5 text-white focus:outline-none focus:border-[#00d084] focus:bg-white/[0.08] transition-all placeholder:text-white/20 font-bold text-xs md:text-sm`}
                         />
                       </div>
                       <div className="md:col-span-2 relative group">
-                        <div className="flex justify-between items-center mb-2 px-2">
-                          <label className="text-[10px] font-black uppercase tracking-widest text-white/40">Phone Number <span className="text-red-500">*</span></label>
-                          {errors.phone && <span className="text-[8px] font-black uppercase text-red-500 animate-pulse">Required</span>}
+                        <div className="flex justify-between items-center mb-1.5 md:mb-2 px-2">
+                          <label className="text-[8px] md:text-[10px] font-black uppercase tracking-widest text-white/40">Phone Number <span className="text-red-500">*</span></label>
+                          {errors.phone && <span className="text-[7px] md:text-[8px] font-black uppercase text-red-500 animate-pulse">Required</span>}
                         </div>
-                        <Phone className="absolute left-6 top-[54px] -translate-y-1/2 text-white/20 group-focus-within:text-[#00d084] transition-colors" size={18} />
+                        <Phone className="absolute left-5 md:left-6 top-[48px] md:top-[54px] -translate-y-1/2 text-white/20 group-focus-within:text-[#00d084] transition-colors" size={16} />
                         <input 
                           type="tel" 
                           placeholder="Phone Number"
@@ -5503,15 +5505,15 @@ const CheckoutPage = ({ cart, cartTotal, setLastOrder, setCart, user, token }) =
                             setFormData({...formData, phone: e.target.value});
                             if (e.target.value) setErrors(prev => ({...prev, phone: false}));
                           }}
-                          className={`w-full bg-white/5 border ${errors.phone ? 'border-red-500/50' : 'border-white/10'} rounded-2xl pl-14 pr-6 py-5 text-white focus:outline-none focus:border-[#00d084] focus:bg-white/[0.08] transition-all placeholder:text-white/20 font-bold text-sm`}
+                          className={`w-full bg-white/5 border ${errors.phone ? 'border-red-500/50' : 'border-white/10'} rounded-2xl pl-12 md:pl-14 pr-5 md:pr-6 py-4 md:py-5 text-white focus:outline-none focus:border-[#00d084] focus:bg-white/[0.08] transition-all placeholder:text-white/20 font-bold text-xs md:text-sm`}
                         />
                       </div>
                       <div className="md:col-span-2 relative group">
-                        <div className="flex justify-between items-center mb-2 px-2">
-                          <label className="text-[10px] font-black uppercase tracking-widest text-white/40">Delivery Address <span className="text-red-500">*</span></label>
-                          {errors.address && <span className="text-[8px] font-black uppercase text-red-500 animate-pulse">Required</span>}
+                        <div className="flex justify-between items-center mb-1.5 md:mb-2 px-2">
+                          <label className="text-[8px] md:text-[10px] font-black uppercase tracking-widest text-white/40">Delivery Address <span className="text-red-500">*</span></label>
+                          {errors.address && <span className="text-[7px] md:text-[8px] font-black uppercase text-red-500 animate-pulse">Required</span>}
                         </div>
-                        <MapPin className="absolute left-6 top-16 text-white/20 group-focus-within:text-[#00d084] transition-colors" size={18} />
+                        <MapPin className="absolute left-5 md:left-6 top-14 md:top-16 text-white/20 group-focus-within:text-[#00d084] transition-colors" size={16} />
                         <textarea 
                           placeholder="Delivery Address"
                           value={formData.address}
@@ -5520,7 +5522,7 @@ const CheckoutPage = ({ cart, cartTotal, setLastOrder, setCart, user, token }) =
                             if (e.target.value) setErrors(prev => ({...prev, address: false}));
                           }}
                           rows="3"
-                          className={`w-full bg-white/5 border ${errors.address ? 'border-red-500/50' : 'border-white/10'} rounded-2xl pl-14 pr-6 py-5 text-white focus:outline-none focus:border-[#00d084] focus:bg-white/[0.08] transition-all placeholder:text-white/20 font-bold text-sm resize-none`}
+                          className={`w-full bg-white/5 border ${errors.address ? 'border-red-500/50' : 'border-white/10'} rounded-2xl pl-12 md:pl-14 pr-5 md:pr-6 py-4 md:py-5 text-white focus:outline-none focus:border-[#00d084] focus:bg-white/[0.08] transition-all placeholder:text-white/20 font-bold text-xs md:text-sm resize-none`}
                         />
                       </div>
                     </div>
@@ -5539,7 +5541,7 @@ const CheckoutPage = ({ cart, cartTotal, setLastOrder, setCart, user, token }) =
                         }
                         setStep(2);
                       }}
-                      className="w-full bg-[#00d084] text-[#001a13] py-6 rounded-2xl font-black text-sm tracking-[0.3em] uppercase transition-all hover:scale-[1.02]"
+                      className="w-full bg-[#00d084] text-[#001a13] py-5 md:py-6 rounded-2xl font-black text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase transition-all hover:scale-[1.02]"
                     >
                       Next Step
                     </button>
@@ -5558,25 +5560,25 @@ const CheckoutPage = ({ cart, cartTotal, setLastOrder, setCart, user, token }) =
                       <button 
                         type="button"
                         onClick={() => setFormData({...formData, paymentMethod: 'online'})}
-                        className={`group relative p-8 rounded-3xl border transition-all text-left overflow-hidden ${formData.paymentMethod === 'online' ? 'bg-[#00d084] border-[#00d084]' : 'bg-white/5 border-white/10 hover:border-white/20'}`}
+                        className={`group relative p-6 md:p-8 rounded-3xl border transition-all text-left overflow-hidden ${formData.paymentMethod === 'online' ? 'bg-[#00d084] border-[#00d084]' : 'bg-white/5 border-white/10 hover:border-white/20'}`}
                       >
-                        <CreditCard className={`mb-4 transition-colors ${formData.paymentMethod === 'online' ? 'text-[#001a13]' : 'text-[#00d084]'}`} size={32} />
-                        <div className={`font-black text-sm uppercase tracking-widest ${formData.paymentMethod === 'online' ? 'text-[#001a13]' : 'text-white'}`}>Online Payment</div>
-                        <div className={`text-[10px] font-bold mt-1 uppercase opacity-60 ${formData.paymentMethod === 'online' ? 'text-[#001a13]' : 'text-white'}`}>Credit / Debit Card</div>
+                        <CreditCard className={`mb-3 md:mb-4 transition-colors ${formData.paymentMethod === 'online' ? 'text-[#001a13]' : 'text-[#00d084]'}`} size={28} />
+                        <div className={`font-black text-xs md:text-sm uppercase tracking-widest ${formData.paymentMethod === 'online' ? 'text-[#001a13]' : 'text-white'}`}>Online Payment</div>
+                        <div className={`text-[8px] md:text-[10px] font-bold mt-1 uppercase opacity-60 ${formData.paymentMethod === 'online' ? 'text-[#001a13]' : 'text-white'}`}>Credit / Debit Card</div>
                         {formData.paymentMethod === 'online' && (
-                          <motion.div layoutId="payment-check" className="absolute top-4 right-4 text-[#001a13]"><CheckCircle2 size={20} /></motion.div>
+                          <motion.div layoutId="payment-check" className="absolute top-4 right-4 text-[#001a13]"><CheckCircle2 size={18} /></motion.div>
                         )}
                       </button>
                       <button 
                         type="button"
                         onClick={() => setFormData({...formData, paymentMethod: 'cash'})}
-                        className={`group relative p-8 rounded-3xl border transition-all text-left overflow-hidden ${formData.paymentMethod === 'cash' ? 'bg-[#00d084] border-[#00d084]' : 'bg-white/5 border-white/10 hover:border-white/20'}`}
+                        className={`group relative p-6 md:p-8 rounded-3xl border transition-all text-left overflow-hidden ${formData.paymentMethod === 'cash' ? 'bg-[#00d084] border-[#00d084]' : 'bg-white/5 border-white/10 hover:border-white/20'}`}
                       >
-                        <Truck className={`mb-4 transition-colors ${formData.paymentMethod === 'cash' ? 'text-[#001a13]' : 'text-[#00d084]'}`} size={32} />
-                        <div className={`font-black text-sm uppercase tracking-widest ${formData.paymentMethod === 'cash' ? 'text-[#001a13]' : 'text-white'}`}>Cash on Delivery</div>
-                        <div className={`text-[10px] font-bold mt-1 uppercase opacity-60 ${formData.paymentMethod === 'cash' ? 'text-[#001a13]' : 'text-white'}`}>Pay when you receive</div>
+                        <Truck className={`mb-3 md:mb-4 transition-colors ${formData.paymentMethod === 'cash' ? 'text-[#001a13]' : 'text-[#00d084]'}`} size={28} />
+                        <div className={`font-black text-xs md:text-sm uppercase tracking-widest ${formData.paymentMethod === 'cash' ? 'text-[#001a13]' : 'text-white'}`}>Cash on Delivery</div>
+                        <div className={`text-[8px] md:text-[10px] font-bold mt-1 uppercase opacity-60 ${formData.paymentMethod === 'cash' ? 'text-[#001a13]' : 'text-white'}`}>Pay when you receive</div>
                         {formData.paymentMethod === 'cash' && (
-                          <motion.div layoutId="payment-check" className="absolute top-4 right-4 text-[#001a13]"><CheckCircle2 size={20} /></motion.div>
+                          <motion.div layoutId="payment-check" className="absolute top-4 right-4 text-[#001a13]"><CheckCircle2 size={18} /></motion.div>
                         )}
                       </button>
                     </div>
@@ -5585,24 +5587,24 @@ const CheckoutPage = ({ cart, cartTotal, setLastOrder, setCart, user, token }) =
                       <motion.div 
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="space-y-6 bg-white/5 border border-white/10 rounded-[32px] p-6"
+                        className="space-y-4 md:space-y-6 bg-white/5 border border-white/10 rounded-[24px] md:rounded-[32px] p-4 md:p-6"
                       >
-                        <div className="flex gap-4">
+                        <div className="flex gap-3 md:gap-4">
                           <button 
                             type="button"
                             onClick={() => setFormData({...formData, onlinePaymentType: 'card'})}
-                            className={`flex-1 p-6 rounded-2xl border transition-all text-center ${formData.onlinePaymentType === 'card' ? 'bg-[#00d084]/10 border-[#00d084] text-[#00d084]' : 'bg-white/5 border-white/10 text-white/40'}`}
+                            className={`flex-1 p-4 md:p-6 rounded-2xl border transition-all text-center ${formData.onlinePaymentType === 'card' ? 'bg-[#00d084]/10 border-[#00d084] text-[#00d084]' : 'bg-white/5 border-white/10 text-white/40'}`}
                           >
-                            <CreditCard size={24} className="mx-auto mb-2" />
-                            <span className="text-[10px] font-black uppercase tracking-widest">Card</span>
+                            <CreditCard size={20} className="mx-auto mb-1.5 md:mb-2" />
+                            <span className="text-[8px] md:text-[10px] font-black uppercase tracking-widest">Card</span>
                           </button>
                           <button 
                             type="button"
                             onClick={() => setFormData({...formData, onlinePaymentType: 'paypal'})}
-                            className={`flex-1 p-6 rounded-2xl border transition-all text-center ${formData.onlinePaymentType === 'paypal' ? 'bg-[#00d084]/10 border-[#00d084] text-[#00d084]' : 'bg-white/5 border-white/10 text-white/40'}`}
+                            className={`flex-1 p-4 md:p-6 rounded-2xl border transition-all text-center ${formData.onlinePaymentType === 'paypal' ? 'bg-[#00d084]/10 border-[#00d084] text-[#00d084]' : 'bg-white/5 border-white/10 text-white/40'}`}
                           >
-                            <DollarSign size={24} className="mx-auto mb-2" />
-                            <span className="text-[10px] font-black uppercase tracking-widest">PayPal</span>
+                            <DollarSign size={20} className="mx-auto mb-1.5 md:mb-2" />
+                            <span className="text-[8px] md:text-[10px] font-black uppercase tracking-widest">PayPal</span>
                           </button>
                         </div>
 
