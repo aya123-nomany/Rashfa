@@ -4,6 +4,9 @@
 /public/storage
 /storage/*.key
 /vendor
+backend/vendor
+backend/storage/*.key
+backend/.env
 .env
 .env.backup
 .env.production
@@ -16,3 +19,5 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+frontend/node_modules
+frontend/dist
