@@ -22,33 +22,6 @@ import {
 } from 'recharts';
 import { useScroll, useTransform } from 'framer-motion';
 
-import coffeeImg from './assets/0a2e60c15f4dd0e82f6f58f42f913955-removebg-preview.png';
-import croissantImg from './assets/croissant.png';
-import firstImg from './assets/1.png';
-import coffeeImg2 from './assets/74e71e92a8e31370e2f794d6570fcf01.jpg';
-import rashfaLogo from './assets/LR-removebg-preview.png';
-import coffeeBlastImg from './assets/cofee.png';
-import ph1 from './assets/ph1.jpg';
-import ph2 from './assets/ph2.jpg';
-import ph3 from './assets/ph3.jpg';
-import ph4 from './assets/ph4.jpg';
-import ph5 from './assets/ph5.jpg';
-import ph6 from './assets/ph6.jpg';
-import ph7 from './assets/ph7.jpg';
-import americanoImg from './assets/americano.jpg';
-import latteImg from './assets/latte.jpg';
-import teasImg from './assets/teas.jpg';
-import muffinsImg from './assets/chocolate muffins.jpg';
-import icedAmericanoImg from './assets/iced americcano.jpg';
-import mochaImg from './assets/mocha.jpg';
-import juiceImg from './assets/juice.jpg';
-import espressoImg from './assets/espresso.jpg';
-import cappuccinoImg from './assets/cappuccino.jpg';
-import blueberryMuffinsImg from './assets/BLUEBERRY MUFFINS.jpg';
-import mineralWaterImg from './assets/mineral water.jpg';
-import almondCroissantImg from './assets/ALMOND CROISSANT.jpg';
-import chocolateCroissantImg from './assets/CHOCOLATE CROISSANT.jpg';
-
 const BUSINESS_RULES = {
   DELIVERY_FEE: 15,
   FREE_DELIVERY_THRESHOLD: 100,
@@ -109,26 +82,27 @@ const CUSTOMIZATION_OPTIONS = {
 
 const PRODUCTS = {
   [CATEGORIES.COFFEE]: [
-    { id: 'c1', name: "ESPRESSO", price: 15, img: espressoImg, desc: "Intense and aromatic single shot", volume: "30ml", allergens: ["None"], nutrition: { cal: 5, caffeine: "63mg" } },
-    { id: 'c2', name: "AMERICANO", price: 18, img: americanoImg, desc: "Smooth long black coffee", volume: "60ml", allergens: ["None"], nutrition: { cal: 5, caffeine: "80mg" } },
-    { id: 'c3', name: "CAPPUCCINO", price: 25, img: cappuccinoImg, desc: "Equal parts espresso, milk & foam", volume: "200ml", allergens: ["Lactose"], nutrition: { cal: 120, protein: "8g" } },
-    { id: 'c4', name: "LATTE", price: 28, img: latteImg, desc: "Espresso with steamed milk", volume: "250ml", allergens: ["Lactose"], nutrition: { cal: 150, protein: "9g" } },
-    { id: 'c5', name: "ICED AMERICANO", price: 20, img: icedAmericanoImg, desc: "Espresso diluted with hot water", volume: "200ml", allergens: ["None"], nutrition: { cal: 10, caffeine: "120mg" } },
-    { id: 'c6', name: "MOCHA", price: 30, img: mochaImg, desc: "Espresso with chocolate and milk", volume: "250ml", allergens: ["Lactose", "Cacao"], nutrition: { cal: 230, sugar: "25g" } }
+    { id: 'c1', name: "ESPRESSO", price: 15, img: "/assets/espresso.jpg", desc: "Intense and aromatic single shot", volume: "30ml", allergens: ["None"], nutrition: { cal: 5, caffeine: "63mg" } },
+    { id: 'c2', name: "AMERICANO", price: 18, img: "/assets/americano.jpg", desc: "Smooth long black coffee", volume: "60ml", allergens: ["None"], nutrition: { cal: 5, caffeine: "80mg" } },
+    { id: 'c3', name: "CAPPUCCINO", price: 25, img: "/assets/cappuccino.jpg", desc: "Equal parts espresso, milk & foam", volume: "200ml", allergens: ["Lactose"], nutrition: { cal: 120, protein: "8g" } },
+    { id: 'c4', name: "LATTE", price: 28, img: "/assets/latte.jpg", desc: "Espresso with steamed milk", volume: "250ml", allergens: ["Lactose"], nutrition: { cal: 150, protein: "9g" } },
+    { id: 'c5', name: "ICED AMERICANO", price: 20, img: "/assets/iced americcano.jpg", desc: "Espresso diluted with hot water", volume: "200ml", allergens: ["None"], nutrition: { cal: 10, caffeine: "120mg" } },
+    { id: 'c6', name: "MOCHA", price: 30, img: "/assets/mocha.jpg", desc: "Espresso with chocolate and milk", volume: "250ml", allergens: ["Lactose", "Cacao"], nutrition: { cal: 230, sugar: "25g" } }
   ],
   [CATEGORIES.COLD]: [
-    { id: 'b2', name: "JUICES", price: 25, img: juiceImg, desc: "Freshly squeezed seasonal fruits", volume: "330ml", allergens: ["None"], nutrition: { cal: 140, vitC: "80%" } },
-    { id: 'b3', name: "MINERAL WATERS", price: 10, img: mineralWaterImg, desc: "Chilled natural mineral water", volume: "500ml", allergens: ["None"], nutrition: { cal: 0, ph: "7.2" } }
+    { id: 'b2', name: "JUICES", price: 25, img: "/assets/juice.jpg", desc: "Freshly squeezed seasonal fruits", volume: "330ml", allergens: ["None"], nutrition: { cal: 140, vitC: "80%" } },
+    { id: 'b3', name: "MINERAL WATERS", price: 10, img: "/assets/mineral water.jpg", desc: "Chilled natural mineral water", volume: "500ml", allergens: ["None"], nutrition: { cal: 0, ph: "7.2" } }
   ],
   [CATEGORIES.TEAS]: [
-    { id: 'b1', name: "TEAS", price: 15, img: teasImg, desc: "Premium green or black tea selection", volume: "250ml", allergens: ["None"], nutrition: { cal: 0, sugar: "0g" } }
+    { id: 'b1', name: "TEAS", price: 15, img: "/assets/teas.jpg", desc: "Premium green or black tea selection", volume: "250ml", allergens: ["None"], nutrition: { cal: 0, sugar: "0g" } }
   ],
   [CATEGORIES.BAKERY]: [
-    { id: 'cr1', name: "CLASSIC CROISSANT", price: 15, img: croissantImg, desc: "Buttery and flaky classic croissant", allergens: ["Lactose", "Gluten"], nutrition: { cal: 230 } },
-    { id: 'cr2', name: "ALMOND CROISSANT", price: 20, img: almondCroissantImg, desc: "Filled with almond cream and topped with flakes", allergens: ["Lactose", "Gluten", "Nuts"], nutrition: { cal: 310 } },
-    { id: 'cr3', name: "CHOCOLATE CROISSANT", price: 18, img: chocolateCroissantImg, desc: "French pastry with chocolate filling", allergens: ["Lactose", "Gluten"], nutrition: { cal: 280 } },
-    { id: 'p1', name: "CHOCOLATE MUFFINS", price: 22, img: muffinsImg, desc: "Rich chocolate muffins with chips", allergens: ["Lactose", "Gluten"], nutrition: { cal: 350 } },
-    { id: 'p2', name: "BLUEBERRY MUFFINS", price: 20, img: blueberryMuffinsImg, desc: "Fresh blueberry muffins", allergens: ["Lactose", "Gluten"], nutrition: { cal: 310 } }
+    { id: 'cr1', name: "CLASSIC CROISSANT", price: 15, img: "/assets/croissant.png", desc: "Buttery and flaky classic croissant", allergens: ["Lactose", "Gluten"], nutrition: { cal: 230 } },
+    { id: 'cr2', name: "ALMOND CROISSANT", price: 20, img: "/assets/ALMOND CROISSANT.jpg", desc: "Filled with almond cream and topped with flakes", allergens: ["Lactose", "Gluten", "Nuts"], nutrition: { cal: 310 } },
+    { id: 'cr3', name: "CHOCOLATE CROISSANT", price: 18, img: "/assets/CHOCOLATE CROISSANT.jpg", desc: "French pastry with chocolate filling", allergens: ["Lactose", "Gluten"], nutrition: { cal: 280 } },
+    { id: 'p1', name: "CHOCOLATE MUFFINS", price: 22, img: "/assets/chocolate muffins.jpg", desc: "Rich chocolate muffins with chips", allergens: ["Lactose", "Gluten"], nutrition: { cal: 350 } },
+    { id: 'p2', name: "BLUEBERRY MUFFINS", price: 20, img: "/assets/BLUEBERRY MUFFINS.jpg", desc: "Fresh blueberry muffins", allergens: ["Lactose", "Gluten"], nutrition: { cal: 310 } },
+    { id: 'p3', name: "Waffles", price: 25, img: "/assets/Waffles.jpg", desc: "Delicious warm waffles", allergens: ["Lactose", "Gluten"], nutrition: { cal: 280 } }
   ]
 };
 
@@ -365,7 +339,6 @@ const HomeInitialLoader = () => {
     <>
       <style>
         {`
-          @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
           .font-rashfa {
             font-family: 'Great Vibes', cursive;
           }
@@ -571,7 +544,7 @@ const Logo = ({ className = "w-12 h-12" }) => (
     className={`relative flex items-center justify-center ${className}`}
   >
     <img 
-      src={rashfaLogo} 
+      src="/assets/LR-removebg-preview.png" 
       alt="RASHFA Logo" 
       className="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(0,208,132,0.2)]"
     />
@@ -1368,7 +1341,7 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, sett
 
   const heroImages = [
     { 
-      url: coffeeImg, 
+      url: "/assets/0a2e60c15f4dd0e82f6f58f42f913955-removebg-preview.png", 
       name: "FRAPPUCCINO DELIGHT", 
       price: "25", 
       tags: ["BEST RATING"],
@@ -1377,7 +1350,7 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, sett
       description: "Indulge in the perfect blend of coffee and art - the coffee moment with a passion for Frappuccino delight."
     },
     { 
-      url: croissantImg, 
+      url: "/assets/croissant.png", 
       name: "ARTISAN CROISSANT", 
       price: "15", 
       tags: ["FRESHLY BAKED"],
@@ -1386,7 +1359,7 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, sett
       description: "Our signature golden-brown, flaky croissant made with pure butter and traditional techniques."
     },
     { 
-      url: firstImg, 
+      url: "/assets/1.png", 
       name: "LATTE ART SPECIAL", 
       price: "22", 
       tags: ["HOUSE SPECIAL"],
@@ -1485,7 +1458,7 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, sett
                     activeIndex === i ? 'border-[#00d084] scale-105 shadow-lg shadow-[#00d084]/20' : 'border-white/5 opacity-30 hover:opacity-100'
                   }`}
                 >
-                  <img src={img.url} className="w-full h-full object-cover" />
+                  <img src={img.url} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                 </motion.div>
               ))}
             </div>
@@ -1536,6 +1509,7 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, sett
               alt={selectedItem.name} 
               className="relative w-full drop-shadow-[0_50px_100px_rgba(0,0,0,0.5)]" 
               style={{ transform: "translateZ(50px)" }}
+              referrerPolicy="no-referrer"
             />
             
             {/* Floating Elements */}
@@ -1705,7 +1679,12 @@ const TestimonialsSection = () => {
                   
                   <div className="flex items-center gap-5 mt-10">
                     <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-[#00d084]/30 group-hover:border-[#00d084] transition-colors">
-                      <img src={item.img} alt={item.name} className="w-full h-full object-cover" />
+                      <img 
+                        src={item.img} 
+                        alt={item.name} 
+                        className="w-full h-full object-cover" 
+                        referrerPolicy="no-referrer"
+                      />
                     </div>
                     <div>
                       <h4 className="text-white font-black uppercase tracking-widest text-sm mb-1">{item.name}</h4>
@@ -1722,12 +1701,30 @@ const TestimonialsSection = () => {
   );
 };
 
-const HorizontalGallery = () => {
-  const images = [ph1, ph2, ph3, ph4, ph5, ph6, ph7];
+const GALLERY_IMAGES = [
+  "/assets/ph1.jpg",
+  "/assets/ph2.jpg",
+  "/assets/ph3.jpg",
+  "/assets/ph4.jpg",
+  "/assets/ph5.jpg",
+  "/assets/ph6.jpg",
+  "/assets/ph7.jpg"
+];
 
+const HorizontalGallery = () => {
   const ImageItem = ({ url, index, total }) => {
     const ref = useRef();
     const texture = useTexture(url);
+    
+    // Ensure texture is loaded correctly
+    useEffect(() => {
+      if (texture) {
+        texture.minFilter = THREE.LinearFilter;
+        texture.magFilter = THREE.LinearFilter;
+        texture.needsUpdate = true;
+      }
+    }, [texture]);
+
     const { viewport } = useThree();
     const width = 4;
     const gap = 0.5;
@@ -1745,7 +1742,7 @@ const HorizontalGallery = () => {
     return (
       <mesh ref={ref} position={[(width + gap) * (index - total / 2), 0, 0]}>
         <planeGeometry args={[width, width * 1.4]} />
-        <meshBasicMaterial map={texture} toneMapped={false} />
+        <meshBasicMaterial map={texture} toneMapped={false} transparent opacity={1} />
       </mesh>
     );
   };
@@ -1772,8 +1769,8 @@ const HorizontalGallery = () => {
         <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 10], fov: 35 }}>
           <Suspense fallback={null}>
             <group>
-              {images.map((url, i) => (
-                <ImageItem key={i} url={url} index={i} total={images.length} />
+              {GALLERY_IMAGES.map((url, i) => (
+                <ImageItem key={i} url={url} index={i} total={GALLERY_IMAGES.length} />
               ))}
             </group>
           </Suspense>
@@ -1883,7 +1880,7 @@ const PopularSection = ({ currencySymbol }) => {
                 style={{
                   left: `${x * 20}%`,
                   top: `${y * 20}%`,
-                  backgroundImage: `url(${coffeeBlastImg})`,
+                  backgroundImage: `url(/assets/cofee.png)`,
                   backgroundSize: '500% 500%',
                   backgroundPosition: `${x * 25}% ${y * 25}%`,
                   willChange: 'transform, opacity'
@@ -1931,7 +1928,12 @@ const BranchesSection = () => (
         ].map((branch, i) => (
           <div key={i} className="bg-[#00754a]/40 p-5 md:p-8 rounded-[30px] md:rounded-[40px] flex items-center gap-4 md:gap-6 hover:bg-[#006241]/60 transition-all cursor-pointer shadow-xl group border border-white/5">
             <div className="w-16 h-16 md:w-20 md:h-20 bg-white/10 rounded-2xl md:rounded-3xl overflow-hidden shadow-inner flex-shrink-0">
-               <img src={`https://images.pexels.com/photos/2067561/pexels-photo-2067561.jpeg?auto=compress&cs=tinysrgb&w=150`} className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
+               <img 
+                 src={`https://images.pexels.com/photos/2067561/pexels-photo-2067561.jpeg?auto=compress&cs=tinysrgb&w=150`} 
+                 className="w-full h-full object-cover group-hover:scale-110 transition-transform" 
+                 referrerPolicy="no-referrer"
+                 alt="Branch"
+               />
             </div>
             <div className="flex flex-col justify-center">
               <h4 className="font-bold text-lg md:text-xl tracking-tight font-serif text-white">{branch.city}</h4>
@@ -2021,7 +2023,12 @@ const ImageTrail = () => {
             style={{ left: item.x, top: item.y }}
           >
             <div className="w-full h-full rounded-[30px] overflow-hidden border border-[#002118]/10 shadow-2xl relative">
-              <img src={item.url} className="w-full h-full object-cover grayscale-[80%] brightness-75" alt="" />
+              <img 
+                src={item.url} 
+                className="w-full h-full object-cover grayscale-[80%] brightness-75" 
+                alt="" 
+                referrerPolicy="no-referrer"
+              />
               <div className="absolute inset-0 bg-[#002118]/5" />
             </div>
           </motion.div>
@@ -3406,6 +3413,7 @@ const AboutPage = ({ settings, currencySymbol }) => {
               src="https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=1200" 
               className="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-1000"
               alt="Coffee roasting process"
+              referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 bg-[#00754a]/5 mix-blend-multiply" />
           </motion.div>
@@ -3448,7 +3456,12 @@ const AboutPage = ({ settings, currencySymbol }) => {
                 className="group cursor-pointer"
               >
                 <div className="aspect-[3/4] overflow-hidden bg-[#f2f0eb] mb-4 md:mb-6 relative">
-                  <img src={item.img} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={item.name} />
+                  <img 
+                    src={item.img} 
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                    alt={item.name} 
+                    referrerPolicy="no-referrer"
+                  />
                   <div className="absolute top-2 md:top-4 left-2 md:left-4 bg-white px-2 md:px-3 py-1 text-[7px] md:text-[8px] font-black uppercase tracking-widest">New</div>
                 </div>
                 <h4 className="text-[10px] md:text-sm font-black uppercase tracking-tight mb-1">{item.name}</h4>
@@ -3512,6 +3525,7 @@ const AboutPage = ({ settings, currencySymbol }) => {
               src="https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=800" 
               className="relative z-10 w-full h-auto rounded-2xl md:rounded-3xl shadow-3xl" 
               alt="Whole beans" 
+              referrerPolicy="no-referrer"
             />
           </motion.div>
         </div>
@@ -3536,7 +3550,12 @@ const AboutPage = ({ settings, currencySymbol }) => {
               </Link>
             </div>
             <div className="absolute bottom-0 right-0 w-32 md:w-48 h-32 md:h-48 translate-x-8 md:translate-x-12 translate-y-8 md:translate-y-12 opacity-0 group-hover:opacity-100 transition-all duration-500">
-               <img src={block.img} className="w-full h-full object-cover rounded-full grayscale" alt="" />
+               <img 
+                 src={block.img} 
+                 className="w-full h-full object-cover rounded-full grayscale" 
+                 alt="" 
+                 referrerPolicy="no-referrer"
+               />
             </div>
           </motion.div>
         ))}
@@ -3594,8 +3613,8 @@ const ShopPage = ({ addToCart, settings, currencySymbol }) => {
 
   // Merge static PRODUCTS with fetchedProducts, giving priority to fetched ones
   const currentProducts = [
-    ...(PRODUCTS[selectedCategory] || []),
-    ...(fetchedProducts[selectedCategory] || [])
+    ...(fetchedProducts[selectedCategory] || []),
+    ...(PRODUCTS[selectedCategory] || [])
   ].filter((product, index, self) => 
     index === self.findIndex((p) => p.name === product.name)
   );
@@ -6211,7 +6230,12 @@ const ContactPage = ({ settings }) => {
         >
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#00d084]/10 blur-[100px] -z-10" />
           
-          <form onSubmit={handleSubmit} className="space-y-8">
+          <form 
+            onSubmit={handleSubmit} 
+            action="https://formspree.io/f/xojlgger"
+            method="POST"
+            className="space-y-8"
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-2">
                 <label className="text-[10px] font-bold tracking-widest uppercase text-white/40 ml-4">Full Name</label>
@@ -7524,7 +7548,12 @@ function AppContent() {
 
                 <div className="flex flex-col md:flex-row h-full">
                   <div className="md:w-1/2 h-[300px] md:h-auto overflow-hidden bg-black/20">
-                    <img src={selectedCartItem.img} alt={selectedCartItem.name} className="w-full h-full object-cover" />
+                    <img 
+                      src={selectedCartItem.img} 
+                      alt={selectedCartItem.name} 
+                      className="w-full h-full object-cover"
+                      referrerPolicy="no-referrer"
+                    />
                   </div>
                   <div className="md:w-1/2 p-10 flex flex-col justify-center">
                     <div className="text-[#00d084] text-[10px] font-black tracking-[0.3em] uppercase mb-4">Product Detail</div>
@@ -7565,7 +7594,7 @@ function AppContent() {
                 {/* Brand Info */}
                 <div className="flex items-start gap-5">
                   <div className="w-12 h-12 bg-white/5 rounded-xl p-2.5 border border-white/10 flex items-center justify-center shadow-2xl flex-shrink-0">
-                    <img src={rashfaLogo} alt="Rashfa Logo" className="w-full h-full object-contain" />
+                    <img src="/assets/LR-removebg-preview.png" alt="Rashfa Logo" className="w-full h-full object-contain" />
                   </div>
                   <div className="flex flex-col">
                     <h3 className="text-white font-['Great_Vibes'] text-2xl leading-none mb-2">

@@ -14,11 +14,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::create([
-            'name' => 'Admin',
-            'email' => 'admin@rashfa.com',
-            'password' => \Illuminate\Support\Facades\Hash::make('password'),
-            'is_admin' => true,
+        $this->call([
+            ProductSeeder::class,
         ]);
+
+        \App\Models\User::updateOrCreate(
+            ['email' => 'admin@rashfa.com'],
+            [
+                'name' => 'Admin',
+                'password' => \Illuminate\Support\Facades\Hash::make('password'),
+                'is_admin' => true,
+            ]
+        );
     }
 }
