@@ -29,7 +29,10 @@
     height: 4px;
     width: 4px;
   }
-  &::-webkit-scrollbar-track {
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
     background: transparent;
   }
   &::-webkit-scrollbar-thumb {
@@ -59,16 +62,135 @@
   animation: marquee 30s linear infinite;
 }
 
+.rashfa-title { 
+  font-family: 'Great Vibes', cursive;
+  font-size: 120px; 
+  font-weight: 400; 
+  color: #00d084;
+  text-shadow: 0 0 20px rgba(0, 208, 132, 0.4);
+  filter: drop-shadow(0 0 10px rgba(0, 208, 132, 0.2));
+  
+  animation: simpleFlow 3s ease-in-out infinite alternate;
+} 
+
+/* Cinematic Preloader Styles */
+.steam-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.steam-particle {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  filter: blur(20px);
+  animation: steamRise var(--duration) ease-out infinite;
+  opacity: 0;
+}
+
+@keyframes steamRise {
+  0% {
+    transform: translateY(100%) scale(1);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-100%) scale(2);
+    opacity: 0;
+  }
+}
+
+.luxury-text-reveal {
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-text-reveal::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: luxuryFlare 3s infinite;
+}
+
+@keyframes luxuryFlare {
+  0% { left: -150%; }
+  100% { left: 150%; }
+}
+
+.rashfa-title.fade-out {
+  animation: 
+    simpleFlow 3s ease-in-out infinite alternate,
+    zoomInAndOut 5.5s ease-in-out forwards;
+}
+
+@keyframes simpleFlow {
+  from {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2), 0 0 20px rgba(0, 208, 132, 0.2);
+    transform: translateY(0);
+  }
+  to {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(0, 208, 132, 0.5);
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes zoomInAndOut {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  15% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  90% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0;
+    filter: blur(10px);
+  }
+}
+
+@keyframes zoomAndFade { 
+  to { 
+    opacity: 0;
+    transform: scale(0.8);
+    filter: blur(10px);
+  } 
+} 
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 ::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #002118;
-}
-::-webkit-scrollbar-thumb {
-  background: #00754a;
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #00d084;
-}
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #002118;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #00754a;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00d084;
+  }

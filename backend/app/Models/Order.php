@@ -20,6 +20,7 @@ class Order extends Model
         'email',
         'phone',
         'address',
+        'wants_receipt',
     ];
 
     public function user()

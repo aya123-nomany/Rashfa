@@ -17,6 +17,12 @@ class ProductController extends Controller
         return response()->json(['data' => Product::all()]);
     }
 
+    public function bestSellers()
+    {
+        $products = Product::orderBy('total_sales', 'desc')->take(5)->get();
+        return response()->json(['data' => $products]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

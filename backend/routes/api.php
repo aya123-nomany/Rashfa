@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/products', [ProductController::class, 'index']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
@@ -38,6 +39,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('/admin/orders/{order}/status', [OrderController::class, 'updateStatus']);
 
     // Resource routes for Admin
+    Route::get('/admin/products/best-sellers', [ProductController::class, 'bestSellers']);
     Route::apiResource('/admin/products', ProductController::class);
     Route::apiResource('/admin/promotions', PromotionController::class);
     Route::apiResource('/admin/employees', EmployeeController::class);
