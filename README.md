@@ -2,7 +2,7 @@
 
 RASHFA is a high-end, modern e-commerce platform designed for a premium coffee brand. It offers a seamless and immersive shopping experience with a focus on rich aesthetics, smooth animations, and user-centric features.
 
-![RASHFA Preview](./screenshot.jpg)
+![RASHFA Preview](frontend/public/interface.PNG)
 
 ## ✨ Key Features
 
@@ -28,8 +28,8 @@ Follow these steps to set up the project locally.
 
 ### 1. Clone the Repository
 ```bash
-git clone <repository-url>
-cd RASHFA
+git clone https://github.com/aya123-nomany/Rashfa.git
+cd Rashfa
 ```
 
 ### 2. Backend Setup (Laravel)
