@@ -22,6 +22,9 @@ import {
 } from 'recharts';
 import { useScroll, useTransform } from 'framer-motion';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000';
+const apiUrl = (path) => `${API_BASE_URL}${path.startsWith('/') ? path : `/${path}`}`;
+
 const BUSINESS_RULES = {
   DELIVERY_FEE: 15,
   FREE_DELIVERY_THRESHOLD: 100,
@@ -2164,7 +2167,7 @@ const LoginPage = ({ login, settings }) => {
     setError('');
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/login', {
+      const response = await fetch(apiUrl('/api/login'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -2483,7 +2486,7 @@ const SignUpPage = ({ login, settings }) => {
     setError('');
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/register', {
+      const response = await fetch(apiUrl('/api/register'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -2884,7 +2887,7 @@ const ProfilePage = ({ user, logout, token, settings, currencySymbol }) => {
     const fetchOrders = async () => {
       if (!token) return;
       try {
-        const response = await fetch('http://127.0.0.1:8000/api/orders', {
+        const response = await fetch(apiUrl('/api/orders'), {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Accept': 'application/json'
@@ -2906,7 +2909,7 @@ const ProfilePage = ({ user, logout, token, settings, currencySymbol }) => {
     const fetchLowStock = async () => {
       if (!token || !user?.is_admin) return;
       try {
-        const response = await fetch('http://127.0.0.1:8000/api/products', {
+        const response = await fetch(apiUrl('/api/products'), {
           headers: { 'Accept': 'application/json' }
         });
         const data = await response.json();
@@ -3583,7 +3586,7 @@ const ShopPage = ({ addToCart, settings, currencySymbol }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/api/products');
+        const response = await fetch(apiUrl('/api/products'));
         const data = await response.json();
         if (response.ok) {
           // Group products by category
@@ -3839,7 +3842,7 @@ const AdminDashboard = ({ token, settings, setSettings, currencySymbol }) => {
 
       const fetchEndpoint = async (url, setter) => {
         try {
-          const res = await fetch(`http://127.0.0.1:8000/api/admin/${url}`, { headers });
+          const res = await fetch(apiUrl(`/api/admin/${url}`), { headers });
           if (res.ok) {
             const data = await res.json();
             setter(data.data);
@@ -3952,8 +3955,8 @@ const AdminDashboard = ({ token, settings, setSettings, currencySymbol }) => {
   const handleSaveEmployee = async () => {
     try {
       const url = editingEmployee 
-        ? `http://127.0.0.1:8000/api/admin/employees/${editingEmployee.id}`
-        : 'http://127.0.0.1:8000/api/admin/employees';
+        ? apiUrl(`/api/admin/employees/${editingEmployee.id}`)
+        : apiUrl('/api/admin/employees');
       
       const response = await fetch(url, {
         method: editingEmployee ? 'PUT' : 'POST',
@@ -3985,7 +3988,7 @@ const AdminDashboard = ({ token, settings, setSettings, currencySymbol }) => {
   const handleDeleteEmployee = async (id) => {
     if (window.confirm('Remove this team member?')) {
       try {
-      const response = await fetch(`http://127.0.0.1:8000/api/admin/employees/${id}`, {
+      const response = await fetch(apiUrl(`/api/admin/employees/${id}`), {
         method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -4031,8 +4034,8 @@ const AdminDashboard = ({ token, settings, setSettings, currencySymbol }) => {
   const handleSavePromo = async () => {
     try {
       const url = editingPromo 
-        ? `http://127.0.0.1:8000/api/admin/promotions/${editingPromo.id}`
-        : 'http://127.0.0.1:8000/api/admin/promotions';
+        ? apiUrl(`/api/admin/promotions/${editingPromo.id}`)
+        : apiUrl('/api/admin/promotions');
       
       const response = await fetch(url, {
         method: editingPromo ? 'PUT' : 'POST',
@@ -4064,7 +4067,7 @@ const AdminDashboard = ({ token, settings, setSettings, currencySymbol }) => {
   const handleDeletePromo = async (id) => {
     if (window.confirm('Delete this promotion?')) {
       try {
-      const response = await fetch(`http://127.0.0.1:8000/api/admin/promotions/${id}`, {
+      const response = await fetch(apiUrl(`/api/admin/promotions/${id}`), {
         method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -4105,7 +4108,7 @@ const AdminDashboard = ({ token, settings, setSettings, currencySymbol }) => {
   const handleSaveStock = async () => {
     try {
       const newStock = parseInt(stockFormData.currentStock) + parseInt(stockFormData.adjustment);
-      const response = await fetch(`http://127.0.0.1:8000/api/admin/products/${stockFormData.productId}`, {
+      const response = await fetch(apiUrl(`/api/admin/products/${stockFormData.productId}`), {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -4168,8 +4171,8 @@ const AdminDashboard = ({ token, settings, setSettings, currencySymbol }) => {
   const handleSaveProduct = async () => {
     try {
       const url = editingProduct 
-        ? `http://127.0.0.1:8000/api/admin/products/${editingProduct.id}`
-        : 'http://127.0.0.1:8000/api/admin/products';
+        ? apiUrl(`/api/admin/products/${editingProduct.id}`)
+        : apiUrl('/api/admin/products');
       
       const response = await fetch(url, {
         method: editingProduct ? 'PUT' : 'POST',
@@ -4214,7 +4217,7 @@ const AdminDashboard = ({ token, settings, setSettings, currencySymbol }) => {
   const handleDeleteProduct = async (productId) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
       try {
-      const response = await fetch(`http://127.0.0.1:8000/api/admin/products/${productId}`, {
+      const response = await fetch(apiUrl(`/api/admin/products/${productId}`), {
         method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -4286,7 +4289,7 @@ const AdminDashboard = ({ token, settings, setSettings, currencySymbol }) => {
 
   const handleStatusUpdate = async (orderId, newStatus) => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/admin/orders/${orderId}/status`, {
+      const response = await fetch(apiUrl(`/api/admin/orders/${orderId}/status`), {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -6476,12 +6479,12 @@ const CheckoutPage = ({ cart, cartTotal, setLastOrder, setCart, user, token, set
 
     try {
       console.log('Placing order...', {
-        url: 'http://127.0.0.1:8000/api/orders',
+        url: apiUrl('/api/orders'),
         token: token ? 'Present' : 'Missing',
         cartCount: cart.length
       });
 
-      const response = await fetch('http://127.0.0.1:8000/api/orders', {
+      const response = await fetch(apiUrl('/api/orders'), {
         method: 'POST',
         signal: controller.signal,
         headers: {
