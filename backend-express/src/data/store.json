@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "id": "3a9a1dcd-6994-4d05-a81a-63a9f5cb6b07",
+      "name": "Admin",
+      "email": "admin@rashfa.com",
+      "password": "$2a$10$9a1Fl5a66RWjKgW7iUOmC.FqL30IJ4r58MssqryT6MiwAcNuT5N8y",
+      "is_admin": true,
+      "created_at": "2026-02-06T17:57:23.870Z"
+    },
+    {
+      "id": "c0082a4f-d9b7-4eb8-a002-0088f34d9fc5",
+      "name": "a",
+      "email": "astra@gmail.com",
+      "password": "$2a$10$k540QHTSKQrZXTFaIcKYiOJw1o.atDuR80hPHuMhkCPDioS83Rzuy",
+      "is_admin": false,
+      "created_at": "2026-02-06T18:02:06.960Z"
+    }
+  ],
+  "products": [],
+  "promotions": [],
+  "employees": [],
+  "orders": []
+}

@@ -17,7 +17,7 @@ RASHFA is a high-end, modern e-commerce platform designed for a premium coffee b
 ## 🛠️ Technology Stack
 
 - **Frontend**: React.js, TailwindCSS, Framer Motion, GSAP, Lucide React, Recharts.
-- **Backend**: Laravel (PHP), MySQL, Sanctum (Authentication).
+- **Backend**: Express.js, JWT Authentication.
 - **State Management**: React Hooks & LocalStorage.
 
 ---
@@ -32,20 +32,18 @@ git clone https://github.com/aya123-nomany/Rashfa.git
 cd Rashfa
 ```
 
-### 2. Backend Setup (Laravel)
+### 2. Backend Setup (Express)
 ```bash
-cd backend
-composer install
+cd backend-express
+npm install
 cp .env.example .env
-php artisan key:generate
-# Configure your database in .env
-php artisan migrate --seed
-php artisan serve
+npm run dev
 ```
 
 ### 3. Frontend Setup (React)
 ```bash
 cd ../frontend
+cp .env.example .env
 npm install
 npm run dev
 ```
