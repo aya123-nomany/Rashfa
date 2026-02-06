@@ -7281,7 +7281,6 @@ function AppContent() {
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [hasLoadedInitially, setHasLoadedInitially] = useState(false);
   const location = useLocation();
-  const [isLocal, setIsLocal] = useState(true);
   const [notifications, setNotifications] = useState([]);
 
   const [lastOrder, setLastOrder] = useState(() => {
@@ -7419,35 +7418,6 @@ function AppContent() {
     
     return () => clearTimeout(timer);
   }, [location.pathname, isHomePage]); // Trigger on any path change
-
-  useEffect(() => {
-    const hostname = window.location.hostname;
-    const isLocalHost = hostname === 'localhost' || hostname === '127.0.0.1';
-    setIsLocal(isLocalHost);
-  }, []);
-
-  if (!isLocal) {
-    return (
-      <div className="min-h-screen bg-[#001a13] flex items-center justify-center p-8 text-center">
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="max-w-md"
-        >
-          <div className="w-24 h-24 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-8 border border-red-500/20">
-            <LogOut size={40} className="text-red-500" />
-          </div>
-          <h1 className="text-4xl font-black text-white mb-4 tracking-tighter">ACCESS DENIED</h1>
-          <p className="text-white/40 text-sm font-bold tracking-widest uppercase leading-relaxed">
-            This application is restricted to local development environments only.
-          </p>
-          <div className="mt-12 pt-8 border-t border-white/5">
-            <Logo className="w-12 h-12 mx-auto opacity-20" />
-          </div>
-        </motion.div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-[#001a13] font-sans selection:bg-[#00d084] selection:text-[#001a13]">
