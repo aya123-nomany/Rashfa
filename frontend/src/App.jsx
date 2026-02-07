@@ -402,14 +402,14 @@ const Marquee = ({ text, reverse = false, tilted = false, isStatic = false }) =>
             <motion.div
               initial={{ x: reverse ? "-100%" : "0" }}
               animate={{ x: reverse ? "0" : "-100%" }}
-              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
             >
               {content}
             </motion.div>
             <motion.div
               initial={{ x: reverse ? "-100%" : "0" }}
               animate={{ x: reverse ? "0" : "-100%" }}
-              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
             >
               {content}
             </motion.div>
@@ -1735,7 +1735,7 @@ const HorizontalGallery = () => {
     
     useFrame((state, delta) => {
       if (ref.current) {
-        ref.current.position.x -= delta * 1.5;
+        ref.current.position.x -= delta * 0.7;
         if (ref.current.position.x < -totalWidth / 2) {
           ref.current.position.x += totalWidth;
         }
@@ -7363,11 +7363,6 @@ function AppContent() {
   const addToCart = (product, customizations = {}) => {
     if (!settings.acceptingOrders) {
       addNotification('Ordering is currently disabled', 'error');
-      return;
-    }
-    if (!user) {
-      addNotification('Please log in to add items to your cart', 'error');
-      navigate('/login');
       return;
     }
     try {
