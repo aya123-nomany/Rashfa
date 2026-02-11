@@ -2000,6 +2000,7 @@ const ImageTrail = () => {
             animate={{ opacity: 0.3, scale: 1, rotate: item.rotation }}
             exit={{ opacity: 0, scale: 1.2, filter: "blur(20px)", rotate: item.rotation + 10 }}
             transition={{ duration: 1.2, ease: "circOut" }}
+            style={{ left: item.x, top: item.y }}
             className="absolute w-40 h-52 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
           >
             <div className="w-full h-full rounded-2xl overflow-hidden shadow-2xl border border-white/10">
