@@ -4966,7 +4966,7 @@ const AdminDashboard = ({ token, settings, setSettings, currencySymbol }) => {
                   >
                     <div className="h-48 relative overflow-hidden">
                       <img 
-                        src={product.image ? (product.image.startsWith('http') ? product.image : apiUrl(`/assets/${product.image}`)) : (product.img || apiUrl('/assets/cofee.png'))} 
+                        src={product.image ? (product.image.startsWith('http') ? product.image : apiUrl(product.image)) : (product.img || apiUrl('/assets/cofee.png'))} 
                         alt={product.name} 
                         className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700" 
                       />
