@@ -1,7 +1,8 @@
 import React, { Suspense, useRef, useMemo, useState, useEffect, useLayoutEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation, useNavigate, Navigate } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, PerspectiveCamera, useTexture, Environment, ContactShadows, OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 import gsap from 'gsap';
@@ -20,9 +21,32 @@ import {
   LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, 
   Tooltip, ResponsiveContainer, BarChart, Bar, Cell 
 } from 'recharts';
-import { useScroll, useTransform } from 'framer-motion';
+import coffeeImg from './assets/0a2e60c15f4dd0e82f6f58f42f913955-removebg-preview.png';
+import croissantImg from './assets/croissant.png';
+import firstImg from './assets/1.png';
+import rashfaLogo from './assets/LR-removebg-preview.png';
+import ph1 from './assets/ph1.jpg';
+import ph2 from './assets/ph2.jpg';
+import ph3 from './assets/ph3.jpg';
+import ph4 from './assets/ph4.jpg';
+import ph5 from './assets/ph5.jpg';
+import ph6 from './assets/ph6.jpg';
+import ph7 from './assets/ph7.jpg';
+import americanoImg from './assets/americano.jpg';
+import latteImg from './assets/latte.jpg';
+import teasImg from './assets/teas.jpg';
+import muffinsImg from './assets/chocolate muffins.jpg';
+import icedAmericanoImg from './assets/iced americcano.jpg';
+import mochaImg from './assets/mocha.jpg';
+import juiceImg from './assets/juice.jpg';
+import espressoImg from './assets/espresso.jpg';
+import cappuccinoImg from './assets/cappuccino.jpg';
+import blueberryMuffinsImg from './assets/BLUEBERRY MUFFINS.jpg';
+import mineralWaterImg from './assets/mineral water.jpg';
+import almondCroissantImg from './assets/ALMOND CROISSANT.jpg';
+import chocolateCroissantImg from './assets/CHOCOLATE CROISSANT.jpg';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000';
 const apiUrl = (path) => `${API_BASE_URL}${path.startsWith('/') ? path : `/${path}`}`;
 
 const BUSINESS_RULES = {
@@ -82,29 +106,28 @@ const CUSTOMIZATION_OPTIONS = {
     sugar: ["No Sugar", "Light Sugar", "Normal", "Extra Sugar"]
   }
 };
-
-const PRODUCTS = {
+const MENU_ITEMS = {
   [CATEGORIES.COFFEE]: [
-    { id: 'c1', name: "ESPRESSO", price: 15, img: "/assets/espresso.jpg", desc: "Intense and aromatic single shot", volume: "30ml", allergens: ["None"], nutrition: { cal: 5, caffeine: "63mg" } },
-    { id: 'c2', name: "AMERICANO", price: 18, img: "/assets/americano.jpg", desc: "Smooth long black coffee", volume: "60ml", allergens: ["None"], nutrition: { cal: 5, caffeine: "80mg" } },
-    { id: 'c3', name: "CAPPUCCINO", price: 25, img: "/assets/cappuccino.jpg", desc: "Equal parts espresso, milk & foam", volume: "200ml", allergens: ["Lactose"], nutrition: { cal: 120, protein: "8g" } },
-    { id: 'c4', name: "LATTE", price: 28, img: "/assets/latte.jpg", desc: "Espresso with steamed milk", volume: "250ml", allergens: ["Lactose"], nutrition: { cal: 150, protein: "9g" } },
-    { id: 'c5', name: "ICED AMERICANO", price: 20, img: "/assets/iced americcano.jpg", desc: "Espresso diluted with hot water", volume: "200ml", allergens: ["None"], nutrition: { cal: 10, caffeine: "120mg" } },
-    { id: 'c6', name: "MOCHA", price: 30, img: "/assets/mocha.jpg", desc: "Espresso with chocolate and milk", volume: "250ml", allergens: ["Lactose", "Cacao"], nutrition: { cal: 230, sugar: "25g" } }
+    { id: 'c1', name: "ESPRESSO", price: 15, img: espressoImg, desc: "Intense and aromatic single shot", volume: "30ml", allergens: ["None"], nutrition: { cal: 5, caffeine: "63mg" } },
+    { id: 'c2', name: "AMERICANO", price: 18, img: americanoImg, desc: "Smooth long black coffee", volume: "60ml", allergens: ["None"], nutrition: { cal: 5, caffeine: "80mg" } },
+    { id: 'c3', name: "CAPPUCCINO", price: 25, img: cappuccinoImg, desc: "Equal parts espresso, milk & foam", volume: "200ml", allergens: ["Lactose"], nutrition: { cal: 120, protein: "8g" } },
+    { id: 'c4', name: "CAFE LATTE", price: 22, img: latteImg, desc: "Espresso with steamed milk", volume: "250ml", allergens: ["Lactose"], nutrition: { cal: 150, protein: "10g" } },
+    { id: 'c5', name: "ICED AMERICANO", price: 20, img: icedAmericanoImg, desc: "Espresso diluted with hot water", volume: "200ml", allergens: ["None"], nutrition: { cal: 10, caffeine: "120mg" } },
+    { id: 'c6', name: "MOCHA", price: 30, img: mochaImg, desc: "Espresso with chocolate and milk", volume: "250ml", allergens: ["Lactose", "Cacao"], nutrition: { cal: 230, sugar: "25g" } }
   ],
   [CATEGORIES.COLD]: [
-    { id: 'b2', name: "JUICES", price: 25, img: "/assets/juice.jpg", desc: "Freshly squeezed seasonal fruits", volume: "330ml", allergens: ["None"], nutrition: { cal: 140, vitC: "80%" } },
-    { id: 'b3', name: "MINERAL WATERS", price: 10, img: "/assets/mineral water.jpg", desc: "Chilled natural mineral water", volume: "500ml", allergens: ["None"], nutrition: { cal: 0, ph: "7.2" } }
+    { id: 'b2', name: "JUICES", price: 25, img: juiceImg, desc: "Freshly squeezed seasonal fruits", volume: "330ml", allergens: ["None"], nutrition: { cal: 140, vitC: "80%" } },
+    { id: 'b3', name: "MINERAL WATERS", price: 10, img: mineralWaterImg, desc: "Chilled natural mineral water", volume: "500ml", allergens: ["None"], nutrition: { cal: 0, ph: "7.2" } }
   ],
   [CATEGORIES.TEAS]: [
-    { id: 'b1', name: "TEAS", price: 15, img: "/assets/teas.jpg", desc: "Premium green or black tea selection", volume: "250ml", allergens: ["None"], nutrition: { cal: 0, sugar: "0g" } }
+    { id: 'b1', name: "TEAS", price: 15, img: teasImg, desc: "Premium green or black tea selection", volume: "250ml", allergens: ["None"], nutrition: { cal: 0, sugar: "0g" } }
   ],
   [CATEGORIES.BAKERY]: [
-    { id: 'cr1', name: "CLASSIC CROISSANT", price: 15, img: "/assets/croissant.png", desc: "Buttery and flaky classic croissant", allergens: ["Lactose", "Gluten"], nutrition: { cal: 230 } },
-    { id: 'cr2', name: "ALMOND CROISSANT", price: 20, img: "/assets/ALMOND CROISSANT.jpg", desc: "Filled with almond cream and topped with flakes", allergens: ["Lactose", "Gluten", "Nuts"], nutrition: { cal: 310 } },
-    { id: 'cr3', name: "CHOCOLATE CROISSANT", price: 18, img: "/assets/CHOCOLATE CROISSANT.jpg", desc: "French pastry with chocolate filling", allergens: ["Lactose", "Gluten"], nutrition: { cal: 280 } },
-    { id: 'p1', name: "CHOCOLATE MUFFINS", price: 22, img: "/assets/chocolate muffins.jpg", desc: "Rich chocolate muffins with chips", allergens: ["Lactose", "Gluten"], nutrition: { cal: 350 } },
-    { id: 'p2', name: "BLUEBERRY MUFFINS", price: 20, img: "/assets/BLUEBERRY MUFFINS.jpg", desc: "Fresh blueberry muffins", allergens: ["Lactose", "Gluten"], nutrition: { cal: 310 } },
+    { id: 'cr1', name: "CLASSIC CROISSANT", price: 15, img: croissantImg, desc: "Buttery and flaky classic croissant", allergens: ["Lactose", "Gluten"], nutrition: { cal: 230 } },
+    { id: 'cr2', name: "ALMOND CROISSANT", price: 20, img: almondCroissantImg, desc: "Filled with almond cream and topped with flakes", allergens: ["Lactose", "Gluten", "Nuts"], nutrition: { cal: 310 } },
+    { id: 'cr3', name: "CHOCOLATE CROISSANT", price: 18, img: chocolateCroissantImg, desc: "French pastry with chocolate filling", allergens: ["Lactose", "Gluten"], nutrition: { cal: 280 } },
+    { id: 'p1', name: "CHOCOLATE MUFFINS", price: 22, img: muffinsImg, desc: "Rich chocolate muffins with chips", allergens: ["Lactose", "Gluten"], nutrition: { cal: 350 } },
+    { id: 'p2', name: "BLUEBERRY MUFFINS", price: 20, img: blueberryMuffinsImg, desc: "Fresh blueberry muffins", allergens: ["Lactose", "Gluten"], nutrition: { cal: 310 } },
     { id: 'p3', name: "Waffles", price: 25, img: "/assets/Waffles.jpg", desc: "Delicious warm waffles", allergens: ["Lactose", "Gluten"], nutrition: { cal: 280 } }
   ]
 };
@@ -278,24 +301,13 @@ const PageLoader = () => {
 
 const HomeInitialLoader = () => {
   const [stage, setStage] = useState('typing'); // 'typing' -> 'formed' -> 'exit'
-  const [progress, setProgress] = useState(0);
   const letters = "Rashfa".split("");
 
   useEffect(() => {
-    // Progress bar animation
-    const progressInterval = setInterval(() => {
-      setProgress(prev => {
-        if (prev < 100) return prev + 1;
-        clearInterval(progressInterval);
-        return 100;
-      });
-    }, 45); // Roughly 4.5 seconds total
-
     const formedTimeout = setTimeout(() => setStage('formed'), 2500);
     const exitTimeout = setTimeout(() => setStage('exit'), 4500);
 
     return () => {
-      clearInterval(progressInterval);
       clearTimeout(formedTimeout);
       clearTimeout(exitTimeout);
     };
@@ -342,6 +354,7 @@ const HomeInitialLoader = () => {
     <>
       <style>
         {`
+          @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
           .font-rashfa {
             font-family: 'Great Vibes', cursive;
           }
@@ -424,21 +437,19 @@ const Marquee = ({ text, reverse = false, tilted = false, isStatic = false }) =>
   );
 };
 
-const FloatingBeans = () => {
-  const beans = useMemo(() => {
-    return Array.from({ length: 15 }).map(() => ({
-      position: [(Math.random() - 0.5) * 12, (Math.random() - 0.5) * 12, (Math.random() - 0.5) * 8],
-      rotation: [Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI],
-      scale: 0.08 + Math.random() * 0.15,
-      speed: 0.1 + Math.random() * 0.3
-    }));
-  }, []);
+const STATIC_BEANS = Array.from({ length: 15 }).map(() => ({
+  position: [(Math.random() - 0.5) * 12, (Math.random() - 0.5) * 12, (Math.random() - 0.5) * 8],
+  rotation: [Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI],
+  scale: 0.08 + Math.random() * 0.15,
+  speed: 0.1 + Math.random() * 0.3
+}));
 
+const FloatingBeans = () => {
   const ref = useRef();
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
     ref.current.children.forEach((child, i) => {
-      const b = beans[i];
+      const b = STATIC_BEANS[i];
       child.position.y += Math.sin(t * b.speed + i) * 0.005;
       child.rotation.x += 0.005;
       child.rotation.y += 0.005;
@@ -447,7 +458,7 @@ const FloatingBeans = () => {
 
   return (
     <group ref={ref}>
-      {beans.map((b, i) => (
+      {STATIC_BEANS.map((b, i) => (
         <mesh key={i} position={b.position} rotation={b.rotation} scale={b.scale}>
           <sphereGeometry args={[1, 16, 16]} />
           <meshStandardMaterial color="#2d1b0f" roughness={0.4} metalness={0.1} />
@@ -540,11 +551,11 @@ const ThreeDDrink = ({ selectedImg }) => {
   );
 };
 
-const Logo = ({ className = "w-12 h-12" }) => (
+const Logo = () => (
   <motion.div
     whileHover={{ scale: 1.02, y: -2 }}
     whileTap={{ scale: 0.98 }}
-    className={`relative flex items-center justify-center ${className}`}
+      src={rashfaLogo} 
   >
     <img 
       src="/assets/LR-removebg-preview.png" 
@@ -554,25 +565,22 @@ const Logo = ({ className = "w-12 h-12" }) => (
   </motion.div>
 );
 
-const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, settings }) => {
+const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, settings, isCartOpen, setIsCartOpen }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
 
-  useEffect(() => {
+  const searchResults = useMemo(() => {
     if (searchQuery.trim().length > 1) {
       const query = searchQuery.toLowerCase();
-      const allProducts = Object.values(PRODUCTS).flat();
-      const filtered = allProducts.filter(p => 
+      const allProducts = Object.values(MENU_ITEMS).flat();
+      return allProducts.filter(p => 
         p.name.toLowerCase().includes(query) || 
         p.desc.toLowerCase().includes(query)
       );
-      setSearchResults(filtered);
-    } else {
-      setSearchResults([]);
     }
+    return [];
   }, [searchQuery]);
 
   useEffect(() => {
@@ -586,7 +594,7 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, sett
     }
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isSearchOpen]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  
   const [isLocationsOpen, setIsLocationsOpen] = useState(false);
           const [locationType, setLocationType] = useState('pickup'); // 'pickup' or 'delivery'
           const [selectedStore, setSelectedStore] = useState(null);
@@ -601,11 +609,15 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, sett
   const [hoveredLink, setHoveredLink] = useState(null);
 
   useEffect(() => {
-    setIsMobileMenuOpen(false);
-    setIsSearchOpen(false);
-    setIsCartOpen(false);
-    setIsLocationsOpen(false);
-  }, [location]);
+    // Close all menus on navigation
+    const timer = setTimeout(() => {
+      setIsMobileMenuOpen(false);
+      setIsSearchOpen(false);
+      setIsCartOpen(false);
+      setIsLocationsOpen(false);
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [location, setIsCartOpen]);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -630,97 +642,85 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, sett
 
   return (
     <div className="absolute inset-x-0 top-0 z-[9998] pointer-events-none">
-      <div className="px-4 py-6">
+      <div className="px-4 py-8">
         <motion.nav 
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className={`mx-auto max-w-7xl pointer-events-auto relative py-3 md:py-4 px-4 md:px-10 rounded-[30px] md:rounded-[40px] transition-all duration-500 border ${
+          className={`mx-auto max-w-7xl pointer-events-auto relative py-4 px-6 md:px-12 rounded-[50px] transition-all duration-500 border ${
             isScrolled 
               ? isLightPage 
-                ? "bg-white/90 backdrop-blur-2xl shadow-2xl shadow-[#002118]/5 border-[#002118]/10" 
-                : "bg-[#001a13]/90 backdrop-blur-2xl shadow-2xl shadow-black/20 border-white/20"
-              : location.pathname === '/shop'
-                ? "bg-[#001a13]/80 backdrop-blur-xl border-white/20 shadow-2xl shadow-black/40"
-                : "bg-white/5 backdrop-blur-sm border-white/10"
+                ? "bg-white/80 backdrop-blur-2xl shadow-2xl shadow-[#002118]/5 border-[#002118]/10" 
+                : "bg-[#001a13]/80 backdrop-blur-2xl shadow-2xl shadow-black/20 border-white/10"
+              : "bg-white/5 backdrop-blur-md border-white/10"
           }`}
         >
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4 md:gap-8">
-            <Link to="/" className="group flex items-center gap-2 md:gap-4">
-              <div className="relative">
-                <Logo className="w-12 h-12 md:w-16 md:h-16 transition-transform duration-500 group-hover:rotate-[360deg]" />
-                <motion.div 
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                  className={`absolute inset-0 blur-2xl rounded-full -z-10 ${isLightPage ? 'bg-[#00754a]/20' : 'bg-[#00d084]/30'}`}
-                />
-              </div>
-              <span className={`text-2xl md:text-4xl hidden lg:block ${isLightPage ? 'text-[#002118]' : 'text-white'}`} style={{ fontFamily: "'Great Vibes', cursive" }}>{settings.storeName}</span>
-            </Link>
+          {/* Logo Section */}
+          <Link to="/" className="group flex items-center gap-2">
+            <span className={`text-3xl md:text-5xl ${isLightPage ? 'text-[#002118]' : 'text-white'}`} style={{ fontFamily: "'Great Vibes', cursive" }}>Rashfa</span>
+          </Link>
 
-            <div className={`hidden md:flex items-center gap-2 p-1.5 rounded-full border backdrop-blur-sm ${
-              isLightPage ? 'bg-[#002118]/5 border-[#002118]/5' : 'bg-white/5 border-white/5'
-            }`}>
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  onMouseEnter={() => setHoveredLink(link.name)}
-                  onMouseLeave={() => setHoveredLink(null)}
-                  className={`relative px-5 py-2 rounded-full text-[10px] font-bold tracking-widest uppercase transition-all duration-300 ${
-                    location.pathname === link.path 
-                      ? "text-white" 
-                      : isLightPage 
-                        ? "text-[#002118]/60 hover:text-[#002118]" 
-                        : "text-white/60 hover:text-white"
-                  }`}
-                >
-                  <span className="relative z-10">{link.name}</span>
-                  {location.pathname === link.path && (
-                    <motion.div 
-                      layoutId="navActive"
-                      className={`absolute inset-0 rounded-full ${isLightPage ? 'bg-[#00754a]' : 'bg-[#00d084]'}`}
-                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                    />
-                  )}
-                  {hoveredLink === link.name && location.pathname !== link.path && (
-                    <motion.div 
-                      layoutId="navHover"
-                      className={`absolute inset-0 rounded-full ${isLightPage ? 'bg-[#002118]/10' : 'bg-white/10'}`}
-                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                    />
-                  )}
-                </Link>
-              ))}
-            </div>
+          {/* Navigation Pill */}
+          <div className={`hidden md:flex items-center gap-1 p-1.5 rounded-full border backdrop-blur-md ${
+            isLightPage ? 'bg-[#002118]/5 border-[#002118]/10' : 'bg-white/5 border-white/10'
+          }`}>
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                onMouseEnter={() => setHoveredLink(link.name)}
+                onMouseLeave={() => setHoveredLink(null)}
+                className={`relative px-7 py-2.5 rounded-full text-[11px] font-black tracking-[0.2em] uppercase transition-all duration-300 ${
+                  location.pathname === link.path 
+                    ? "text-[#001a13]" 
+                    : isLightPage 
+                      ? "text-[#002118]/60 hover:text-[#002118]" 
+                      : "text-white/60 hover:text-white"
+                }`}
+              >
+                <span className="relative z-10">{link.name}</span>
+                {location.pathname === link.path && (
+                  <motion.div 
+                    layoutId="navActive"
+                    className={`absolute inset-0 rounded-full ${isLightPage ? 'bg-[#00754a]' : 'bg-[#00d084]'}`}
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  />
+                )}
+                {hoveredLink === link.name && location.pathname !== link.path && (
+                  <motion.div 
+                    layoutId="navHover"
+                    className={`absolute inset-0 rounded-full ${isLightPage ? 'bg-[#002118]/10' : 'bg-white/10'}`}
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  />
+                )}
+              </Link>
+            ))}
           </div>
 
-          <div className="flex items-center gap-6">
-            <div className={`flex items-center gap-2 md:gap-4 px-2 md:px-4 py-2 rounded-full border ${
-              isLightPage ? 'bg-[#002118]/5 border-[#002118]/5' : 'bg-white/5 border-white/5'
-            }`}>
+          {/* Actions & CTA */}
+          <div className="flex items-center gap-8">
+            <div className="flex items-center gap-4">
               {[
-                { icon: Search, label: 'Search', onClick: () => setIsSearchOpen(true), hideOnMobile: true },
-                { icon: MapPin, label: 'Locations', onClick: () => setIsLocationsOpen(true), hideOnMobile: true },
+                { icon: Search, label: 'Search', onClick: () => setIsSearchOpen(true) },
+                { icon: MapPin, label: 'Locations', onClick: () => setIsLocationsOpen(true) },
                 { icon: ShoppingCart, label: 'Cart', badge: cartCount > 0 ? cartCount.toString() : null, onClick: () => setIsCartOpen(true) },
-                ...(user ? [{ icon: User, label: 'Profile', link: '/profile', hideOnMobile: true }] : [])
               ].map((item, i) => {
                 const Icon = item.icon;
-                const content = (
+                return (
                   <motion.div 
                     key={i}
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={item.onClick}
-                    className={`relative p-2 cursor-pointer group ${item.hideOnMobile ? 'hidden md:block' : 'block'}`}
+                    className="relative p-2 cursor-pointer group hidden md:block"
                   >
-                    <Icon className={`w-4 h-4 transition-colors ${
+                    <Icon className={`w-5 h-5 transition-colors ${
                       isLightPage 
                         ? "text-[#002118]/60 group-hover:text-[#00754a]" 
                         : "text-white/60 group-hover:text-[#00d084]"
                     }`} />
                     {item.badge && (
-                      <span className={`absolute top-0 right-0 text-[7px] font-black w-3.5 h-3.5 rounded-full flex items-center justify-center border-2 ${
+                      <span className={`absolute -top-1 -right-1 text-[8px] font-black w-4 h-4 rounded-full flex items-center justify-center border-2 ${
                         isLightPage 
                           ? 'bg-[#00754a] text-white border-[#f2f0eb]' 
                           : 'bg-[#00d084] text-[#001a13] border-[#001a13]'
@@ -730,21 +730,20 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, sett
                     )}
                   </motion.div>
                 );
-                return item.link ? <Link key={i} to={item.link} className={item.hideOnMobile ? 'hidden md:block' : 'block'}>{content}</Link> : content;
               })}
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <motion.button
                 onClick={() => user ? logout() : navigate('/signup')}
-                whileHover={{ scale: 1.05, boxShadow: isLightPage ? "0 0 20px rgba(0, 117, 74, 0.2)" : "0 0 20px rgba(0, 208, 132, 0.3)" }}
+                whileHover={{ scale: 1.05, boxShadow: isLightPage ? "0 10px 30px rgba(0, 117, 74, 0.3)" : "0 10px 30px rgba(0, 208, 132, 0.4)" }}
                 whileTap={{ scale: 0.95 }}
-                className={`hidden sm:flex items-center gap-2 px-8 py-3 rounded-full text-[10px] font-black tracking-widest transition-all ${
+                className={`hidden sm:flex items-center gap-3 px-8 py-3.5 rounded-full text-[11px] font-black tracking-[0.2em] transition-all uppercase ${
                   isLightPage ? 'bg-[#00754a] text-white' : 'bg-[#00d084] text-[#001a13]'
                 }`}
               >
                 {user ? 'LOGOUT' : 'JOIN NOW'}
-                {user ? <LogOut size={14} strokeWidth={3} /> : <ChevronRight size={14} strokeWidth={3} />}
+                {user ? <LogOut size={16} strokeWidth={3} /> : <ChevronRight size={16} strokeWidth={3} />}
               </motion.button>
               
               <motion.div 
@@ -1339,30 +1338,27 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, sett
   };
   
   const Hero = ({ addToCart, settings, currencySymbol }) => {
-  const { scrollY } = useScroll();
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
-
   const heroImages = [
     { 
-      url: "/assets/0a2e60c15f4dd0e82f6f58f42f913955-removebg-preview.png", 
+      url: coffeeImg, 
       name: "FRAPPUCCINO DELIGHT", 
       price: "25", 
       tags: ["BEST RATING"],
       floatingLabel: "FRAPPUCCINO",
       floatingSubLabel: "COLD BREW BASE",
-      description: "Indulge in the perfect blend of coffee and art - the coffee moment with a passion for Frappuccino delight."
+      description: "A perfect blend of chilled coffee and creamy texture, topped with our signature froth."
     },
     { 
-      url: "/assets/croissant.png", 
+      url: croissantImg, 
       name: "ARTISAN CROISSANT", 
       price: "15", 
       tags: ["FRESHLY BAKED"],
       floatingLabel: "CROISSANT",
       floatingSubLabel: "FRESHLY BAKED",
-      description: "Our signature golden-brown, flaky croissant made with pure butter and traditional techniques."
+      description: "Flaky, buttery, and golden-brown. Our croissants are baked fresh every morning using traditional French methods."
     },
     { 
-      url: "/assets/1.png", 
+      url: firstImg, 
       name: "LATTE ART SPECIAL", 
       price: "22", 
       tags: ["HOUSE SPECIAL"],
@@ -1374,7 +1370,7 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, sett
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [lastInteraction, setLastInteraction] = useState(Date.now());
+  const [lastInteraction, setLastInteraction] = useState(() => Date.now());
   const selectedItem = heroImages[activeIndex];
 
   useEffect(() => {
@@ -1458,7 +1454,7 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, sett
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className={`w-10 h-10 md:w-14 md:h-14 rounded-2xl overflow-hidden cursor-pointer border-2 transition-all duration-500 ${
-                    activeIndex === i ? 'border-[#00d084] scale-105 shadow-lg shadow-[#00d084]/20' : 'border-white/5 opacity-30 hover:opacity-100'
+                  <img src={img.url} className="w-full h-full object-cover" />
                   }`}
                 >
                   <img src={img.url} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
@@ -1509,7 +1505,6 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, sett
             <div className="absolute inset-0 bg-[#00d084]/20 blur-[120px] rounded-full" style={{ transform: "translateZ(-50px)" }}></div>
             <img 
               src={selectedItem.url} 
-              alt={selectedItem.name} 
               className="relative w-full drop-shadow-[0_50px_100px_rgba(0,0,0,0.5)]" 
               style={{ transform: "translateZ(50px)" }}
               referrerPolicy="no-referrer"
@@ -1679,9 +1674,9 @@ const TestimonialsSection = () => {
                   <p className="text-lg md:text-xl text-[#d4e9e2] font-medium italic mb-auto leading-relaxed font-serif">
                     "{item.text}"
                   </p>
-                  
-                  <div className="flex items-center gap-5 mt-10">
-                    <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-[#00d084]/30 group-hover:border-[#00d084] transition-colors">
+
+                  <div className="flex items-center gap-4 mt-8">
+                    <div className="w-12 h-12 rounded-full overflow-hidden border border-[#00d084]/20">
                       <img 
                         src={item.img} 
                         alt={item.name} 
@@ -1704,35 +1699,17 @@ const TestimonialsSection = () => {
   );
 };
 
-const GALLERY_IMAGES = [
-  "/assets/ph1.jpg",
-  "/assets/ph2.jpg",
-  "/assets/ph3.jpg",
-  "/assets/ph4.jpg",
-  "/assets/ph5.jpg",
-  "/assets/ph6.jpg",
-  "/assets/ph7.jpg"
-];
+const GALLERY_IMAGES = [ph1, ph2, ph3, ph4, ph5, ph6, ph7];
 
 const HorizontalGallery = () => {
   const ImageItem = ({ url, index, total }) => {
     const ref = useRef();
     const texture = useTexture(url);
     
-    // Ensure texture is loaded correctly
-    useEffect(() => {
-      if (texture) {
-        texture.minFilter = THREE.LinearFilter;
-        texture.magFilter = THREE.LinearFilter;
-        texture.needsUpdate = true;
-      }
-    }, [texture]);
-
-    const { viewport } = useThree();
     const width = 4;
     const gap = 0.5;
     const totalWidth = (width + gap) * total;
-    
+
     useFrame((state, delta) => {
       if (ref.current) {
         ref.current.position.x -= delta * 0.7;
@@ -1769,7 +1746,7 @@ const HorizontalGallery = () => {
         </motion.h2>
       </div>
       <div className="w-full h-full cursor-grab active:cursor-grabbing">
-        <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 10], fov: 35 }}>
+        <Canvas>
           <Suspense fallback={null}>
             <group>
               {GALLERY_IMAGES.map((url, i) => (
@@ -1838,7 +1815,7 @@ const QualitySection = () => (
   </section>
 );
 
-const PopularSection = ({ currencySymbol }) => {
+const PopularSection = () => {
   const blastRef = useRef(null);
 
   useLayoutEffect(() => {
@@ -1929,8 +1906,8 @@ const BranchesSection = () => (
           { city: "RABAT - AGDAL", addr: "Arribat Center, Agdal, Rabat" },
           { city: "TANGER - CITY CENTER", addr: "Tanger City Center, Place du Maghreb" }
         ].map((branch, i) => (
-          <div key={i} className="bg-[#00754a]/40 p-5 md:p-8 rounded-[30px] md:rounded-[40px] flex items-center gap-4 md:gap-6 hover:bg-[#006241]/60 transition-all cursor-pointer shadow-xl group border border-white/5">
-            <div className="w-16 h-16 md:w-20 md:h-20 bg-white/10 rounded-2xl md:rounded-3xl overflow-hidden shadow-inner flex-shrink-0">
+          <div key={i} className="flex gap-4 md:gap-6 p-4 md:p-6 bg-white/5 rounded-3xl border border-white/5 hover:border-[#00d084]/20 transition-all group">
+            <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden flex-shrink-0">
                <img 
                  src={`https://images.pexels.com/photos/2067561/pexels-photo-2067561.jpeg?auto=compress&cs=tinysrgb&w=150`} 
                  className="w-full h-full object-cover group-hover:scale-110 transition-transform" 
@@ -1949,22 +1926,22 @@ const BranchesSection = () => (
   </section>
 );
 
+const TRAIL_IMAGES = [
+  "https://images.pexels.com/photos/2156681/pexels-photo-2156681.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/230588/pexels-photo-230588.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/302904/pexels-photo-302904.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/414645/pexels-photo-414645.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/894612/pexels-photo-894612.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/1235706/pexels-photo-1235706.jpeg?auto=compress&cs=tinysrgb&w=400"
+];
+
 const ImageTrail = () => {
   const [items, setItems] = useState([]);
   const containerRef = useRef(null);
   const lastPos = useRef({ x: 0, y: 0 });
   
-  const images = [
-    "https://images.pexels.com/photos/2156681/pexels-photo-2156681.jpeg?auto=compress&cs=tinysrgb&w=400",
-    "https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=400",
-    "https://images.pexels.com/photos/230588/pexels-photo-230588.jpeg?auto=compress&cs=tinysrgb&w=400",
-    "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=400",
-    "https://images.pexels.com/photos/302904/pexels-photo-302904.jpeg?auto=compress&cs=tinysrgb&w=400",
-    "https://images.pexels.com/photos/414645/pexels-photo-414645.jpeg?auto=compress&cs=tinysrgb&w=400",
-    "https://images.pexels.com/photos/894612/pexels-photo-894612.jpeg?auto=compress&cs=tinysrgb&w=400",
-    "https://images.pexels.com/photos/1235706/pexels-photo-1235706.jpeg?auto=compress&cs=tinysrgb&w=400"
-  ];
-
   useEffect(() => {
     const handleMove = (e) => {
       if (!containerRef.current) return;
@@ -1987,7 +1964,7 @@ const ImageTrail = () => {
             id: Date.now(),
             x,
             y,
-            url: images[Math.floor(Math.random() * images.length)],
+            url: TRAIL_IMAGES[Math.floor(Math.random() * TRAIL_IMAGES.length)],
             rotation: Math.random() * 30 - 15
           };
           
@@ -2023,9 +2000,8 @@ const ImageTrail = () => {
             exit={{ opacity: 0, scale: 1.2, filter: "blur(20px)", rotate: item.rotation + 10 }}
             transition={{ duration: 1.2, ease: "circOut" }}
             className="absolute w-40 h-52 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-            style={{ left: item.x, top: item.y }}
           >
-            <div className="w-full h-full rounded-[30px] overflow-hidden border border-[#002118]/10 shadow-2xl relative">
+            <div className="w-full h-full rounded-2xl overflow-hidden shadow-2xl border border-white/10">
               <img 
                 src={item.url} 
                 className="w-full h-full object-cover grayscale-[80%] brightness-75" 
@@ -2138,7 +2114,7 @@ const HomePage = ({ addToCart, settings, currencySymbol }) => (
     <Marquee text="Join our community • Special Offers • New Arrivals • Limited Edition" reverse={true} tilted={true} isStatic={true} />
     <QualitySection />
     <RulesSection currencySymbol={currencySymbol} settings={settings} />
-    <PopularSection currencySymbol={currencySymbol} />
+    <PopularSection />
     <BranchesSection />
   </>
 );
@@ -2189,7 +2165,7 @@ const LoginPage = ({ login, settings }) => {
           setError(data.message || 'Login failed. Please check your credentials.');
         }
       }
-    } catch (err) {
+    } catch {
       setError('Connection error. Please try again later.');
     } finally {
       setLoading(false);
@@ -2513,7 +2489,7 @@ const SignUpPage = ({ login, settings }) => {
           setError(data.message || 'Registration failed. Please try again.');
         }
       }
-    } catch (err) {
+    } catch {
       setError('Connection error. Please try again later.');
     } finally {
       setLoading(false);
@@ -2798,12 +2774,11 @@ const SignUpPage = ({ login, settings }) => {
   );
 };
 
-const ProfilePage = ({ user, logout, token, settings, currencySymbol }) => {
+const ProfilePage = ({ user, logout, token, currencySymbol }) => {
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('orders');
-  const [lowStockItems, setLowStockItems] = useState([]);
   const [profilePic, setProfilePic] = useState(() => {
     return localStorage.getItem(`profile_pic_${user?.id}`) || null;
   });
@@ -2844,11 +2819,6 @@ const ProfilePage = ({ user, logout, token, settings, currencySymbol }) => {
       };
       reader.readAsDataURL(file);
     }
-  };
-
-  const removeProfilePic = () => {
-    setProfilePic(null);
-    localStorage.removeItem(`profile_pic_${user?.id}`);
   };
 
   const addAddress = (e) => {
@@ -2915,7 +2885,6 @@ const ProfilePage = ({ user, logout, token, settings, currencySymbol }) => {
         const data = await response.json();
         if (response.ok) {
           const lowStock = data.data.filter(p => p.stock <= 5);
-          setLowStockItems(lowStock);
           
           // Add to notifications
           if (lowStock.length > 0) {
@@ -3413,7 +3382,7 @@ const AboutPage = ({ settings, currencySymbol }) => {
             className="w-full md:w-[600px] h-[300px] md:h-[700px] mt-8 md:mt-0 md:ml-60 overflow-hidden shadow-2xl rounded-sm relative"
           >
             <img 
-              src="https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=1200" 
+              src="https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=1200"
               className="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-1000"
               alt="Coffee roasting process"
               referrerPolicy="no-referrer"
@@ -3458,7 +3427,7 @@ const AboutPage = ({ settings, currencySymbol }) => {
                 viewport={{ once: true }}
                 className="group cursor-pointer"
               >
-                <div className="aspect-[3/4] overflow-hidden bg-[#f2f0eb] mb-4 md:mb-6 relative">
+                <div className="aspect-[4/5] bg-gray-100 mb-4 md:mb-6 overflow-hidden relative">
                   <img 
                     src={item.img} 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
@@ -3525,7 +3494,7 @@ const AboutPage = ({ settings, currencySymbol }) => {
           >
             <div className="aspect-square bg-white/10 rounded-full absolute inset-0 blur-3xl animate-pulse" />
             <img 
-              src="https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=800" 
+              src="https://images.pexels.com/photos/1695052/pexels-photo-1695052.jpeg?auto=compress&cs=tinysrgb&w=1200"
               className="relative z-10 w-full h-auto rounded-2xl md:rounded-3xl shadow-3xl" 
               alt="Whole beans" 
               referrerPolicy="no-referrer"
@@ -3552,11 +3521,11 @@ const AboutPage = ({ settings, currencySymbol }) => {
                 Discover More <ArrowRight className="inline-block ml-2 w-3 h-3" />
               </Link>
             </div>
-            <div className="absolute bottom-0 right-0 w-32 md:w-48 h-32 md:h-48 translate-x-8 md:translate-x-12 translate-y-8 md:translate-y-12 opacity-0 group-hover:opacity-100 transition-all duration-500">
+            <div className="absolute -right-12 -bottom-12 w-64 h-64 md:w-80 md:h-80 opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-700">
                <img 
                  src={block.img} 
                  className="w-full h-full object-cover rounded-full grayscale" 
-                 alt="" 
+                 alt={block.title} 
                  referrerPolicy="no-referrer"
                />
             </div>
@@ -3614,12 +3583,11 @@ const ShopPage = ({ addToCart, settings, currencySymbol }) => {
     { id: CATEGORIES.BAKERY, name: 'Bakery', icon: <Package size={18} /> },
   ];
 
-  // Merge static PRODUCTS with fetchedProducts, giving priority to fetched ones
   const currentProducts = [
     ...(fetchedProducts[selectedCategory] || []),
-    ...(PRODUCTS[selectedCategory] || [])
+    ...(MENU_ITEMS[selectedCategory] || [])
   ].filter((product, index, self) => 
-    index === self.findIndex((p) => p.name === product.name)
+    index === self.findIndex((p) => p.name.toLowerCase().trim() === product.name.toLowerCase().trim())
   );
 
   return (
@@ -3696,7 +3664,7 @@ const ShopPage = ({ addToCart, settings, currencySymbol }) => {
                     onClick={() => setSelectedProduct(product)}
                   >
                     <img 
-                      src={product.img} 
+                      src={product.image ? (product.image.startsWith('http') ? product.image : apiUrl(`/assets/${product.image}`)) : product.img} 
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                       alt={product.name}
                     />
@@ -3765,6 +3733,27 @@ const ShopPage = ({ addToCart, settings, currencySymbol }) => {
                 <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 md:mb-6 font-serif tracking-tight">
                   {selectedProduct.name}
                 </h2>
+
+                {/* Size Selector */}
+                <div className="mb-6 md:mb-8">
+                  <p className="text-white/40 text-[8px] md:text-[9px] font-bold tracking-widest uppercase mb-4">Select Size</p>
+                  <div className="flex gap-3">
+                    {['Short', 'Tall', 'Grande', 'Venti'].map((size) => (
+                      <button
+                        key={size}
+                        onClick={() => setSelectedSize(size)}
+                        className={`px-4 py-2 rounded-full text-[10px] font-bold tracking-widest uppercase transition-all border ${
+                          selectedSize === size 
+                            ? 'bg-[#00d084] border-transparent text-[#001a13]' 
+                            : 'bg-white/5 border-white/10 text-white/60 hover:border-[#00d084]/50'
+                        }`}
+                      >
+                        {size}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
                 <p className="text-xl md:text-2xl font-black text-[#00d084] mb-6 md:mb-10">{selectedProduct.price} {currencySymbol}</p>
                 
                 <p className="text-xs md:text-sm text-white/50 leading-relaxed mb-8 md:mb-12 font-medium">
@@ -4247,7 +4236,7 @@ const AdminDashboard = ({ token, settings, setSettings, currencySymbol }) => {
         users: 0,
         avgWait: 4.2
       };
-    } catch (e) {
+    } catch {
       return { revenue: 0, orders: 0, users: 0, avgWait: 4.2 };
     }
   });
@@ -4751,7 +4740,11 @@ const AdminDashboard = ({ token, settings, setSettings, currencySymbol }) => {
                         <div key={product.id} className="bg-white/5 rounded-[30px] p-6 border border-white/5 flex items-center gap-6 group hover:bg-white/10 transition-all">
                           <div className="relative">
                             <div className="w-20 h-20 rounded-2xl overflow-hidden bg-white/5">
-                              <img src={product.img} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-all duration-500" />
+                              <img 
+                                src={product.image ? (product.image.startsWith('http') ? product.image : apiUrl(`/assets/${product.image}`)) : (product.img || apiUrl('/assets/cofee.png'))} 
+                                alt={product.name} 
+                                className="w-full h-full object-cover group-hover:scale-110 transition-all duration-500" 
+                              />
                             </div>
                             <div className="absolute -top-2 -left-2 w-8 h-8 bg-[#00d084] text-[#001a13] rounded-full flex items-center justify-center font-black text-xs shadow-lg">
                               #{idx + 1}
@@ -4970,7 +4963,11 @@ const AdminDashboard = ({ token, settings, setSettings, currencySymbol }) => {
                     className="bg-white/5 backdrop-blur-xl rounded-[40px] border border-white/10 overflow-hidden group"
                   >
                     <div className="h-48 relative overflow-hidden">
-                      <img src={product.img} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700" />
+                      <img 
+                        src={product.image ? (product.image.startsWith('http') ? product.image : apiUrl(`/assets/${product.image}`)) : (product.img || apiUrl('/assets/cofee.png'))} 
+                        alt={product.name} 
+                        className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700" 
+                      />
                       <div className="absolute top-4 left-4">
                         <span className="bg-black/50 backdrop-blur-md text-white/70 text-[8px] font-bold px-3 py-1.5 rounded-full border border-white/10 tracking-widest uppercase">
                           {product.category}
@@ -5042,7 +5039,10 @@ const AdminDashboard = ({ token, settings, setSettings, currencySymbol }) => {
                           <tr key={product.id} className="group hover:bg-white/[0.02] transition-all">
                             <td className="px-8 py-6">
                               <div className="flex items-center gap-4">
-                                <img src={product.img} className="w-10 h-10 rounded-xl object-cover" />
+                                <img 
+                                  src={product.image ? (product.image.startsWith('http') ? product.image : apiUrl(`/assets/${product.image}`)) : (product.img || apiUrl('/assets/cofee.png'))} 
+                                  className="w-10 h-10 rounded-xl object-cover" 
+                                />
                                 <p className="text-white font-bold text-xs">{product.name}</p>
                               </div>
                             </td>
@@ -5876,7 +5876,35 @@ const AdminDashboard = ({ token, settings, setSettings, currencySymbol }) => {
                         <div key={idx} className="flex justify-between items-center bg-white/5 p-4 rounded-2xl border border-white/5">
                           <div className="flex items-center gap-4">
                             <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center overflow-hidden">
-                               <img src={item.img || item.product?.img} className="w-full h-full object-cover" />
+                               <img 
+                                 src={(() => {
+                                   const itemName = (item.product_name || item.name || "").toLowerCase();
+                                   
+                                   // 1. Try to find in MENU_ITEMS first for consistency with menu images
+                                   const allMenuItems = Object.values(MENU_ITEMS).flat();
+                                   const menuItem = allMenuItems.find(m => 
+                                     m.name.toLowerCase() === itemName || 
+                                     itemName.includes(m.name.toLowerCase()) ||
+                                     m.name.toLowerCase().includes(itemName)
+                                   );
+                                   if (menuItem) return menuItem.img;
+
+                                   // 2. Fallback to item data
+                                   if (item.image) return item.image.startsWith('http') ? item.image : apiUrl(`/assets/${item.image}`);
+                                   if (item.img || item.product?.img) return item.img || item.product?.img;
+                                   
+                                   // 3. Last resort fallbacks
+                                   if (itemName.includes('latte')) return latteImg;
+                                   if (itemName.includes('cappuccino')) return cappuccinoImg;
+                                   if (itemName.includes('espresso')) return espressoImg;
+                                   if (itemName.includes('americano')) return americanoImg;
+                                   if (itemName.includes('mocha')) return mochaImg;
+                                   if (itemName.includes('croissant')) return croissantImg;
+                                   if (itemName.includes('muffin')) return muffinsImg;
+                                   return 'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&q=80&w=100';
+                                 })()} 
+                                 className="w-full h-full object-cover" 
+                               />
                             </div>
                             <div>
                               <p className="text-white font-bold text-xs">{item.product_name || item.name}</p>
@@ -6172,7 +6200,7 @@ const ContactPage = ({ settings }) => {
       } else {
         throw new Error("Form submission failed");
       }
-    } catch (error) {
+    } catch {
       alert("Something went wrong. Please try again later.");
     } finally {
       setIsSubmitting(false);
@@ -6231,12 +6259,8 @@ const ContactPage = ({ settings }) => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="bg-white/5 backdrop-blur-xl p-12 md:p-16 rounded-[50px] border border-white/10 relative overflow-hidden"
         >
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#00d084]/10 blur-[100px] -z-10" />
-          
           <form 
             onSubmit={handleSubmit} 
-            action="https://formspree.io/f/xojlgger"
-            method="POST"
             className="space-y-8"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -7192,7 +7216,7 @@ const SuccessPage = ({ lastOrder, settings, currencySymbol }) => {
             </div>
             <div className="flex justify-between">
               <span>DATE:</span>
-              <span>{new Date(lastOrder.created_at || Date.now()).toLocaleDateString()}</span>
+              <span>{lastOrder.created_at ? new Date(lastOrder.created_at).toLocaleDateString() : new Date().toLocaleDateString()}</span>
             </div>
           </div>
 
@@ -7277,11 +7301,13 @@ const SuccessPage = ({ lastOrder, settings, currencySymbol }) => {
 };
 
 function AppContent() {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [hasLoadedInitially, setHasLoadedInitially] = useState(false);
   const location = useLocation();
   const [notifications, setNotifications] = useState([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const [lastOrder, setLastOrder] = useState(() => {
     const saved = localStorage.getItem('rashfa_last_order');
@@ -7337,11 +7363,6 @@ function AppContent() {
     localStorage.removeItem('rashfa_token');
   };
 
-  // Maintenance Mode Check
-  if (settings.maintenanceMode && !user?.is_admin && location.pathname !== '/login' && location.pathname !== '/admin') {
-    return <MaintenancePage settings={settings} />;
-  }
-
   const addNotification = (message, type = 'success') => {
     const id = Date.now();
     setNotifications(prev => [...prev, { id, message, type }]);
@@ -7365,6 +7386,11 @@ function AppContent() {
       addNotification('Ordering is currently disabled', 'error');
       return;
     }
+    if (!user) {
+      addNotification('Please log in to add items to your cart', 'error');
+      navigate('/login');
+      return;
+    }
     try {
       console.log("Adding to cart:", product, customizations);
       setCart(prevCart => {
@@ -7382,7 +7408,7 @@ function AppContent() {
         return [...prevCart, { ...product, customizations, quantity: (customizations.quantity || 1) }];
       });
       addNotification(`${product.name} added to cart!`, 'success');
-    } catch (error) {
+    } catch {
       addNotification(`Failed to add ${product.name}`, 'error');
     }
   };
@@ -7399,20 +7425,30 @@ function AppContent() {
   const isHomePage = location.pathname === '/';
   
   useEffect(() => {
-    setIsLoading(true);
+    // Wrap in timeout to avoid cascading render warning
+    const loadTimer = setTimeout(() => {
+      setIsLoading(true);
+      
+      // Use Rashfa only for the initial load of the Home page
+      const isInitialHomeLoad = isHomePage && !hasLoadedInitially;
+      setIsFirstLoad(isInitialHomeLoad);
+  
+      const duration = isInitialHomeLoad ? 5500 : 1500; 
+      const finishTimer = setTimeout(() => {
+        setIsLoading(false);
+        setHasLoadedInitially(true);
+      }, duration);
+      
+      return () => clearTimeout(finishTimer);
+    }, 0);
     
-    // Use Rashfa only for the initial load of the Home page
-    const isInitialHomeLoad = isHomePage && !hasLoadedInitially;
-    setIsFirstLoad(isInitialHomeLoad);
+    return () => clearTimeout(loadTimer);
+  }, [location.pathname, isHomePage, hasLoadedInitially]); // Trigger on any path change
 
-    const duration = isInitialHomeLoad ? 5500 : 1500; 
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-      setHasLoadedInitially(true);
-    }, duration);
-    
-    return () => clearTimeout(timer);
-  }, [location.pathname, isHomePage]); // Trigger on any path change
+  // Maintenance Mode Check
+  if (settings.maintenanceMode && !user?.is_admin && location.pathname !== '/login' && location.pathname !== '/admin') {
+    return <MaintenancePage settings={settings} />;
+  }
 
   return (
     <div className="min-h-screen bg-[#001a13] font-sans selection:bg-[#00d084] selection:text-[#001a13]">
@@ -7550,73 +7586,75 @@ function AppContent() {
           )}
         </AnimatePresence>
 
-        <Navbar cart={cart} cartTotal={cartTotal} cartCount={cartCount} removeFromCart={removeFromCart} user={user} logout={logout} settings={settings} />
+        <Navbar cart={cart} cartTotal={cartTotal} cartCount={cartCount} removeFromCart={removeFromCart} user={user} logout={logout} settings={settings} isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
         
         {/* Premium Modern Footer */}
-        <footer className="mt-20 relative bg-[#001a13] pt-20 pb-10 border-t border-white/5 overflow-hidden">
-          <div className="max-w-7xl mx-auto px-8 md:px-16 relative z-10">
-            
-            <div className="relative z-10">
-              {/* Top Section: Brand & Newsletter */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
-                {/* Brand Info */}
-                <div className="flex items-start gap-5">
-                  <div className="w-12 h-12 bg-white/5 rounded-xl p-2.5 border border-white/10 flex items-center justify-center shadow-2xl flex-shrink-0">
-                    <img src="/assets/LR-removebg-preview.png" alt="Rashfa Logo" className="w-full h-full object-contain" />
+        {!(location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/profile' || location.pathname.startsWith('/admin')) && (
+          <footer className="mt-20 relative bg-[#001a13] pt-20 pb-10 border-t border-white/5 overflow-hidden">
+            <div className="max-w-7xl mx-auto px-8 md:px-16 relative z-10">
+              
+              <div className="relative z-10">
+                {/* Top Section: Brand & Newsletter */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+                  {/* Brand Info */}
+                  <div className="flex items-start gap-5">
+                    <div className="w-12 h-12 bg-white/5 rounded-xl p-2.5 border border-white/10 flex items-center justify-center shadow-2xl flex-shrink-0">
+                      <img src="/assets/LR-removebg-preview.png" alt="Rashfa Logo" className="w-full h-full object-contain" />
+                    </div>
+                    <div className="flex flex-col">
+                      <h3 className="text-white font-['Great_Vibes'] text-2xl leading-none mb-2">
+                        {settings.storeName}
+                      </h3>
+                      <p className="text-white/40 text-[9px] font-bold tracking-[0.25em] leading-relaxed uppercase max-w-[300px]">
+                        Crafting moments of pure indulgence through the finest beans and traditional techniques.
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex flex-col">
-                    <h3 className="text-white font-['Great_Vibes'] text-2xl leading-none mb-2">
-                      {settings.storeName}
-                    </h3>
-                    <p className="text-white/40 text-[9px] font-bold tracking-[0.25em] leading-relaxed uppercase max-w-[300px]">
-                      Crafting moments of pure indulgence through the finest beans and traditional techniques.
-                    </p>
-                  </div>
-                </div>
 
-                {/* Newsletter Section */}
-                <div className="flex flex-col items-start lg:items-end w-full relative">
-                  <div className="w-full max-w-md relative group">
-                    <div className="relative flex items-center bg-white/5 border border-white/10 rounded-full p-1.5 pl-6 backdrop-blur-xl focus-within:border-[#00d084]/40 transition-all">
-                      <input 
-                        type="email" 
-                        placeholder="ENTER YOUR EMAIL..." 
-                        className="bg-transparent border-none outline-none text-white text-[9px] font-black tracking-[0.2em] w-full placeholder:text-white/20"
-                      />
-                      <button className="bg-white text-[#001a13] px-8 py-3 rounded-full font-black text-[9px] tracking-[0.2em] uppercase hover:bg-[#00d084] transition-all whitespace-nowrap shadow-xl">
-                        Join Now
-                      </button>
+                  {/* Newsletter Section */}
+                  <div className="flex flex-col items-start lg:items-end w-full relative">
+                    <div className="w-full max-w-md relative group">
+                      <div className="relative flex items-center bg-white/5 border border-white/10 rounded-full p-1.5 pl-6 backdrop-blur-xl focus-within:border-[#00d084]/40 transition-all">
+                        <input 
+                          type="email" 
+                          placeholder="ENTER YOUR EMAIL..." 
+                          className="bg-transparent border-none outline-none text-white text-[9px] font-black tracking-[0.2em] w-full placeholder:text-white/20"
+                        />
+                        <button className="bg-white text-[#001a13] px-8 py-3 rounded-full font-black text-[9px] tracking-[0.2em] uppercase hover:bg-[#00d084] transition-all whitespace-nowrap shadow-xl">
+                          Join Now
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Bottom Section: Links & Logo Center */}
-              <div className="flex flex-col lg:flex-row items-center justify-between gap-10 pt-10 border-t border-white/5">
-                {/* Links */}
-                <div className="flex flex-wrap justify-center lg:justify-start gap-10 flex-1">
-                  {['Home', 'Shop', 'About', 'Contact'].map((item) => (
-                    <Link 
-                      key={item}
-                      to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
-                      className="text-white/40 hover:text-[#00d084] text-[10px] font-black uppercase tracking-[0.3em] transition-all hover:scale-110 block"
-                    >
-                      {item}
-                    </Link>
-                  ))}
+                {/* Bottom Section: Links & Logo Center */}
+                <div className="flex flex-col lg:flex-row items-center justify-between gap-10 pt-10 border-t border-white/5">
+                  {/* Links */}
+                  <div className="flex flex-wrap justify-center lg:justify-start gap-10 flex-1">
+                    {['Home', 'Shop', 'About', 'Contact'].map((item) => (
+                      <Link 
+                        key={item}
+                        to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
+                        className="text-white/40 hover:text-[#00d084] text-[10px] font-black uppercase tracking-[0.3em] transition-all hover:scale-110 block"
+                      >
+                        {item}
+                      </Link>
+                    ))}
+                  </div>
+
+                  {/* Logo Center */}
+                  <div className="flex flex-col items-center flex-1 relative">
+                    <h2 className="font-['Great_Vibes'] text-5xl text-white select-none drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">{settings.storeName.split(' ')[0]}</h2>
+                  </div>
+
+                  {/* Spacer for balance to keep logo centered */}
+                  <div className="hidden lg:block flex-1"></div>
                 </div>
-
-                {/* Logo Center */}
-                <div className="flex flex-col items-center flex-1 relative">
-                  <h2 className="font-['Great_Vibes'] text-5xl text-white select-none drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">{settings.storeName.split(' ')[0]}</h2>
-                </div>
-
-                {/* Spacer for balance to keep logo centered */}
-                <div className="hidden lg:block flex-1"></div>
               </div>
             </div>
-          </div>
-        </footer>
+          </footer>
+        )}
 
         <ScrollToTop />
       </motion.div>

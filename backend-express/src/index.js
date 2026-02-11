@@ -3,11 +3,16 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import bcrypt from 'bcryptjs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { v4 as uuidv4 } from 'uuid';
 import { readData, writeData, ensureSeed } from './db.js';
 import { createToken, authMiddleware, adminMiddleware } from './auth.js';
 
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -24,6 +29,8 @@ app.use(cors({
 }));
 app.use(express.json({ limit: '2mb' }));
 app.use(morgan('dev'));
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
+app.use('/assets', express.static(path.join(__dirname, '..', '..', 'frontend', 'src', 'assets')));
 
 app.get('/', (req, res) => {
   res.json({ status: 'ok', message: 'Rashfa Express API' });
@@ -181,7 +188,20 @@ app.get('/api/admin/products/best-sellers', authMiddleware, adminMiddleware, (re
   const best = Object.entries(counts)
     .sort((a, b) => b[1] - a[1])
     .slice(0, 10)
-    .map(([key, qty]) => ({ key, qty }));
+    .map(([key, qty]) => {
+      const product = data.products.find(p => 
+        p.id === key || 
+        p.id === String(key) ||
+        p.name.toLowerCase() === String(key).toLowerCase()
+      );
+      return {
+        id: key,
+        name: product ? product.name : key,
+        image: product ? product.image : null,
+        total_sales: qty,
+        stock: product ? product.stock : 0
+      };
+    });
   return res.json({ status: 'success', data: best });
 });
 
@@ -192,11 +212,23 @@ const crud = (collectionName) => ({
   },
   create: (req, res) => {
     const data = readData();
-    const item = { id: uuidv4(), ...req.body, created_at: new Date().toISOString() };
+    const items = (req.body.items || []).map(it => {
+      const product = data.products.find(p => p.id === it.product_id || p.name === it.name);
+      return {
+        ...it,
+        image: product ? product.image : null
+      };
+    });
+    const item = { 
+      id: uuidv4(), 
+      ...req.body, 
+      items,
+      created_at: new Date().toISOString() 
+    };
     data[collectionName] = data[collectionName] || [];
     data[collectionName].push(item);
     writeData(data);
-    return res.status(201).json({ status: 'success', data: item });
+    return res.json({ status: 'success', data: item });
   },
   update: (req, res) => {
     const data = readData();

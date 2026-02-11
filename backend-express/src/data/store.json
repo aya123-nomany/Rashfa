@@ -17,8 +17,159 @@
       "created_at": "2026-02-06T18:02:06.960Z"
     }
   ],
-  "products": [],
+  "products": [
+    {
+      "id": "p1",
+      "name": "Americano",
+      "description": "Rich espresso diluted with hot water for a smooth, bold flavor.",
+      "price": 18,
+      "category": "COFFEE",
+      "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&q=80&w=800",
+      "available": true,
+      "stock": 45
+    },
+    {
+      "id": "p2",
+      "name": "Cafe Latte",
+      "description": "Smooth espresso with steamed milk and a light layer of foam.",
+      "price": 22,
+      "category": "COFFEE",
+      "image": "https://images.unsplash.com/photo-1536939459926-301728717817?auto=format&fit=crop&q=80&w=800",
+      "available": true,
+      "stock": 32
+    },
+    {
+      "id": "p3",
+      "name": "Cappuccino",
+      "description": "Perfect balance of espresso, steamed milk, and rich foam.",
+      "price": 20,
+      "category": "COFFEE",
+      "image": "https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&q=80&w=800",
+      "available": true,
+      "stock": 28
+    },
+    {
+      "id": "p4",
+      "name": "Chocolate Croissant",
+      "description": "Flaky, buttery pastry filled with premium dark chocolate.",
+      "price": 15,
+      "category": "PASTRY",
+      "image": "https://images.unsplash.com/photo-1530610476181-d83430b64dcd?auto=format&fit=crop&q=80&w=800",
+      "available": true,
+      "stock": 15
+    },
+    {
+      "id": "p5",
+      "name": "Blueberry Muffin",
+      "description": "Freshly baked muffin bursting with sweet blueberries.",
+      "price": 12,
+      "category": "MUFFIN",
+      "image": "https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&q=80&w=800",
+      "available": true,
+      "stock": 10
+    }
+  ],
   "promotions": [],
   "employees": [],
-  "orders": []
+  "orders": [
+    {
+      "id": "ord-001",
+      "order_number": "RSH-1001",
+      "user_id": "c0082a4f-d9b7-4eb8-a002-0088f34d9fc5",
+      "name": "Astra",
+      "email": "astra@gmail.com",
+      "phone": "0600000000",
+      "address": "Casablanca, Morocco",
+      "payment_method": "cash",
+      "wants_receipt": true,
+      "total_amount": 58,
+      "status": "completed",
+      "items": [
+        {
+          "product_id": "p1",
+          "name": "Americano",
+          "quantity": 2,
+          "price": 18,
+          "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&q=80&w=800"
+        },
+        {
+          "product_id": "p2",
+          "name": "Cafe Latte",
+          "quantity": 1,
+          "price": 22,
+          "image": "https://images.unsplash.com/photo-1536939459926-301728717817?auto=format&fit=crop&q=80&w=800"
+        }
+      ],
+      "created_at": "2026-02-11T10:00:00.000Z"
+    },
+    {
+      "id": "ord-002",
+      "order_number": "RSH-1002",
+      "user_id": "c0082a4f-d9b7-4eb8-a002-0088f34d9fc5",
+      "name": "Astra",
+      "email": "astra@gmail.com",
+      "phone": "0600000000",
+      "address": "Casablanca, Morocco",
+      "payment_method": "online",
+      "wants_receipt": true,
+      "total_amount": 40,
+      "status": "completed",
+      "items": [
+        {
+          "product_id": "p3",
+          "name": "Cappuccino",
+          "quantity": 2,
+          "price": 20,
+          "image": "https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&q=80&w=800"
+        }
+      ],
+      "created_at": "2026-02-11T11:30:00.000Z"
+    },
+    {
+      "id": "ord-003",
+      "order_number": "RSH-1003",
+      "user_id": "3a9a1dcd-6994-4d05-a81a-63a9f5cb6b07",
+      "name": "Admin",
+      "email": "admin@rashfa.com",
+      "phone": "0610633221",
+      "address": "Office 1",
+      "payment_method": "online",
+      "wants_receipt": false,
+      "total_amount": 45,
+      "status": "completed",
+      "items": [
+        {
+          "product_id": "p4",
+          "name": "Chocolate Croissant",
+          "quantity": 3,
+          "price": 15,
+          "image": "https://images.unsplash.com/photo-1530610476181-d83430b64dcd?auto=format&fit=crop&q=80&w=800"
+        }
+      ],
+      "created_at": "2026-02-11T14:15:00.000Z"
+    },
+    {
+      "id": "ord-004",
+      "order_number": "RSH-1004",
+      "user_id": "c0082a4f-d9b7-4eb8-a002-0088f34d9fc5",
+      "name": "Astra",
+      "email": "astra@gmail.com",
+      "phone": "0600000000",
+      "address": "Casablanca, Morocco",
+      "payment_method": "cash",
+      "wants_receipt": true,
+      "total_amount": 72,
+      "status": "completed",
+      "items": [
+        {
+          "product_id": "p1",
+          "name": "Americano",
+          "quantity": 4,
+          "price": 18,
+          "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&q=80&w=800"
+        }
+      ],
+      "created_at": "2026-02-11T16:45:00.000Z"
+    }
+  ]
 }
