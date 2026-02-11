@@ -6348,9 +6348,11 @@ const CustomCursor = () => {
       if (
         e.target.tagName === 'BUTTON' || 
         e.target.tagName === 'A' || 
+        e.target.tagName === 'IMG' ||
         e.target.closest('button') || 
         e.target.closest('a') ||
-        e.target.closest('.cursor-pointer')
+        e.target.closest('.cursor-pointer') ||
+        e.target.closest('img')
       ) {
         setIsHovering(true);
       } else {
@@ -7454,7 +7456,7 @@ function AppContent() {
 
   return (
     <div className="min-h-screen bg-[#001a13] font-sans selection:bg-[#00d084] selection:text-[#001a13]">
-      {/* <CustomCursor /> */}
+      <CustomCursor />
       
       {/* Notifications Portal */}
       <div className="fixed top-8 left-1/2 -translate-x-1/2 z-[10000] flex flex-col gap-4 pointer-events-none items-center w-full max-w-md px-4">
