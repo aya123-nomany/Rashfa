@@ -24,7 +24,7 @@
       "description": "Rich espresso diluted with hot water for a smooth, bold flavor.",
       "price": 18,
       "category": "COFFEE",
-      "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&q=80&w=800",
+      "image": "/assets/americano.jpg",
       "available": true,
       "stock": 45
     },
@@ -34,7 +34,7 @@
       "description": "Smooth espresso with steamed milk and a light layer of foam.",
       "price": 22,
       "category": "COFFEE",
-      "image": "https://images.unsplash.com/photo-1536939459926-301728717817?auto=format&fit=crop&q=80&w=800",
+      "image": "/assets/latte.jpg",
       "available": true,
       "stock": 32
     },
@@ -44,7 +44,7 @@
       "description": "Perfect balance of espresso, steamed milk, and rich foam.",
       "price": 20,
       "category": "COFFEE",
-      "image": "https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&q=80&w=800",
+      "image": "/assets/cappuccino.jpg",
       "available": true,
       "stock": 28
     },
