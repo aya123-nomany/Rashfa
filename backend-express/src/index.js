@@ -124,7 +124,11 @@ app.get('/api/products', (req, res) => {
 // Orders (auth)
 app.get('/api/orders', authMiddleware, (req, res) => {
   const data = readData();
-  const orders = req.user.is_admin ? data.orders : data.orders.filter((o) => o.user_id === req.user.id);
+  const orders = (req.user.is_admin ? data.orders : data.orders.filter((o) => o.user_id === req.user.id))
+    .map(order => ({
+      ...order,
+      items_count: order.items_count || (order.items || []).reduce((sum, item) => sum + (item.quantity || 1), 0)
+    }));
   return res.json({ status: 'success', data: orders });
 });
 
@@ -135,6 +139,8 @@ app.post('/api/orders', authMiddleware, (req, res) => {
   }
 
   const data = readData();
+  const items_count = items.reduce((sum, item) => sum + (item.quantity || 1), 0);
+  
   const order = {
     id: uuidv4(),
     order_number: `RSH-${Date.now()}`,
@@ -146,6 +152,7 @@ app.post('/api/orders', authMiddleware, (req, res) => {
     payment_method,
     wants_receipt: wants_receipt === true,
     total_amount: total_amount || 0,
+    items_count,
     status: 'pending',
     items,
     created_at: new Date().toISOString()
@@ -160,7 +167,11 @@ app.post('/api/orders', authMiddleware, (req, res) => {
 // Admin
 app.get('/api/admin/orders', authMiddleware, adminMiddleware, (req, res) => {
   const data = readData();
-  return res.json({ status: 'success', data: data.orders || [] });
+  const orders = (data.orders || []).map(order => ({
+    ...order,
+    items_count: order.items_count || (order.items || []).reduce((sum, item) => sum + (item.quantity || 1), 0)
+  }));
+  return res.json({ status: 'success', data: orders });
 });
 
 app.patch('/api/admin/orders/:orderId/status', authMiddleware, adminMiddleware, (req, res) => {
@@ -273,7 +284,15 @@ app.delete('/api/admin/employees/:id', authMiddleware, adminMiddleware, employee
 
 app.get('/api/admin/clients', authMiddleware, adminMiddleware, (req, res) => {
   const data = readData();
-  const clients = (data.users || []).map((u) => ({ ...u, password: undefined }));
+  const clients = (data.users || []).map((u) => {
+    const userOrders = (data.orders || []).filter(o => o.user_id === u.id);
+    return {
+      ...u,
+      password: undefined,
+      orders_count: userOrders.length,
+      orders_sum_total_amount: userOrders.reduce((sum, o) => sum + (Number(o.total_amount) || 0), 0)
+    };
+  });
   return res.json({ status: 'success', data: clients });
 });
 

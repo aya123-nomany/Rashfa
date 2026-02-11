@@ -707,14 +707,23 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, sett
   }, [isSearchOpen]);
   
   const [isLocationsOpen, setIsLocationsOpen] = useState(false);
-          const [locationType, setLocationType] = useState('pickup'); // 'pickup' or 'delivery'
-          const [selectedStore, setSelectedStore] = useState(null);
+  const [locationType, setLocationType] = useState('pickup'); // 'pickup' or 'delivery'
+  const [selectedStore, setSelectedStore] = useState(null);
+  const [storeSearchQuery, setStoreSearchQuery] = useState("");
 
-          const stores = [
-            { id: 1, name: `${settings.storeName.split(' ')[0]} Casablanca`, address: "123 Coffee Lane, Maarif", city: "Casablanca", lat: 33.588, lng: -7.611, zoom: 15 },
-            { id: 2, name: `${settings.storeName.split(' ')[0]} Rabat`, address: "45 Agdal Square, Rabat", city: "Rabat", lat: 34.000, lng: -6.850, zoom: 15 },
-            { id: 3, name: `${settings.storeName.split(' ')[0]} Marrakech`, address: "88 Guéliz Avenue, Marrakech", city: "Marrakech", lat: 31.630, lng: -8.010, zoom: 15 }
-          ];
+  const stores = [
+    { id: 1, name: `${settings.storeName.split(' ')[0]} Casablanca`, address: "123 Coffee Lane, Maarif", city: "Casablanca", lat: 33.588, lng: -7.611, zoom: 15 },
+    { id: 2, name: `${settings.storeName.split(' ')[0]} Rabat`, address: "45 Agdal Square, Rabat", city: "Rabat", lat: 34.000, lng: -6.850, zoom: 15 },
+    { id: 3, name: `${settings.storeName.split(' ')[0]} Marrakech`, address: "88 Guéliz Avenue, Marrakech", city: "Marrakech", lat: 31.630, lng: -8.010, zoom: 15 }
+  ];
+
+  const filteredStores = useMemo(() => {
+    return stores.filter(store => 
+      store.name.toLowerCase().includes(storeSearchQuery.toLowerCase()) ||
+      store.address.toLowerCase().includes(storeSearchQuery.toLowerCase()) ||
+      store.city.toLowerCase().includes(storeSearchQuery.toLowerCase())
+    );
+  }, [storeSearchQuery]);
   const location = useLocation();
   const navigate = useNavigate();
   const [hoveredLink, setHoveredLink] = useState(null);
@@ -1260,6 +1269,8 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, sett
                     <input 
                       type="text" 
                       placeholder="Find a store" 
+                      value={storeSearchQuery}
+                      onChange={(e) => setStoreSearchQuery(e.target.value)}
                       className="w-full bg-white border border-gray-200 rounded-full py-3 px-6 pr-12 text-sm focus:outline-none focus:border-[#006241] focus:ring-1 focus:ring-[#006241] transition-all text-gray-900"
                     />
                     <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -1271,25 +1282,31 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, sett
                   {locationType === 'pickup' ? (
                     <div className="space-y-6">
                       <div className="space-y-4">
-                        {stores.map((store) => (
-                          <motion.button
-                            key={store.id}
-                            whileHover={{ x: 4 }}
-                            onClick={() => setSelectedStore(store)}
-                            className={`w-full text-left p-4 rounded-2xl border transition-all ${selectedStore?.id === store.id ? 'border-[#006241] bg-[#006241]/5 shadow-sm' : 'border-gray-100 hover:border-gray-200'}`}
-                          >
-                            <div className="flex items-start gap-3">
-                              <div className={`mt-1 p-2 rounded-full ${selectedStore?.id === store.id ? 'bg-[#006241] text-white' : 'bg-gray-100 text-gray-400'}`}>
-                                <MapPin size={16} />
+                        {filteredStores.length > 0 ? (
+                          filteredStores.map((store) => (
+                            <motion.button
+                              key={store.id}
+                              whileHover={{ x: 4 }}
+                              onClick={() => setSelectedStore(store)}
+                              className={`w-full text-left p-4 rounded-2xl border transition-all ${selectedStore?.id === store.id ? 'border-[#006241] bg-[#006241]/5 shadow-sm' : 'border-gray-100 hover:border-gray-200'}`}
+                            >
+                              <div className="flex items-start gap-3">
+                                <div className={`mt-1 p-2 rounded-full ${selectedStore?.id === store.id ? 'bg-[#006241] text-white' : 'bg-gray-100 text-gray-400'}`}>
+                                  <MapPin size={16} />
+                                </div>
+                                <div>
+                                  <h4 className="font-bold text-gray-900 text-sm">{store.name}</h4>
+                                  <p className="text-gray-500 text-xs mt-1">{store.address}</p>
+                                  <p className="text-[#006241] text-[10px] font-bold uppercase tracking-widest mt-2">Open until 10:00 PM</p>
+                                </div>
                               </div>
-                              <div>
-                                <h4 className="font-bold text-gray-900 text-sm">{store.name}</h4>
-                                <p className="text-gray-500 text-xs mt-1">{store.address}</p>
-                                <p className="text-[#006241] text-[10px] font-bold uppercase tracking-widest mt-2">Open until 10:00 PM</p>
-                              </div>
-                            </div>
-                          </motion.button>
-                        ))}
+                            </motion.button>
+                          ))
+                        ) : (
+                          <div className="text-center py-8">
+                            <p className="text-gray-500 text-sm">No stores found matching your search.</p>
+                          </div>
+                        )}
                       </div>
                       
                       <div className="pt-6 border-t border-gray-100 space-y-3">
@@ -3149,7 +3166,7 @@ const ProfilePage = ({ user, logout, token, currencySymbol }) => {
                       <div key={order.id} className="bg-white/5 rounded-2xl md:rounded-3xl p-4 md:p-6 border border-white/5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                         <div className="w-full sm:w-auto">
                           <p className="text-white/40 text-[8px] md:text-[9px] font-bold tracking-widest uppercase mb-1">{order.order_number}</p>
-                          <h4 className="text-white font-bold text-sm md:text-base">{order.items.length} {order.items.length === 1 ? 'Item' : 'Items'}</h4>
+                          <h4 className="text-white font-bold text-sm md:text-base">{order.items_count || (order.items?.length || 0)} { (order.items_count || (order.items?.length || 0)) === 1 ? 'Item' : 'Items'}</h4>
                           <p className="text-white/60 text-[10px] md:text-xs mt-1">{new Date(order.created_at).toLocaleDateString()}</p>
                         </div>
                         <div className="w-full sm:w-auto flex sm:flex-col justify-between items-center sm:items-end">
@@ -6539,7 +6556,7 @@ const ScrollToTop = () => {
           whileHover={{ scale: 1.1, backgroundColor: '#00d084', color: '#001a13' }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="fixed bottom-10 right-10 z-[999] bg-[#001a13]/80 backdrop-blur-md border border-white/10 text-white p-4 rounded-full shadow-2xl transition-colors duration-300 group"
+          className="fixed bottom-16 right-28 z-[999] bg-[#001a13]/80 backdrop-blur-md border border-white/10 text-white p-4 rounded-full shadow-2xl transition-colors duration-300 group"
           aria-label="Scroll to top"
         >
           <ArrowUp size={24} className="group-hover:animate-bounce" />
