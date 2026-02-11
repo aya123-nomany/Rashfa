@@ -299,98 +299,98 @@ const PageLoader = () => {
   );
 };
 
-const HomeInitialLoader = () => {
-  const [stage, setStage] = useState('typing'); // 'typing' -> 'formed' -> 'exit'
-  const letters = "Rashfa".split("");
-
-  useEffect(() => {
-    const formedTimeout = setTimeout(() => setStage('formed'), 2500);
-    const exitTimeout = setTimeout(() => setStage('exit'), 4500);
-
-    return () => {
-      clearTimeout(formedTimeout);
-      clearTimeout(exitTimeout);
+  const HomeInitialLoader = () => {
+    const [stage, setStage] = useState('typing'); // 'typing' -> 'formed' -> 'exit'
+    const letters = "Rashfa".split("");
+  
+    useEffect(() => {
+      const formedTimeout = setTimeout(() => setStage('formed'), 2500);
+      const exitTimeout = setTimeout(() => setStage('exit'), 4500);
+  
+      return () => {
+        clearTimeout(formedTimeout);
+        clearTimeout(exitTimeout);
+      };
+    }, []);
+  
+    const containerVariants = {
+      typing: { scale: 1 },
+      formed: { 
+        scale: [1, 0.7, 1.15],
+        filter: [
+          "drop-shadow(0px 0px 0px rgba(0,0,0,0))",
+          "drop-shadow(0px 0px 15px rgba(255,255,255,0.4)) drop-shadow(0px 20px 30px rgba(0,0,0,0.4))",
+          "drop-shadow(0px 0px 25px rgba(255,255,255,0.6)) drop-shadow(0px 35px 50px rgba(0,0,0,0.6))"
+        ],
+        transition: { 
+          duration: 2, 
+          times: [0, 0.4, 1],
+          ease: "easeInOut"
+        }
+      },
+      exit: {
+        opacity: 0,
+        scale: 1.5,
+        filter: "blur(15px)",
+        transition: { duration: 0.8, ease: "easeIn" }
+      }
     };
-  }, []);
-
-  const containerVariants = {
-    typing: { scale: 1 },
-    formed: { 
-      scale: [1, 0.7, 1.15],
-      filter: [
-        "drop-shadow(0px 0px 0px rgba(0,0,0,0))",
-        "drop-shadow(0px 0px 15px rgba(255,255,255,0.4)) drop-shadow(0px 20px 30px rgba(0,0,0,0.4))",
-        "drop-shadow(0px 0px 25px rgba(255,255,255,0.6)) drop-shadow(0px 35px 50px rgba(0,0,0,0.6))"
-      ],
-      transition: { 
-        duration: 2, 
-        times: [0, 0.4, 1],
-        ease: "easeInOut"
-      }
-    },
-    exit: {
-      opacity: 0,
-      scale: 1.5,
-      filter: "blur(15px)",
-      transition: { duration: 0.8, ease: "easeIn" }
-    }
-  };
-
-  const letterVariants = {
-    initial: { opacity: 0, y: 15, display: "none" },
-    animate: (i) => ({
-      opacity: 1,
-      y: 0,
-      display: "inline-block",
-      transition: {
-        duration: 0.7,
-        delay: i * 0.25,
-        ease: "easeOut"
-      }
-    })
-  };
-
-  return (
-    <>
-      <style>
-        {`
-          @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-          .font-rashfa {
-            font-family: 'Great Vibes', cursive;
-          }
-        `}
-      </style>
-      <motion.div
-        initial={{ opacity: 1 }}
-        animate={stage === 'exit' ? 'exit' : ''}
-        variants={containerVariants}
-        className="fixed inset-0 z-[10001] bg-[#002b21] flex flex-col items-center justify-center overflow-hidden"
-      >
+  
+    const letterVariants = {
+      initial: { opacity: 0, y: 15, display: "none" },
+      animate: (i) => ({
+        opacity: 1,
+        y: 0,
+        display: "inline-block",
+        transition: {
+          duration: 0.7,
+          delay: i * 0.25,
+          ease: "easeOut"
+        }
+      })
+    };
+  
+    return (
+      <>
+        <style>
+          {`
+            @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+            .font-rashfa {
+              font-family: 'Great Vibes', cursive;
+            }
+          `}
+        </style>
         <motion.div
+          initial={{ opacity: 1 }}
+          animate={stage === 'exit' ? 'exit' : ''}
           variants={containerVariants}
-          initial="typing"
-          animate={stage === 'formed' ? 'formed' : 'typing'}
-          className="relative"
+          className="fixed inset-0 z-[10001] bg-[#002b21] flex flex-col items-center justify-center overflow-hidden"
         >
-          <h1 className="text-white text-7xl md:text-9xl font-rashfa select-none tracking-tight">
-            {letters.map((char, i) => (
-              <motion.span
-                key={i}
-                custom={i}
-                variants={letterVariants}
-                initial="initial"
-                animate="animate"
-                className="inline-block"
-              >
-                {char}
-              </motion.span>
-            ))}
-          </h1>
+          <motion.div
+            variants={containerVariants}
+            initial="typing"
+            animate={stage === 'formed' ? 'formed' : 'typing'}
+            className="relative"
+          >
+            <h1 className="text-white text-7xl md:text-9xl font-rashfa select-none tracking-tight">
+              {letters.map((char, i) => (
+                <motion.span
+                  key={i}
+                  custom={i}
+                  variants={letterVariants}
+                  initial="initial"
+                  animate="animate"
+                  className="inline-block"
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </h1>
+          </motion.div>
         </motion.div>
-      </motion.div>
-    </>
-  );
-};
+      </>
+    );
+  };
 
 const Marquee = ({ text, reverse = false, tilted = false, isStatic = false }) => {
   const content = (
