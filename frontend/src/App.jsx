@@ -184,6 +184,181 @@ const TESTIMONIALS = [
   }
 ];
 
+const CoffeeCupCharacter = ({ isFocused = false, isPasswordFocused = false, floating = true }) => {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const x = (e.clientX / window.innerWidth) - 0.5;
+      const y = (e.clientY / window.innerHeight) - 0.5;
+      setMousePos({ x, y });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  return (
+    <div className="relative w-64 h-64 flex items-center justify-center pointer-events-none">
+      <motion.div
+        animate={floating ? {
+          y: [0, -10, 0],
+          rotate: isFocused ? [0, -2, 2, 0] : 0
+        } : {}}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        className="relative z-10"
+      >
+        {/* Cup Body */}
+        <div className="relative w-32 h-28 bg-white rounded-b-[40px] rounded-t-lg shadow-xl border-2 border-[#00d084]/20 overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-4 bg-black/10" />
+          {/* Coffee Liquid */}
+          <motion.div 
+            animate={{ height: isFocused ? "40%" : "30%" }}
+            className="absolute bottom-0 left-0 w-full bg-[#3d2b1f] transition-all duration-500"
+          />
+        </div>
+        
+        {/* Handle */}
+        <div className="absolute right-[-20px] top-8 w-12 h-16 border-4 border-white rounded-r-full border-l-0" />
+
+        {/* Face */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
+          <div className="flex gap-6 mt-4">
+            {/* Left Eye */}
+            <motion.div 
+              animate={{ 
+                x: mousePos.x * 20, 
+                y: mousePos.y * 10,
+                scaleY: isFocused ? 1.2 : 1
+              }}
+              className="w-3 h-3 bg-[#001a13] rounded-full relative"
+            >
+              <div className="absolute top-0.5 left-0.5 w-1 h-1 bg-white rounded-full" />
+            </motion.div>
+            {/* Right Eye */}
+            <motion.div 
+              animate={{ 
+                x: mousePos.x * 20, 
+                y: mousePos.y * 10,
+                scaleY: isFocused ? 1.2 : 1
+              }}
+              className="w-3 h-3 bg-[#001a13] rounded-full relative"
+            >
+              <div className="absolute top-0.5 left-0.5 w-1 h-1 bg-white rounded-full" />
+            </motion.div>
+          </div>
+          {/* Mouth */}
+          <motion.div 
+            animate={{ 
+              scaleX: isFocused ? 1.5 : 1,
+              borderRadius: isPasswordFocused ? "2px" : "20px"
+            }}
+            className="w-6 h-1 bg-[#001a13] rounded-full mt-2"
+          />
+        </div>
+      </motion.div>
+
+      {/* Steam */}
+      <div className="absolute top-0 flex gap-4">
+        {[0, 1, 2].map((i) => (
+          <motion.div
+            key={i}
+            animate={{ 
+              y: [0, -40],
+              x: [0, (i - 1) * 10],
+              opacity: [0, 0.5, 0],
+              scale: [0.5, 1.2, 0.8]
+            }}
+            transition={{ 
+              duration: 2, 
+              repeat: Infinity, 
+              delay: i * 0.6,
+              ease: "easeOut"
+            }}
+            className="w-2 h-8 bg-white/20 rounded-full blur-sm"
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const Libri9Character = ({ floating = true, dropHeight = 40, dropCount = 3 }) => {
+  return (
+    <div className="relative w-24 h-24 flex items-center justify-center pointer-events-none">
+      <motion.div
+        animate={floating ? { 
+          rotate: [15, 35, 15],
+          x: [0, 5, 0],
+          y: [0, -2, 0]
+        } : {}}
+        transition={{ 
+          duration: 3, 
+          repeat: Infinity, 
+          ease: "easeInOut" 
+        }}
+        className="relative z-10"
+      >
+        <svg
+          width="80"
+          height="80"
+          viewBox="0 0 100 100"
+          className="text-[#00d084] fill-none"
+        >
+          {/* Traditional Pot Shape */}
+          <path 
+            d="M35 85 C35 90 65 90 65 85 L60 45 C60 40 40 40 40 45 Z" 
+            className="fill-[#00d084]/10 stroke-[#00d084]"
+            strokeWidth="2"
+          />
+          {/* Spout */}
+          <path 
+            d="M60 50 L80 40 L80 45 L62 55" 
+            className="fill-[#00d084] stroke-[#00d084]"
+            strokeWidth="1"
+          />
+          {/* Handle */}
+          <path 
+            d="M40 50 C25 50 25 80 40 80" 
+            className="stroke-[#00d084]"
+            strokeWidth="2"
+          />
+          {/* Lid / Top */}
+          <path 
+            d="M45 40 Q50 30 55 40" 
+            className="stroke-[#00d084]"
+            strokeWidth="2"
+          />
+        </svg>
+      </motion.div>
+
+      {/* Dripping Coffee Drops */}
+      {[...Array(dropCount)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute left-[72px] top-[42px] w-1 h-1 bg-[#00d084] rounded-full blur-[0.2px] z-0"
+          initial={{ opacity: 0, y: 0, x: 0 }}
+          animate={{ 
+            y: [0, dropHeight],
+            x: [0, dropHeight * 0.1, dropHeight * 0.2],
+            opacity: [0, 1, 1, 0],
+            scale: [0.5, 1, 1, 0.2]
+          }}
+          transition={{ 
+            duration: 1.5, 
+            repeat: Infinity, 
+            ease: "easeIn",
+            delay: i * (1.5 / dropCount)
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
 const PageLoader = () => {
   return (
     <motion.div 
@@ -194,74 +369,9 @@ const PageLoader = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,208,132,0.08),transparent_70%)]" />
       
       <div className="relative flex flex-col items-center">
-        {/* Coffee Pot (Briq) Container */}
+        {/* Coffee Pot (Libri9) Container */}
         <div className="relative mb-12 scale-125 md:scale-150">
-          <motion.div
-            animate={{ 
-              rotate: [15, 35, 15],
-              x: [0, 5, 0],
-              y: [0, -2, 0]
-            }}
-            transition={{ 
-              duration: 3, 
-              repeat: Infinity, 
-              ease: "easeInOut" 
-            }}
-            className="relative z-10"
-          >
-            <svg
-              width="100"
-              height="100"
-              viewBox="0 0 100 100"
-              className="text-[#00d084] fill-none"
-            >
-              {/* Traditional Pot Shape */}
-              <path 
-                d="M35 85 C35 90 65 90 65 85 L60 45 C60 40 40 40 40 45 Z" 
-                className="fill-[#00d084]/10 stroke-[#00d084]"
-                strokeWidth="2"
-              />
-              {/* Spout */}
-              <path 
-                d="M60 50 L80 40 L80 45 L62 55" 
-                className="fill-[#00d084] stroke-[#00d084]"
-                strokeWidth="1"
-              />
-              {/* Handle */}
-              <path 
-                d="M40 50 C25 50 25 80 40 80" 
-                className="stroke-[#00d084]"
-                strokeWidth="2"
-              />
-              {/* Lid / Top */}
-              <path 
-                d="M45 40 Q50 30 55 40" 
-                className="stroke-[#00d084]"
-                strokeWidth="2"
-              />
-            </svg>
-          </motion.div>
-
-          {/* Dripping Coffee Drops - Precisely aligned to pour into the bar */}
-          {[0, 1, 2, 3, 4].map((i) => (
-            <motion.div
-              key={i}
-              className="absolute left-[82px] top-[42px] w-1.5 h-1.5 bg-[#00d084] rounded-full blur-[0.3px] z-0"
-              initial={{ opacity: 0, y: 0, x: 0 }}
-              animate={{ 
-                y: [0, 85], // Distance to the progress bar
-                x: [0, 8, 15], // Curve of the pour
-                opacity: [0, 1, 1, 0],
-                scale: [0.5, 1, 1, 0.2]
-              }}
-              transition={{ 
-                duration: 1.5, 
-                repeat: Infinity, 
-                ease: "easeIn",
-                delay: i * 0.3
-              }}
-            />
-          ))}
+          <Libri9Character dropHeight={85} dropCount={5} />
         </div>
 
         {/* Filling Progress Bar Container */}
@@ -7427,6 +7537,7 @@ function AppContent() {
   const cartCount = cart.reduce((count, item) => count + item.quantity, 0);
 
   const isHomePage = location.pathname === '/';
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
   
   useEffect(() => {
     // Wrap in timeout to avoid cascading render warning
@@ -7504,13 +7615,21 @@ function AppContent() {
 
       <AnimatePresence mode="wait">
         {isLoading && (
-          isFirstLoad ? (
-            <HomeInitialLoader key="home-initial-loader" />
+          isHomePage ? (
+            // Only show loader on Home if it's the very first load
+            isFirstLoad ? <HomeInitialLoader key="home-initial-loader" /> : null
           ) : (
+            // Show Libri9 loader for all other page transitions
             <PageLoader key="page-loader" />
           )
         )}
       </AnimatePresence>
+
+      {!isHomePage && !isAuthPage && (
+        <div className="fixed bottom-0 right-0 z-[60] scale-[0.4] md:scale-[0.5] origin-bottom-right pointer-events-none mb-[-20px] mr-[-20px] opacity-80 hover:opacity-100 transition-opacity">
+          <CoffeeCupCharacter />
+        </div>
+      )}
 
       <motion.div
         initial={false}
