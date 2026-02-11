@@ -3666,7 +3666,7 @@ const ShopPage = ({ addToCart, settings, currencySymbol }) => {
                     onClick={() => setSelectedProduct(product)}
                   >
                     <img 
-                      src={product.image ? (product.image.startsWith('http') ? product.image : apiUrl(`/assets/${product.image}`)) : product.img} 
+                      src={product.image ? (product.image.startsWith('http') ? product.image : apiUrl(product.image)) : product.img} 
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                       alt={product.name}
                     />
