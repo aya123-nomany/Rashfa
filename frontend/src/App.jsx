@@ -45,6 +45,7 @@ import blueberryMuffinsImg from './assets/BLUEBERRY MUFFINS.jpg';
 import mineralWaterImg from './assets/mineral water.jpg';
 import almondCroissantImg from './assets/ALMOND CROISSANT.jpg';
 import chocolateCroissantImg from './assets/CHOCOLATE CROISSANT.jpg';
+import wafflesImg from './assets/Waffles.jpg';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000';
 const apiUrl = (path) => `${API_BASE_URL}${path.startsWith('/') ? path : `/${path}`}`;
@@ -128,7 +129,7 @@ const MENU_ITEMS = {
     { id: 'cr3', name: "CHOCOLATE CROISSANT", price: 18, img: chocolateCroissantImg, desc: "French pastry with chocolate filling", allergens: ["Lactose", "Gluten"], nutrition: { cal: 280 } },
     { id: 'p1', name: "CHOCOLATE MUFFINS", price: 22, img: muffinsImg, desc: "Rich chocolate muffins with chips", allergens: ["Lactose", "Gluten"], nutrition: { cal: 350 } },
     { id: 'p2', name: "BLUEBERRY MUFFINS", price: 20, img: blueberryMuffinsImg, desc: "Fresh blueberry muffins", allergens: ["Lactose", "Gluten"], nutrition: { cal: 310 } },
-    { id: 'p3', name: "Waffles", price: 25, img: "/assets/Waffles.jpg", desc: "Delicious warm waffles", allergens: ["Lactose", "Gluten"], nutrition: { cal: 280 } }
+    { id: 'p3', name: "Waffles", price: 25, img: wafflesImg, desc: "Delicious warm waffles", allergens: ["Lactose", "Gluten"], nutrition: { cal: 280 } }
   ]
 };
 
