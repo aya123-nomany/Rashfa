@@ -5042,7 +5042,7 @@ const AdminDashboard = ({ token, settings, setSettings, currencySymbol }) => {
                             <td className="px-8 py-6">
                               <div className="flex items-center gap-4">
                                 <img 
-                                  src={product.image ? (product.image.startsWith('http') ? product.image : apiUrl(`/assets/${product.image}`)) : (product.img || apiUrl('/assets/cofee.png'))} 
+                                  src={product.image ? (product.image.startsWith('http') ? product.image : apiUrl(product.image)) : (product.img || apiUrl('/assets/cofee.png'))} 
                                   className="w-10 h-10 rounded-xl object-cover" 
                                 />
                                 <p className="text-white font-bold text-xs">{product.name}</p>
