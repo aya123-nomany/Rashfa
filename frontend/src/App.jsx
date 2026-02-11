@@ -4743,7 +4743,7 @@ const AdminDashboard = ({ token, settings, setSettings, currencySymbol }) => {
                           <div className="relative">
                             <div className="w-20 h-20 rounded-2xl overflow-hidden bg-white/5">
                               <img 
-                                src={product.image ? (product.image.startsWith('http') ? product.image : apiUrl(`/assets/${product.image}`)) : (product.img || apiUrl('/assets/cofee.png'))} 
+                                src={product.image ? (product.image.startsWith('http') ? product.image : apiUrl(product.image)) : (product.img || apiUrl('/assets/cofee.png'))} 
                                 alt={product.name} 
                                 className="w-full h-full object-cover group-hover:scale-110 transition-all duration-500" 
                               />
@@ -5892,7 +5892,7 @@ const AdminDashboard = ({ token, settings, setSettings, currencySymbol }) => {
                                    if (menuItem) return menuItem.img;
 
                                    // 2. Fallback to item data
-                                   if (item.image) return item.image.startsWith('http') ? item.image : apiUrl(`/assets/${item.image}`);
+                                   if (item.image) return item.image.startsWith('http') ? item.image : apiUrl(item.image);
                                    if (item.img || item.product?.img) return item.img || item.product?.img;
                                    
                                    // 3. Last resort fallbacks
