@@ -1147,7 +1147,7 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, sett
                         className="flex gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 group relative cursor-pointer hover:bg-white/10 transition-all"
                       >
                         <div className="w-20 h-20 rounded-xl overflow-hidden bg-black/20 flex-shrink-0">
-                          <img src={item.img} alt={item.name} className="w-full h-full object-cover" />
+                          <img src={item.image ? (item.image.startsWith('http') ? item.image : (item.image.startsWith('/assets') ? item.image : apiUrl(item.image))) : item.img} alt={item.name} className="w-full h-full object-cover" />
                         </div>
                         <div className="flex-grow">
                           <h4 className="font-bold text-sm text-white/90">{item.name}</h4>
@@ -3776,7 +3776,7 @@ const ShopPage = ({ addToCart, settings, currencySymbol }) => {
                     onClick={() => setSelectedProduct(product)}
                   >
                     <img 
-                      src={product.image ? (product.image.startsWith('http') ? product.image : apiUrl(product.image)) : product.img} 
+                      src={product.image ? (product.image.startsWith('http') ? product.image : (product.image.startsWith('/assets') ? product.image : apiUrl(product.image))) : product.img} 
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                       alt={product.name}
                     />
@@ -3834,7 +3834,7 @@ const ShopPage = ({ addToCart, settings, currencySymbol }) => {
 
               <div className="w-full md:w-1/2 p-6 md:p-12 bg-white/5">
                 <img 
-                  src={selectedProduct.img} 
+                  src={selectedProduct.image ? (selectedProduct.image.startsWith('http') ? selectedProduct.image : (selectedProduct.image.startsWith('/assets') ? selectedProduct.image : apiUrl(selectedProduct.image))) : selectedProduct.img} 
                   className="w-full h-auto md:h-full object-cover rounded-2xl md:rounded-3xl shadow-lg"
                   alt={selectedProduct.name}
                 />
@@ -7175,7 +7175,7 @@ const CheckoutPage = ({ cart, cartTotal, setLastOrder, setCart, user, token, set
                   {cart.map((item, i) => (
                     <div key={i} className="flex gap-4 items-center">
                       <div className="w-16 h-16 rounded-2xl overflow-hidden bg-black/40 flex-shrink-0">
-                        <img src={item.img} alt={item.name} className="w-full h-full object-cover" />
+                        <img src={item.image ? (item.image.startsWith('http') ? item.image : (item.image.startsWith('/assets') ? item.image : apiUrl(item.image))) : item.img} alt={item.name} className="w-full h-full object-cover" />
                       </div>
                       <div className="flex-grow">
                         <div className="flex justify-between items-start mb-1">
@@ -7677,7 +7677,7 @@ function AppContent() {
                 <div className="flex flex-col md:flex-row h-full">
                   <div className="md:w-1/2 h-[300px] md:h-auto overflow-hidden bg-black/20">
                     <img 
-                      src={selectedCartItem.img} 
+                      src={selectedCartItem.image ? (selectedCartItem.image.startsWith('http') ? selectedCartItem.image : (selectedCartItem.image.startsWith('/assets') ? selectedCartItem.image : apiUrl(selectedCartItem.image))) : selectedCartItem.img} 
                       alt={selectedCartItem.name} 
                       className="w-full h-full object-cover"
                       referrerPolicy="no-referrer"
