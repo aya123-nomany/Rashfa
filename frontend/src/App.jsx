@@ -7433,6 +7433,7 @@ function AppContent() {
       const isInitialHomeLoad = isHomePage && !hasLoadedInitially;
       setIsFirstLoad(isInitialHomeLoad);
   
+      // Duration is long only for initial home load, otherwise short
       const duration = isInitialHomeLoad ? 5500 : 1500; 
       const finishTimer = setTimeout(() => {
         setIsLoading(false);
@@ -7499,7 +7500,7 @@ function AppContent() {
 
       <AnimatePresence mode="wait">
         {isLoading && (
-          isFirstLoad ? (
+          isHomePage ? (
             <HomeInitialLoader key="home-initial-loader" />
           ) : (
             <PageLoader key="page-loader" />
