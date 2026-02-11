@@ -7504,7 +7504,7 @@ function AppContent() {
 
       <AnimatePresence mode="wait">
         {isLoading && (
-          isHomePage ? (
+          isFirstLoad ? (
             <HomeInitialLoader key="home-initial-loader" />
           ) : (
             <PageLoader key="page-loader" />
