@@ -414,19 +414,22 @@ const PageLoader = ({ hideCharacter = false, hideProgress = false }) => {
   );
 };
 
-  const HomeInitialLoader = () => {
+  const HomeInitialLoader = ({ onComplete }) => {
     const [stage, setStage] = useState('typing'); // 'typing' -> 'formed' -> 'exit'
     const letters = "Rashfa".split("");
   
     useEffect(() => {
-      const formedTimeout = setTimeout(() => setStage('formed'), 2500);
-      const exitTimeout = setTimeout(() => setStage('exit'), 4500);
+      const formedTimeout = setTimeout(() => setStage('formed'), 1200);
+      const exitTimeout = setTimeout(() => {
+        setStage('exit');
+        if (onComplete) onComplete();
+      }, 2500);
   
       return () => {
         clearTimeout(formedTimeout);
         clearTimeout(exitTimeout);
       };
-    }, []);
+    }, [onComplete]);
   
     const containerVariants = {
       typing: { scale: 1 },
@@ -458,8 +461,8 @@ const PageLoader = ({ hideCharacter = false, hideProgress = false }) => {
         y: 0,
         display: "inline-block",
         transition: {
-          duration: 0.7,
-          delay: i * 0.25,
+          duration: 0.5,
+          delay: i * 0.12,
           ease: "easeOut"
         }
       })
@@ -7599,14 +7602,16 @@ function AppContent() {
       const isInitialHomeLoad = isHomePage && !hasLoadedInitially;
       setIsFirstLoad(isInitialHomeLoad);
   
-      // Duration is long only for initial home load, otherwise short
-      const duration = isInitialHomeLoad ? 5500 : 1500; 
-      const finishTimer = setTimeout(() => {
-        setIsLoading(false);
-        setHasLoadedInitially(true);
-      }, duration);
-      
-      return () => clearTimeout(finishTimer);
+      // If it's the initial home load, the HomeInitialLoader will handle finishing via onComplete
+      if (!isInitialHomeLoad) {
+        const duration = 1000; 
+        const finishTimer = setTimeout(() => {
+          setIsLoading(false);
+          setHasLoadedInitially(true);
+        }, duration);
+        
+        return () => clearTimeout(finishTimer);
+      }
     }, 0);
     
     return () => clearTimeout(loadTimer);
@@ -7667,7 +7672,13 @@ function AppContent() {
       <AnimatePresence mode="wait">
         {isLoading && (
           isFirstLoad ? (
-            <HomeInitialLoader key="home-initial-loader" />
+            <HomeInitialLoader 
+              key="home-initial-loader" 
+              onComplete={() => {
+                setIsLoading(false);
+                setHasLoadedInitially(true);
+              }} 
+            />
           ) : !isAuthPage ? (
             <PageLoader key="page-loader" hideCharacter={isHomePage || isAuthPage} hideProgress={isHomePage} />
           ) : null
