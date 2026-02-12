@@ -2299,6 +2299,9 @@ const LoginPage = ({ login, settings }) => {
     setLoading(true);
     setError('');
 
+    console.log('Attempting login to:', apiUrl('/api/login'));
+    console.log('Login data:', formData);
+
     try {
       const response = await fetch(apiUrl('/api/login'), {
         method: 'POST',
@@ -2309,7 +2312,9 @@ const LoginPage = ({ login, settings }) => {
         body: JSON.stringify(formData),
       });
 
+      console.log('Login response status:', response.status);
       const data = await response.json();
+      console.log('Login response data:', data);
 
       if (response.ok) {
         login(data.data.user, data.data.access_token);
@@ -2322,7 +2327,8 @@ const LoginPage = ({ login, settings }) => {
           setError(data.message || 'Login failed. Please check your credentials.');
         }
       }
-    } catch {
+    } catch (err) {
+      console.error('Login connection error:', err);
       setError('Connection error. Please try again later.');
     } finally {
       setLoading(false);
@@ -2618,6 +2624,15 @@ const SignUpPage = ({ login, settings }) => {
     setLoading(true);
     setError('');
 
+    console.log('Attempting register to:', apiUrl('/api/register'));
+    const registerData = {
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+      password_confirmation: formData.password,
+    };
+    console.log('Register data:', registerData);
+
     try {
       const response = await fetch(apiUrl('/api/register'), {
         method: 'POST',
@@ -2625,15 +2640,12 @@ const SignUpPage = ({ login, settings }) => {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
         },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          password: formData.password,
-          password_confirmation: formData.password,
-        }),
+        body: JSON.stringify(registerData),
       });
 
+      console.log('Register response status:', response.status);
       const data = await response.json();
+      console.log('Register response data:', data);
 
       if (response.ok) {
         login(data.data.user, data.data.access_token);
@@ -2646,7 +2658,8 @@ const SignUpPage = ({ login, settings }) => {
           setError(data.message || 'Registration failed. Please try again.');
         }
       }
-    } catch {
+    } catch (err) {
+      console.error('Register connection error:', err);
       setError('Connection error. Please try again later.');
     } finally {
       setLoading(false);
