@@ -359,7 +359,7 @@ const Libri9Character = ({ floating = true, dropHeight = 40, dropCount = 3 }) =>
   );
 };
 
-const PageLoader = () => {
+const PageLoader = ({ hideCharacter = false, hideProgress = false }) => {
   return (
     <motion.div 
       initial={{ opacity: 1 }}
@@ -370,41 +370,45 @@ const PageLoader = () => {
       
       <div className="relative flex flex-col items-center">
         {/* Coffee Pot (Libri9) Container */}
-        <div className="relative mb-12 scale-125 md:scale-150">
-          <Libri9Character dropHeight={85} dropCount={5} />
-        </div>
+        {!hideCharacter && (
+          <div className="relative mb-12 scale-125 md:scale-150">
+            <Libri9Character dropHeight={85} dropCount={5} />
+          </div>
+        )}
 
         {/* Filling Progress Bar Container */}
-         <div className="flex flex-col items-center gap-4">
-           <div className="w-64 h-[6px] bg-[#00d084]/5 relative overflow-hidden rounded-full border border-[#00d084]/10 backdrop-blur-sm">
-             <motion.div 
-               className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#00d084]/40 via-[#00d084] to-[#00d084] shadow-[0_0_15px_rgba(0,208,132,0.8)]"
-               initial={{ width: "0%" }}
-               animate={{ width: "100%" }}
-               transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-             />
-             {/* Splash effect on the filling edge */}
-             <motion.div 
-                className="absolute top-0 h-full w-4 bg-white/30 blur-sm z-10"
-                animate={{ 
-                  left: ["0%", "100%"]
-                }}
+        {!hideProgress && (
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-64 h-[6px] bg-[#00d084]/5 relative overflow-hidden rounded-full border border-[#00d084]/10 backdrop-blur-sm">
+              <motion.div 
+                className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#00d084]/40 via-[#00d084] to-[#00d084] shadow-[0_0_15px_rgba(0,208,132,0.8)]"
+                initial={{ width: "0%" }}
+                animate={{ width: "100%" }}
                 transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-             />
-           </div>
-          
-          <div className="flex items-center gap-3 mt-2">
-            <span className="w-1.5 h-1.5 bg-[#00d084] rounded-full animate-pulse shadow-[0_0_8px_#00d084]" />
-            <motion.p
-              animate={{ opacity: [0.4, 1, 0.4] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="text-[10px] font-black uppercase text-[#00d084] tracking-[0.6em] translate-x-[0.3em] drop-shadow-[0_0_5px_rgba(0,208,132,0.3)]"
-            >
-              Brewing Excellence
-            </motion.p>
-            <span className="w-1.5 h-1.5 bg-[#00d084] rounded-full animate-pulse shadow-[0_0_8px_#00d084]" />
+              />
+              {/* Splash effect on the filling edge */}
+              <motion.div 
+                 className="absolute top-0 h-full w-4 bg-white/30 blur-sm z-10"
+                 animate={{ 
+                   left: ["0%", "100%"]
+                 }}
+                 transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+              />
+            </div>
+           
+            <div className="flex items-center gap-3 mt-2">
+              <span className="w-1.5 h-1.5 bg-[#00d084] rounded-full animate-pulse shadow-[0_0_8px_#00d084]" />
+              <motion.p
+                animate={{ opacity: [0.4, 1, 0.4] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="text-[10px] font-black uppercase text-[#00d084] tracking-[0.6em] translate-x-[0.3em] drop-shadow-[0_0_5px_rgba(0,208,132,0.3)]"
+              >
+                Brewing Excellence
+              </motion.p>
+              <span className="w-1.5 h-1.5 bg-[#00d084] rounded-full animate-pulse shadow-[0_0_8px_#00d084]" />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </motion.div>
   );
@@ -750,7 +754,8 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, sett
     { name: 'Menu', path: '/shop' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
-    ...(user?.is_admin === true ? [{ name: 'Dashboard', path: '/admin' }] : [])
+    ...(user ? [{ name: 'Profile', path: '/profile' }] : []),
+    ...(user?.is_admin === true ? [{ name: 'Admin', path: '/admin' }] : [])
   ];
 
   const isLightPage = location.pathname === '/about';
@@ -781,7 +786,7 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, sett
           </Link>
 
           {/* Navigation Pill */}
-          <div className={`hidden md:flex items-center gap-1 p-1.5 rounded-full border backdrop-blur-md ${
+          <div className={`hidden lg:flex items-center gap-0.5 p-1 rounded-full border backdrop-blur-md ${
             isLightPage ? 'bg-[#002118]/5 border-[#002118]/10' : 'bg-white/5 border-white/10'
           }`}>
             {navLinks.map((link) => (
@@ -790,7 +795,7 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, sett
                 to={link.path}
                 onMouseEnter={() => setHoveredLink(link.name)}
                 onMouseLeave={() => setHoveredLink(null)}
-                className={`relative px-7 py-2.5 rounded-full text-[11px] font-black tracking-[0.2em] uppercase transition-all duration-300 ${
+                className={`relative px-5 py-2.5 rounded-full text-[10px] font-black tracking-[0.15em] uppercase transition-all duration-300 ${
                   location.pathname === link.path 
                     ? "text-[#001a13]" 
                     : isLightPage 
@@ -818,8 +823,8 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, sett
           </div>
 
           {/* Actions & CTA */}
-          <div className="flex items-center gap-8">
-            <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 md:gap-6">
+            <div className="flex items-center gap-2 md:gap-4">
               {[
                 { icon: Search, label: 'Search', onClick: () => setIsSearchOpen(true) },
                 { icon: MapPin, label: 'Locations', onClick: () => setIsLocationsOpen(true) },
@@ -858,12 +863,12 @@ const Navbar = ({ cart, cartTotal, cartCount, removeFromCart, user, logout, sett
                 onClick={() => user ? logout() : navigate('/signup')}
                 whileHover={{ scale: 1.05, boxShadow: isLightPage ? "0 10px 30px rgba(0, 117, 74, 0.3)" : "0 10px 30px rgba(0, 208, 132, 0.4)" }}
                 whileTap={{ scale: 0.95 }}
-                className={`hidden sm:flex items-center gap-3 px-8 py-3.5 rounded-full text-[11px] font-black tracking-[0.2em] transition-all uppercase ${
+                className={`hidden sm:flex items-center gap-3 px-6 py-3 rounded-full text-[10px] font-black tracking-[0.15em] transition-all uppercase ${
                   isLightPage ? 'bg-[#00754a] text-white' : 'bg-[#00d084] text-[#001a13]'
                 }`}
               >
                 {user ? 'LOGOUT' : 'JOIN NOW'}
-                {user ? <LogOut size={16} strokeWidth={3} /> : <ChevronRight size={16} strokeWidth={3} />}
+                {user ? <LogOut size={14} strokeWidth={3} /> : <ChevronRight size={14} strokeWidth={3} />}
               </motion.button>
               
               <motion.div 
@@ -1951,10 +1956,30 @@ const PopularSection = () => {
       const pieces = gsap.utils.toArray('.piece');
       
       gsap.to(pieces, {
-        x: () => gsap.utils.random(-800, 800),
-        y: () => gsap.utils.random(-500, 500),
-        rotation: () => gsap.utils.random(-360, 360),
-        scale: () => gsap.utils.random(0.5, 2.5),
+        x: (i) => {
+          const xCoord = (i % 5) - 2; // -2, -1, 0, 1, 2
+          const yCoord = Math.floor(i / 5) - 2; // -2, -1, 0, 1, 2
+          // Explode radially from center
+          const angle = Math.atan2(yCoord, xCoord);
+          const distance = 400 + Math.random() * 600;
+          // If it's the center piece (0,0), give it a random direction
+          if (xCoord === 0 && yCoord === 0) {
+            return (Math.random() - 0.5) * 1000;
+          }
+          return Math.cos(angle) * distance + (Math.random() - 0.5) * 200;
+        },
+        y: (i) => {
+          const xCoord = (i % 5) - 2;
+          const yCoord = Math.floor(i / 5) - 2;
+          const angle = Math.atan2(yCoord, xCoord);
+          const distance = 300 + Math.random() * 500;
+          if (xCoord === 0 && yCoord === 0) {
+            return (Math.random() - 0.5) * 800;
+          }
+          return Math.sin(angle) * distance + (Math.random() - 0.5) * 200;
+        },
+        rotation: () => gsap.utils.random(-720, 720),
+        scale: () => gsap.utils.random(0.3, 2.0),
         opacity: 0,
         scrollTrigger: {
           trigger: blastRef.current,
@@ -3950,8 +3975,12 @@ const AdminDashboard = ({ token, settings, setSettings, currencySymbol }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!token) return;
+      if (!token) {
+        console.log("AdminDashboard: No token available");
+        return;
+      }
       setLoading(true);
+      console.log("AdminDashboard: Fetching data with token:", token.substring(0, 10) + "...");
       
       const headers = {
         'Authorization': `Bearer ${token}`,
@@ -3960,10 +3989,15 @@ const AdminDashboard = ({ token, settings, setSettings, currencySymbol }) => {
 
       const fetchEndpoint = async (url, setter) => {
         try {
+          console.log(`AdminDashboard: Fetching ${url}...`);
           const res = await fetch(apiUrl(`/api/admin/${url}`), { headers });
+          console.log(`AdminDashboard: Fetching ${url}, status: ${res.status}`);
           if (res.ok) {
             const data = await res.json();
+            console.log(`AdminDashboard: ${url} data received:`, data.data ? data.data.length : 0, "items");
             setter(data.data);
+          } else {
+            console.error(`AdminDashboard: Failed to fetch ${url}`, res.statusText);
           }
         } catch (error) {
           console.error(`Fetch ${url} error:`, error);
@@ -7485,6 +7519,11 @@ function AppContent() {
     setToken(accessToken);
     localStorage.setItem('rashfa_user', JSON.stringify(userData));
     localStorage.setItem('rashfa_token', accessToken);
+    
+    // Redirect to checkout if there are items in the cart
+    if (cart.length > 0) {
+      navigate('/checkout');
+    }
   };
 
   const logout = () => {
@@ -7515,11 +7554,6 @@ function AppContent() {
   const addToCart = (product, customizations = {}) => {
     if (!settings.acceptingOrders) {
       addNotification('Ordering is currently disabled', 'error');
-      return;
-    }
-    if (!user) {
-      addNotification('Please log in to add items to your cart', 'error');
-      navigate('/login');
       return;
     }
     try {
@@ -7632,13 +7666,11 @@ function AppContent() {
 
       <AnimatePresence mode="wait">
         {isLoading && (
-          isHomePage ? (
-            // Only show loader on Home if it's the very first load
-            isFirstLoad ? <HomeInitialLoader key="home-initial-loader" /> : null
-          ) : (
-            // Show Libri9 loader for all other page transitions
-            <PageLoader key="page-loader" />
-          )
+          isFirstLoad ? (
+            <HomeInitialLoader key="home-initial-loader" />
+          ) : !isAuthPage ? (
+            <PageLoader key="page-loader" hideCharacter={isHomePage || isAuthPage} hideProgress={isHomePage} />
+          ) : null
         )}
       </AnimatePresence>
 

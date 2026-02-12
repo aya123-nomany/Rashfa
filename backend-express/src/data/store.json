@@ -15,6 +15,14 @@
       "password": "$2a$10$k540QHTSKQrZXTFaIcKYiOJw1o.atDuR80hPHuMhkCPDioS83Rzuy",
       "is_admin": false,
       "created_at": "2026-02-06T18:02:06.960Z"
+    },
+    {
+      "id": "ef582843-d4b9-4982-ac06-33c2d01c67e3",
+      "name": "najat",
+      "email": "najat@gmail.com",
+      "password": "$2a$10$bldHx5.uk1DYzmWUScY7P.wypG9TYLV.RBqde/7OjosCNnLZYiYgO",
+      "is_admin": false,
+      "created_at": "2026-02-12T00:31:31.614Z"
     }
   ],
   "products": [
@@ -170,6 +178,29 @@
         }
       ],
       "created_at": "2026-02-11T16:45:00.000Z"
+    },
+    {
+      "id": "de6d3d9c-4dbe-479a-9c7d-0c55633389a7",
+      "order_number": "RSH-1770904371429",
+      "user_id": "ef582843-d4b9-4982-ac06-33c2d01c67e3",
+      "name": "najat",
+      "email": "najat@gmail.com",
+      "phone": "0600000000",
+      "address": "hhh",
+      "payment_method": "cash",
+      "wants_receipt": false,
+      "total_amount": 22,
+      "items_count": 1,
+      "status": "pending",
+      "items": [
+        {
+          "product_id": "p2",
+          "name": "Cafe Latte",
+          "quantity": 1,
+          "price": 22
+        }
+      ],
+      "created_at": "2026-02-12T13:52:51.429Z"
     }
   ]
 }
